@@ -1,0 +1,13 @@
+<LinearLayout android:id="@+id/LinearLayout2"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="horizontal" xmlns:tools="http://schemas.android.com/tools"
+	android:weightSum="100">
+	<ListView android:id="@+id/listFurnitures"
+		android:layout_width="0dp" android:layout_height="fill_parent"
+		android:divider="#b5b5b5" android:dividerHeight="1dp"
+		 android:layout_weight="30"
+		android:listSelector="@drawable/list_selector"></ListView>
+	<FrameLayout android:id="@+id/FrameLaytoDraw" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="70"></FrameLayout>
+
+</LinearLayout>

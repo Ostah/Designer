@@ -61,8 +61,9 @@ public class ActivityDesigner extends Activity {
       int position, long id) {
      
     	 ClipData data = ClipData.newPlainText("", "");
-         shadowBuilder = new View.DragShadowBuilder(v);
-         v.startDrag(data, shadowBuilder, furnitureList.get(position), 0);
+         shadowBuilder = new View.DragShadowBuilder(new FurnitureView(ctx,0,0,furnitureList.get(position)));
+
+         v.startDrag(data,shadowBuilder , furnitureList.get(position), 0);
          return true;
     }};
     
@@ -79,7 +80,7 @@ public class ActivityDesigner extends Activity {
     	      break;
     	    case DragEvent.ACTION_DRAG_ENTERED: 
     	    	
-    	    	//((FrameLayout)mapArea).addView(a);
+    	    	shadowBuilder = null;
     	      break;
     	    case DragEvent.ACTION_DRAG_EXITED:        
     	     // v.setBackgroundDrawable(normalShape);

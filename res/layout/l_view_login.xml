@@ -1,0 +1,28 @@
+<RelativeLayout android:id="@+id/login_layout" android:layout_width="match_parent" android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:nextFocusForward="@+id/login_password" android:nextFocusLeft="@+id/login_password" xmlns:tools="http://schemas.android.com/tools">
+	<TextView android:id="@+id/textView1" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_alignParentTop="true"
+		android:layout_centerHorizontal="true" android:layout_marginTop="96dp"
+		android:text="@string/login_title" android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	<EditText android:id="@+id/login_username"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_below="@+id/textView1" android:layout_centerHorizontal="true"
+		android:layout_marginTop="17dp" android:ems="10" android:hint="@string/login_username"
+		android:inputType="text" android:lines="1" android:maxLines="1"
+		android:nextFocusForward="@id/login_password" />
+	<EditText android:id="@+id/login_password"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_alignLeft="@+id/login_username"
+		android:layout_alignRight="@+id/login_username" android:layout_below="@+id/login_username"
+		android:layout_marginTop="18dp" android:ems="10" android:hint="@string/login_password"
+		android:inputType="textPassword" />
+	<Button android:id="@+id/login_button_go" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_below="@+id/login_password"
+		android:layout_centerHorizontal="true" android:layout_marginTop="19dp" android:text="@string/login_go"/>
+	<Button android:id="@+id/login_button_register"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true" android:layout_marginBottom="15dp"
+		android:text="@string/login_register" />
+
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<RelativeLayout android:layout_width="match_parent"
+	android:layout_height="match_parent" android:gravity="top" xmlns:android="http://schemas.android.com/apk/res/android" android:nextFocusForward="@+id/login_password" android:nextFocusLeft="@+id/login_password" xmlns:tools="http://schemas.android.com/tools">
+	<EditText android:id="@+id/login_username" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/textView1" android:layout_centerHorizontal="true" android:layout_marginTop="19dp" android:ems="10" android:hint="@string/login_username" android:lines="1" android:maxLines="1" android:nextFocusForward="@id/login_password">
+		<requestFocus />
+	</EditText>
+	<EditText android:id="@+id/login_password" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/login_username" android:layout_below="@+id/login_username" android:layout_marginTop="16dp" android:ems="10" android:hint="@string/login_password" android:inputType="textPassword"/>
+	<Button android:id="@+id/login_button_register" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:layout_alignParentRight="true" android:text="@string/login_register"/>
+	<TextView android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" android:layout_marginTop="18dp" android:text="@string/login_title" android:textAppearance="?android:attr/textAppearanceLarge"/>
+	<CheckBox android:id="@+id/login_checkbox" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/login_password" android:layout_alignRight="@+id/login_username" android:layout_below="@+id/login_password" android:text="Nie wylogowuj mnie"/>
+	<Button android:id="@+id/login_button_go" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/login_checkbox" android:layout_centerHorizontal="true" android:text="@string/login_go"/>
+
+</RelativeLayout>

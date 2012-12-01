@@ -54,9 +54,10 @@ public class FurnitureView extends View {
 		
 		this.reference = f.reference;
 		this.color = new Integer(f.color);
-		this.draw = f.draw;
 		this.rect = new Rect(f.rect);
 		this.reference = f.reference;
+		draw = new Paint(Paint.ANTI_ALIAS_FLAG);
+		
 	}
 
 	protected void onDraw(Canvas canvas){
@@ -65,7 +66,7 @@ public class FurnitureView extends View {
 	}
 	
 	protected void move(float x, float y){
-	       rect.offsetTo((int)(x-0.5*rect.width()), (int)(y-0.5*rect.height()));
+	       rect.offsetTo((int)(x/*-0.5*rect.width()*/), (int)(y/*-0.5*rect.height()*/));
 	}
 	
 	public Rect getRect(){

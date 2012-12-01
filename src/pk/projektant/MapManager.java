@@ -1,6 +1,7 @@
 package pk.projektant;
 
 import android.graphics.Rect;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 public class MapManager {
@@ -27,6 +28,8 @@ public class MapManager {
 				f.invalidate();	
 			}
 			else{
+				Log.d("INVALID!","INVALID!");
+			//	Log.d("shadow before:",String.valueOf(f.co))
 				furnitureShadow = f.getShadow();
 				mapArea.addView(furnitureShadow);
 			}
@@ -37,7 +40,10 @@ public class MapManager {
 				furnitureShadow.invalidate();
 			}
 			else{
+				Log.d("VALID!","VALID!");
+				furnitureShadow.invalidate();
 				mapArea.removeView(furnitureShadow);
+				furnitureShadow.invalidate();
 				furnitureShadow  = null;
 				f.move(x, y);
 				f.invalidate();		
@@ -49,11 +55,12 @@ public class MapManager {
 	private Boolean isMoveValid(FurnitureView f,float x,float y)
 	{
 		Rect newPosition = new Rect(f.getRect());
-		newPosition.offset((int)x, (int)y);
+		newPosition.offsetTo((int)x, (int)y);
 		
 		for(int i=0; i<mapArea.getChildCount();i++)
 		{
-			if( ((FurnitureView)mapArea.getChildAt(i)).getRect().intersect(newPosition))
+			if(mapArea.getChildAt(i).equals(f) || (furnitureShadow != null && mapArea.getChildAt(i).equals(furnitureShadow))) continue;
+			if(((FurnitureView)mapArea.getChildAt(i)).getRect().intersect(newPosition))
 			{
 				return false;
 			}		

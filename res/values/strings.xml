@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Projektant</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_view__login">Projektant</string>
+    <string name="login_title">Logowanie</string>
+    <string name="login_username">Login</string>
+    <string name="login_password">Hasło</string>
+    <string name="login_go">Zaloguj</string>
+    <string name="login_register">Rejestracja</string>
+    <string name="data_file">data.txt</string>
+    <string name="title_activity_view__list">Furniture List</string>
+    <string name="title_activity_activity_register">ActivityRegister</string>
+
+</resources>

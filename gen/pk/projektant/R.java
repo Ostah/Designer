@@ -896,10 +896,16 @@ public final class R {
         public static final int list_element_name=0x7f080005;
         public static final int login_button_go=0x7f08000b;
         public static final int login_button_register=0x7f08000c;
+        public static final int login_checkbox=0x7f08000d;
         public static final int login_layout=0x7f080007;
         public static final int login_password=0x7f080008;
         public static final int login_username=0x7f08000a;
-        public static final int menu_settings=0x7f08000d;
+        public static final int menu_settings=0x7f080013;
+        public static final int register_button=0x7f080012;
+        public static final int register_email=0x7f080010;
+        public static final int register_name=0x7f08000e;
+        public static final int register_password=0x7f080011;
+        public static final int register_surname=0x7f08000f;
         public static final int textView1=0x7f080009;
         public static final int thumbnail=0x7f080003;
     }
@@ -907,10 +913,12 @@ public final class R {
         public static final int l_view_list=0x7f030000;
         public static final int l_view_list_element=0x7f030001;
         public static final int l_view_login=0x7f030002;
+        public static final int l_view_register=0x7f030003;
     }
     public static final class menu {
         public static final int l_view_list=0x7f070000;
         public static final int l_view_login=0x7f070001;
+        public static final int l_view_register=0x7f070002;
     }
     public static final class raw {
         public static final int data=0x7f040000;
@@ -925,6 +933,7 @@ public final class R {
         public static final int login_title=0x7f050004;
         public static final int login_username=0x7f050005;
         public static final int menu_settings=0x7f050002;
+        public static final int title_activity_activity_register=0x7f05000b;
         public static final int title_activity_view__list=0x7f05000a;
         public static final int title_activity_view__login=0x7f050003;
     }

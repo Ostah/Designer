@@ -17,12 +17,14 @@ public class FurnitureListAdapter extends BaseAdapter{
 	private int resource;
 	private Context context;
 	private LayoutInflater inflater;
+	private List<Furniture> data;
 	public FurnitureListAdapter(Context ctx, int textViewResourceId, List<Furniture> objects) {
 		super();
 		 
 		resource = textViewResourceId;
         inflater = LayoutInflater.from( ctx );
         context=ctx;
+        data = objects;
 	}
 	
 	public View getView ( int position, View convertView, ViewGroup parent ) {
@@ -62,12 +64,12 @@ public class FurnitureListAdapter extends BaseAdapter{
 
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return data.size();
 	}
 
 	public Object getItem(int arg0) {
 		// TODO Auto-generated method stub
-		return null;
+		return data.get(arg0);
 	}
 
 	public long getItemId(int position) {
