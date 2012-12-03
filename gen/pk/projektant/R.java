@@ -888,26 +888,27 @@ public final class R {
         public static final int pe336355=0x7f02036a;
     }
     public static final class id {
-        public static final int FrameLaytoDraw=0x7f080002;
+        public static final int FrameLaytoDraw=0x7f080003;
         public static final int LinearLayout2=0x7f080000;
+        public static final int debug1=0x7f080002;
         public static final int listFurnitures=0x7f080001;
-        public static final int list_element_cost=0x7f080006;
-        public static final int list_element_image=0x7f080004;
-        public static final int list_element_name=0x7f080005;
-        public static final int login_button_go=0x7f08000b;
-        public static final int login_button_register=0x7f08000c;
-        public static final int login_checkbox=0x7f08000d;
-        public static final int login_layout=0x7f080007;
+        public static final int list_element_cost=0x7f080007;
+        public static final int list_element_image=0x7f080005;
+        public static final int list_element_name=0x7f080006;
+        public static final int login_button_go=0x7f08000d;
+        public static final int login_button_register=0x7f08000b;
+        public static final int login_checkbox=0x7f08000c;
         public static final int login_password=0x7f080008;
-        public static final int login_username=0x7f08000a;
-        public static final int menu_settings=0x7f080013;
-        public static final int register_button=0x7f080012;
-        public static final int register_email=0x7f080010;
-        public static final int register_name=0x7f08000e;
-        public static final int register_password=0x7f080011;
-        public static final int register_surname=0x7f08000f;
-        public static final int textView1=0x7f080009;
-        public static final int thumbnail=0x7f080003;
+        public static final int login_skip=0x7f08000e;
+        public static final int login_username=0x7f080009;
+        public static final int menu_settings=0x7f080014;
+        public static final int register_button=0x7f080013;
+        public static final int register_email=0x7f080011;
+        public static final int register_name=0x7f08000f;
+        public static final int register_password=0x7f080012;
+        public static final int register_surname=0x7f080010;
+        public static final int textView1=0x7f08000a;
+        public static final int thumbnail=0x7f080004;
     }
     public static final class layout {
         public static final int l_view_list=0x7f030000;

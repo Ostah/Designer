@@ -8,17 +8,17 @@
 	<EditText android:id="@+id/register_name"
 		android:layout_width="wrap_content" android:layout_height="wrap_content"
 		android:layout_below="@+id/textView1" android:layout_centerHorizontal="true"
-		android:layout_marginTop="14dp" android:ems="10" android:hint="Imię" android:nextFocusForward="@+id/register_surname"/>
+		android:layout_marginTop="14dp" android:ems="10" android:hint="Imię" android:nextFocusForward="@+id/register_surname" android:text="jan"/>
 	<EditText android:id="@+id/register_surname"
 		android:layout_width="wrap_content" android:layout_height="wrap_content"
 		android:layout_below="@+id/register_name"
-		android:layout_centerHorizontal="true" android:ems="10" android:hint="Nazwisko" android:nextFocusForward="@+id/register_email"/>
+		android:layout_centerHorizontal="true" android:ems="10" android:hint="Nazwisko" android:nextFocusForward="@+id/register_email" android:text="kowalski"/>
 	<EditText android:id="@+id/register_email" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:layout_alignLeft="@+id/register_surname"
 		android:layout_below="@+id/register_surname" android:ems="10"
-		android:hint="Email" android:inputType="textEmailAddress" android:nextFocusForward="@+id/register_password"/>
+		android:hint="Email" android:inputType="textEmailAddress" android:nextFocusForward="@+id/register_password" android:text="aa@wp.pl"/>
 	<EditText android:id="@+id/register_password" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:layout_alignLeft="@+id/register_name" android:layout_alignRight="@+id/register_email" android:layout_below="@+id/register_email" android:ems="10" android:hint="Hasło" android:inputType="textPassword">
+		android:layout_height="wrap_content" android:layout_alignLeft="@+id/register_name" android:layout_alignRight="@+id/register_email" android:layout_below="@+id/register_email" android:ems="10" android:hint="Hasło" android:inputType="textPassword" android:text="123">
 		<requestFocus />
 	</EditText>
 	<Button android:id="@+id/register_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/register_password" android:layout_centerHorizontal="true" android:text="Rejestruj"/>

@@ -24,8 +24,8 @@ public class Furniture {
 		mRoom = room;
 		mImageLink = image;
 		mPrice = price;
-		mX = x;
-		mY = y;
+		mX = 2*x;
+		mY = 2*y;
 		mZ = z;
 	}
 	

@@ -27,6 +27,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -38,11 +39,13 @@ import org.json.JSONObject;
 public class ActivityLogin extends Activity {
 
 	Button btn = null;
+	Button skip = null;
 	Button register = null;
 	String userData ="";
 	Boolean connectionError = false;
 	CheckBox remember = null;
 	Context ctx;
+	
     @Override
     
     public void onCreate(Bundle savedInstanceState) {
@@ -57,7 +60,9 @@ public class ActivityLogin extends Activity {
        btn = (Button) findViewById(R.id.login_button_go);
        register = (Button) findViewById(R.id.login_button_register);
        remember = (CheckBox) findViewById(R.id.login_checkbox);
-       
+       skip = (Button) findViewById(R.id.login_skip);
+      
+       User.get(ctx);
        btn.setOnClickListener(new View.OnClickListener() {		
     	   public void onClick(View arg0) {
     		   ThreadLogin task = new ThreadLogin();
@@ -65,10 +70,15 @@ public class ActivityLogin extends Activity {
     	   }
     	});
        
+       skip.setOnClickListener(new View.OnClickListener() {		
+    	   public void onClick(View arg0) {
+    		   loginSucces();	
+    	   }
+    	});
+       
        register.setOnClickListener(new View.OnClickListener() {		
     	   public void onClick(View arg0) {
-    		   loginSucces();
-    		 		
+    		   goRegister();		 		
     	   }
     	});
        
@@ -85,6 +95,11 @@ public class ActivityLogin extends Activity {
     	 Intent prefIntent = new Intent(this,ActivityDesigner.class);
          this.startActivity(prefIntent);
     }
+    public void goRegister()
+    {
+    	 Intent prefIntent = new Intent(this,ActivityRegister.class);
+         this.startActivity(prefIntent);
+    }
     
     public void parseUserJSON(String data){
     	if(data=="") return;
@@ -92,14 +107,7 @@ public class ActivityLogin extends Activity {
     	try 
     	{
 			JSONObject jObject = new JSONObject(data);
-			User.get().id = jObject.getString("id");
-			User.get().name = jObject.getString("name");
-			User.get().surname = jObject.getString("surname");
-			User.get().password = jObject.getString("password");
-			User.get().registrationDate = jObject.getString("registrationDate");
-			User.get().email = jObject.getString("email");
-			User.get().role = jObject.getString("role");
-			User.get().remember = remember.isChecked();
+			User.get(ctx).set(jObject.getString("id"), jObject.getString("name"), jObject.getString("surname"), jObject.getString("password"), jObject.getString("registrationDate"), jObject.getString("email"), jObject.getString("role"),remember.isChecked());
 		} 
     	catch (JSONException e) 
     	{
@@ -165,7 +173,7 @@ public class ActivityLogin extends Activity {
 			{
 				Toast.makeText(ctx,"Connection or Server Error", Toast.LENGTH_SHORT).show();
 			}
-			else if(User.get().email=="null")
+			else if(User.get(ctx).getEmail()=="null")
 			{
 				Toast.makeText(ctx,"Wrong Username or Password", Toast.LENGTH_SHORT).show();	
 			}

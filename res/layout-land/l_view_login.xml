@@ -8,5 +8,6 @@
 	<TextView android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" android:layout_marginTop="18dp" android:text="@string/login_title" android:textAppearance="?android:attr/textAppearanceLarge"/>
 	<CheckBox android:id="@+id/login_checkbox" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/login_password" android:layout_alignRight="@+id/login_username" android:layout_below="@+id/login_password" android:text="Nie wylogowuj mnie"/>
 	<Button android:id="@+id/login_button_go" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/login_checkbox" android:layout_centerHorizontal="true" android:text="@string/login_go"/>
+	<Button android:id="@+id/login_skip" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true" android:text="Skip"/>
 
 </RelativeLayout>

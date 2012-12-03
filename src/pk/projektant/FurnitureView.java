@@ -3,10 +3,14 @@ package pk.projektant;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.View;
-
+import android.widget.Toast;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 @SuppressLint({ "ViewConstructor", "UseValueOf" })
 public class FurnitureView extends View {
@@ -19,15 +23,18 @@ public class FurnitureView extends View {
 	static private float scale = 0.5f;
 	
 	private Paint draw = new Paint(Paint.ANTI_ALIAS_FLAG);
+	private Paint draw2 = new Paint(Paint.ANTI_ALIAS_FLAG);
 	
 	public FurnitureView(Context context, float x, float y, float dx, float dy, int color){
 		super(context);
 		ctx = context;  
         this.color=color;
         draw.setColor(color);
+        draw2.setColor(Color.BLACK);
         rect = new Rect((int)x,(int)y,(int)(x+dx),(int)(y+dy));
-   
+        
         reference = null;
+
     }
 	
 	public FurnitureView(Context context,float x, float y, Furniture reference){
@@ -36,19 +43,29 @@ public class FurnitureView extends View {
         this.reference = reference;
         this.color=0xFF99CCFF;
         draw.setColor(color);
+        draw2.setColor(Color.BLACK);
         rect = new Rect((int)x,(int)y,(int)(x+this.reference.mX),(int)(y+this.reference.mY));
+
        
     }
-	
+	public String getString()
+	{
+		String s="";
+		s="x:"+String.valueOf(rect.left)+" y: "+String.valueOf(rect.top) ;
+		s += " "+String.valueOf(rect.right-rect.left)+"x"+String.valueOf(rect.bottom-rect.top)+"\n" ;
+		return s;
+	}
 	public FurnitureView(Context context, float x, float y, float dx, float dy){
         super(context);
         ctx = context;  
         this.color=0xFF99CCFF;
         draw.setColor(color);
+        draw2.setColor(Color.BLACK);
         rect = new Rect((int)x,(int)y,(int)(x+dx),(int)(y+dy));
         reference = null;
     }
 	
+	  
 	public FurnitureView(FurnitureView f) {
 		super(ctx);
 		
@@ -63,6 +80,11 @@ public class FurnitureView extends View {
 	protected void onDraw(Canvas canvas){
 	        super.onDraw(canvas);
 	        canvas.drawRect(rect, draw);
+	        
+	        canvas.drawCircle(rect.left, rect.top, 1, draw2);
+	        canvas.drawCircle(rect.left, rect.bottom,1, draw2);
+	        canvas.drawCircle(rect.right, rect.top, 1, draw2);
+	        canvas.drawCircle(rect.right, rect.bottom, 1, draw2);
 	}
 	
 	protected void move(float x, float y){
@@ -70,7 +92,7 @@ public class FurnitureView extends View {
 	}
 	
 	public Rect getRect(){
-		return rect;
+		return new Rect(rect);
 	}
 	
 	public void setColor(int c){
@@ -122,6 +144,7 @@ public class FurnitureView extends View {
 		    }
 
 		    //MUST CALL THIS
+		    Log.d("MEASURE", String.valueOf(width)+"x" +String.valueOf(height));
 		    setMeasuredDimension(width, height);
 	}
 	

@@ -1,22 +1,98 @@
 package pk.projektant;
 
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 
 public class ActivityRegister extends Activity {
 
-	@Override
+	private TextView name;
+	private TextView surname;
+	private TextView email;
+	private TextView password;
+	private Button bRegister;
+	private Context ctx;
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.l_view_register);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		name = (TextView) findViewById(R.id.register_name);
+		surname = (TextView) findViewById(R.id.register_surname);
+		email = (TextView) findViewById(R.id.register_email);
+		password = (TextView) findViewById(R.id.register_password);
+		bRegister = (Button) findViewById(R.id.register_button);
+		ctx = this;
+		 
+		bRegister.setOnClickListener(new View.OnClickListener() {		
+	    	   public void onClick(View arg0) {
+	    		   goRegister();	
+	    	   }
+	    	});
 	}
 
-	@Override
+	private void goRegister(){
+		
+		// Poprawnoœæ danych
+		if(!isDataFromFormValid()) return;
+		
+		RestClient client = new RestClient("http://designercms.herokuapp.com/rejestracja");
+		client.AddParam("name", name.getText().toString());
+		client.AddParam("surname", surname.getText().toString());
+		client.AddParam("email", email.getText().toString());
+		try {
+			client.AddParam("password", AeSimpleSHA1.SHA1(password.getText().toString()));
+		} catch (NoSuchAlgorithmException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+
+		try {
+		    client.Execute(RestClient.RequestMethod.POST);
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		String response = client.getResponse();
+		Log.d("response", response);
+	}
+	
+	private Boolean isDataFromFormValid(){
+		if(name.getText().length()==0){
+			Toast.makeText(ctx,"Pole imiê jest puste", Toast.LENGTH_SHORT).show();	
+			return false;
+		}
+		if(surname.getText().length()==0){
+			Toast.makeText(ctx,"Pole nazwisko jest puste", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		if(email.getText().length()==0 ||  !android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText()).matches()){
+			Toast.makeText(ctx,"Pole email jest Ÿle wype³nione", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		if(password.getText().length()==0){
+			Toast.makeText(ctx,"Pole has³o jest puste", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		return true;
+	}
+	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.l_view_register, menu);
