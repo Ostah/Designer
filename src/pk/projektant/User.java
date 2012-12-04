@@ -18,6 +18,8 @@ public final class User {
     private String role;
     private Boolean remember;
     
+    public static Boolean newFurniture=true;
+    
     static SharedPreferences pref ;
     static Editor editor ;
     static Context ctx;

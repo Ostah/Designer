@@ -9,7 +9,8 @@
 		 
 	   	<ListView android:id="@+id/listFurnitures"
 		android:layout_width="fill_parent" android:layout_height="300dp" android:layout_alignParentTop="true" android:divider="#b5b5b5" android:dividerHeight="1dp" android:listSelector="@drawable/list_selector"></ListView>
-	   	<TextView android:id="@+id/debug1" android:lines="5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentRight="true" android:layout_below="@+id/listFurnitures" android:text="Medium Text" android:textAppearance="?android:attr/textAppearanceMedium"/> 
+	   	<TextView android:id="@+id/debug1" android:lines="5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentRight="true" android:layout_below="@+id/listFurnitures" android:text="Medium Text" android:textAppearance="?android:attr/textAppearanceMedium"/>
+	   	<SeekBar android:id="@+id/zoomBar" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true" android:layout_alignParentRight="true" android:max="1000" android:progress="500"/> 
 	</RelativeLayout>
 
 	<FrameLayout android:id="@+id/FrameLaytoDraw" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="70">

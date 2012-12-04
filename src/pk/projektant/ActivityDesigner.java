@@ -20,6 +20,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class ActivityDesigner extends Activity {
@@ -29,6 +30,7 @@ public class ActivityDesigner extends Activity {
 	private Context ctx;
 	private  DragShadowBuilder shadowBuilder;
 	private MapManager mapManager;
+	private SeekBar zoomBar;
 	List<Furniture> furnitureList; 
 	ArrayList<FurnitureView> sFurnitures;
 	
@@ -45,12 +47,32 @@ public class ActivityDesigner extends Activity {
         listViewCity = ( ListView ) findViewById( R.id.listFurnitures);
         listViewCity.setAdapter( new FurnitureListAdapter(ctx, R.layout.l_view_list_element, furnitureList ) );
         
+        zoomBar = (SeekBar)findViewById(R.id.zoomBar);    
+        zoomBar = (SeekBar)findViewById(R.id.zoomBar);  
+        zoomBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+			
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void onProgressChanged(SeekBar seekBar, int progress,
+					boolean fromUser) {
+				mapManager.scaleChanged(progress);
+			}
+		});
+        
         mapArea = (FrameLayout)findViewById(R.id.FrameLaytoDraw);     
-        mapManager = new MapManager(mapArea);
+        mapManager = new MapManager(mapArea, ctx);
         txtDebug = (TextView) findViewById(R.id.debug1);
         listViewCity.setOnItemLongClickListener(listSourceItemLongClickListener);
-        mapArea.setOnDragListener(new MyDragListener(mapManager, ctx, txtDebug));
- 
+        mapArea.setOnDragListener(new MyDragNewListener(mapManager, ctx, txtDebug));
+        
         
     }
 
@@ -67,9 +89,9 @@ public class ActivityDesigner extends Activity {
     public boolean onItemLongClick(AdapterView<?> l, View v,
       int position, long id) {
      
-    	 ClipData data = ClipData.newPlainText("", "");
-         shadowBuilder = new View.DragShadowBuilder(new FurnitureView(ctx,0,0,furnitureList.get(position)));
-
+    	 ClipData data = ClipData.newPlainText("type", "list");
+    	 User.get(ctx).newFurniture=true;
+         shadowBuilder = new View.DragShadowBuilder();
          v.startDrag(data,shadowBuilder , furnitureList.get(position), 0);
          return true;
     }};
