@@ -3,13 +3,18 @@ package pk.projektant;
 
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
@@ -17,7 +22,10 @@ import android.view.View;
 import android.view.View.DragShadowBuilder;
 import android.view.View.OnTouchListener;
 import android.widget.FrameLayout;
+import android.widget.Toast;
+
 import android.widget.TextView;
+
 
 public class MapManager {
 
@@ -45,6 +53,10 @@ public class MapManager {
 	public static int mOffsetY=0;
 	public static int width=0;
 	public static int heigth=0;
+	
+	public long tapStart=0;
+	public long tapDuration=0;
+	public int 	tapCount=0;
 	public static int  tPX(int p)
 	{
 		return new Integer(	(int)((p-mOffsetX)/mScale)	);
@@ -76,15 +88,53 @@ public class MapManager {
 				 if(isScaling) return false;
 				if (event.getAction() == MotionEvent.ACTION_DOWN)
 				{
-	                   {
-	                	   drawManager.invalidate();
-	                	   mOffsetXBefore = mOffsetX;
-	                	   mOffsetYBefore = mOffsetY;
+						tapStart = System.currentTimeMillis();
+						tapCount++;
+	                	drawManager.invalidate();
+	                	mOffsetXBefore = mOffsetX;
+	                	mOffsetYBefore = mOffsetY;
 	                    xInit = event.getX();
 	                    yInit= event.getY();
 	    
-	                  }
+	                  
 	            }
+				if (event.getAction() == MotionEvent.ACTION_UP)
+				{
+					 long time = System.currentTimeMillis() - tapStart;
+					 tapDuration=  tapDuration + time;
+					 if(tapCount == 2)
+			            {
+						 	Log.d("time", String.valueOf(time));
+			                if(time <= 70)
+			                {
+			                	FurnitureView f = findFurniture((int)xInit, (int)yInit);
+			    				if(f==null )Log.d("CLICK", "null");
+			    				else {
+			    					//Log.d("CLICK", f.getString());
+			    					//showPopupMenu(mMapArea);
+			    					final CharSequence[] items = {"Info", "Rotate", "Delete"};
+
+			    					AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+			    					builder.setTitle("Make your selection");
+			    					builder.setItems(items, new DialogInterface.OnClickListener() {
+			    					    public void onClick(DialogInterface dialog, int item) {
+			    					         // Do something with the selection
+			    					    }
+			    					});
+			    					AlertDialog alert = builder.create();
+			    					alert.show();
+			    				//	f.rotate();
+								//	drawManager.invalidate();
+			    				}
+			                	
+			                    Toast.makeText(ctx, "double tap",Toast.LENGTH_SHORT).show();
+			                }
+			                tapCount = 0;
+			                tapDuration = 0;
+			                return false;
+			            }
+					
+				}
 				if (event.getAction() == MotionEvent.ACTION_MOVE)
 				{
 					//Log.d("change",String.valueOf(xInit)+" "+String.valueOf(event.getX())+" "+ String.valueOf(xInit- event.getX())+" "+String.valueOf(yInit- event.getY()));
@@ -109,15 +159,13 @@ public class MapManager {
 				FurnitureView f = findFurniture((int)xInit, (int)yInit);
 				if(f==null )Log.d("CLICK", "null");
 				else {
-					f.rotate();
-					drawManager.invalidate();
 					//Log.d("CLICK", f.getString());
-//					User.newFurniture=false;
-//					 ClipData data = ClipData.newPlainText("type", "map");
-//					 DragShadowBuilder shadowBuilder = new View.DragShadowBuilder();
-//					 view.startDrag(data,shadowBuilder , f, 0);
-//					 mFurnitureActive=f;
-//					 f.isMoved=true;
+					User.newFurniture=false;
+					 ClipData data = ClipData.newPlainText("type", "map");
+					 DragShadowBuilder shadowBuilder = new View.DragShadowBuilder();
+					 view.startDrag(data,shadowBuilder , f, 0);
+					 mFurnitureActive=f;
+					 f.isMoved=true;
 				}
 				return false;
 			}
@@ -291,4 +339,6 @@ public class MapManager {
 		   }
 
 		  }  
+	
+
 }
