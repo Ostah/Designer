@@ -11,6 +11,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
+import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
 import android.view.View.OnTouchListener;
@@ -31,32 +33,36 @@ public class MapManager {
 	private float yInit=0.0f;
 	private float xInit=0.0f;
 	
+	private Boolean isScaling=false;
 	private float xDown=0.0f;
 	private float yDown=0.0f;
-	
+	ScaleGestureDetector scaleGestureDetector;
 	public static float mScale=1.0f;
 	public static int mOffsetXBefore=0;
 	public static int mOffsetYBefore=0;
 	
 	public static int mOffsetX=0;
 	public static int mOffsetY=0;
-	
+	public static int width=0;
+	public static int heigth=0;
 	public static int  tPX(int p)
 	{
-		return new Integer(	(int)((p/mScale-mOffsetX))	);
+		return new Integer(	(int)((p-mOffsetX)/mScale)	);
 	}
 	
 	public static int  tPY(int p)
 	{
-		return new Integer((int)((p/mScale-mOffsetY)));
+		return new Integer((int)((p-mOffsetY)/mScale));
 	}
 	
 	MapManager(FrameLayout mapArea, Context context){
 		sFv = new ArrayList<FurnitureView>();	
 		this.mMapArea = mapArea;
-		
-		 drawManager = new DrawManager(context,sFv);
+		scaleGestureDetector = new ScaleGestureDetector(context, new simpleOnScaleGestureListener());	
+		drawManager = new DrawManager(context,sFv);
 		mapArea.addView(drawManager);
+		
+		drawManager.invalidate();
 		mFurnitureShadow = null;
 		ctx=context; 
 		
@@ -64,19 +70,24 @@ public class MapManager {
 			
 			public boolean onTouch(View v, MotionEvent event)
 			{
+				width=mMapArea.getWidth();
+				heigth=mMapArea.getHeight();
+				 scaleGestureDetector.onTouchEvent(event);
+				 if(isScaling) return false;
 				if (event.getAction() == MotionEvent.ACTION_DOWN)
 				{
 	                   {
+	                	   drawManager.invalidate();
 	                	   mOffsetXBefore = mOffsetX;
 	                	   mOffsetYBefore = mOffsetY;
 	                    xInit = event.getX();
 	                    yInit= event.getY();
-	                 //   event.getX()
+	    
 	                  }
 	            }
 				if (event.getAction() == MotionEvent.ACTION_MOVE)
 				{
-					Log.d("change",String.valueOf(xInit)+" "+String.valueOf(event.getX())+" "+ String.valueOf(xInit- event.getX())+" "+String.valueOf(yInit- event.getY()));
+					//Log.d("change",String.valueOf(xInit)+" "+String.valueOf(event.getX())+" "+ String.valueOf(xInit- event.getX())+" "+String.valueOf(yInit- event.getY()));
 					mOffsetX=mOffsetXBefore-(int) ((xInit- event.getX()));
 					mOffsetY=mOffsetYBefore-(int) ((yInit- event.getY()));
 					drawManager.invalidate();
@@ -98,13 +109,15 @@ public class MapManager {
 				FurnitureView f = findFurniture((int)xInit, (int)yInit);
 				if(f==null )Log.d("CLICK", "null");
 				else {
-					Log.d("CLICK", f.getString());
-					User.newFurniture=false;
-					 ClipData data = ClipData.newPlainText("type", "map");
-					 DragShadowBuilder shadowBuilder = new View.DragShadowBuilder();
-					 view.startDrag(data,shadowBuilder , f, 0);
-					 mFurnitureActive=f;
-					 f.isMoved=true;
+					f.rotate();
+					drawManager.invalidate();
+					//Log.d("CLICK", f.getString());
+//					User.newFurniture=false;
+//					 ClipData data = ClipData.newPlainText("type", "map");
+//					 DragShadowBuilder shadowBuilder = new View.DragShadowBuilder();
+//					 view.startDrag(data,shadowBuilder , f, 0);
+//					 mFurnitureActive=f;
+//					 f.isMoved=true;
 				}
 				return false;
 			}
@@ -112,12 +125,21 @@ public class MapManager {
 		
 	}
 	
-	public void scaleChanged(int s)
-	{
-		mScale = (float) (1.3 +(s-500)*0.002);
-		//mOffset 
-		drawManager.invalidate();
-	}
+//	public void scaleChanged(float factor)
+//	{
+//		if(factor<1.0f && mScale<0.1) return;
+//		if(factor>1.0f && mScale>5) return;
+//		float scaleChange = mScale;
+//		debugString=String.valueOf(mMapArea.getWidth())+"x"+ String.valueOf(mMapArea.getHeight())+"\n";
+//		mScale *=factor;
+//		scaleChange = mScale-scaleChange;
+//		//mOffsetX= (int) ((mOffsetX+mMapArea.getWidth()*0.5)*scaleChange);
+//		//mOffsetY= (int) ((mOffsetY+mMapArea.getHeight()*0.5)*scaleChange);
+//		
+//		mOffsetX-= (int) ((int) (mMapArea.getWidth()*0.5)*scaleChange);
+//		mOffsetY-= (int) ((int) (mMapArea.getHeight()*0.5)*scaleChange);
+//		drawManager.invalidate();
+//	}
 	
 	private FurnitureView findFurniture(int x, int y)
 	{
@@ -145,8 +167,8 @@ public class MapManager {
 	
 	public void moveFurniture(FurnitureView f, float x, float y, TextView tv)
 	{	
-		//x-=f.getWidth()*0.5f;
-		//y-=f.getHeigth()*0.5f;
+		//x-=f.getWidth()*mScale*0.5f;
+		//y-=f.getHeigth()*mScale*0.5f;
 		
 		x=tPX((int)x);
 		y=tPY((int)y);
@@ -154,6 +176,7 @@ public class MapManager {
 		mMapArea.invalidate();
 		debugTV= tv;
 		debugString="pos"+String.valueOf(x)+" "+String.valueOf(x)+"\n";
+		debugString+="OFFSET"+String.valueOf(mOffsetX)+" "+String.valueOf(mOffsetY)+"\n";
 		debugString+=f.getString();
 		//Log.d("move", String.valueOf(x)+" "+String.valueOf(y));
 		
@@ -191,7 +214,7 @@ public class MapManager {
 	
 	private Boolean isMoveValid(FurnitureView f,float x,float y)
 	{
-		Rect newPosition = new Rect(f.getRect(true));
+		Rect newPosition = new Rect(f.getRect(false));
 		newPosition.offsetTo((int)x, (int)y);
 		
 		for(int i=0; i<sFv.size();i++)
@@ -199,7 +222,7 @@ public class MapManager {
 			
 			if(sFv.get(i).equals(f) || (mFurnitureShadow != null && sFv.get(i).equals(mFurnitureShadow))) continue;
 			debugString += ((FurnitureView)(sFv.get(i))).getString();
-			if(((FurnitureView)sFv.get(i)).getRect(true).intersect(newPosition))
+			if(((FurnitureView)sFv.get(i)).getRect(false).intersect(newPosition))
 			{
 				debugString +="COLLISION!\n";
 				return false;
@@ -227,4 +250,45 @@ public class MapManager {
 			mFurnitureShadow=null;	
 			mMapArea.removeViews(0, mMapArea.getChildCount());
 	}
+	public class simpleOnScaleGestureListener extends
+	  SimpleOnScaleGestureListener {
+		float mStartScale=1.0f;
+
+	  public boolean onScale(ScaleGestureDetector detector) {
+		
+		 	float factor=detector.getScaleFactor();
+		 	if(mStartScale*factor<0.2 || mStartScale*factor>5 ) return false;
+		 	
+			float scaleChange = mScale;
+			debugString=String.valueOf(mMapArea.getWidth())+"x"+ String.valueOf(mMapArea.getHeight())+"\n";
+			
+			mScale = mStartScale*factor;
+			scaleChange = mScale-scaleChange;
+			//mOffsetX= (int) ((mOffsetX+mMapArea.getWidth()*0.5)*scaleChange);
+			//mOffsetY= (int) ((mOffsetY+mMapArea.getHeight()*0.5)*scaleChange);
+			
+			mOffsetX-= (int) ((int) (mMapArea.getWidth()*0.5)*scaleChange);
+			mOffsetY-= (int) ((int) (mMapArea.getHeight()*0.5)*scaleChange);
+			drawManager.invalidate();
+			debugString = "SCALE: "+String.valueOf(mScale);
+			debugTV.setText(debugString);
+		    return false;
+		   }
+
+		   @Override
+		   public boolean onScaleBegin(ScaleGestureDetector detector) {
+		    // TODO Auto-generated method stub
+			   mStartScale=mScale;
+			   isScaling=true;
+		    return true;
+		   }
+
+		   @Override
+		   public void onScaleEnd(ScaleGestureDetector detector) {
+		    // TODO Auto-generated method stub
+	
+			   isScaling=false;
+		   }
+
+		  }  
 }

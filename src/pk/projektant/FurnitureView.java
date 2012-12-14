@@ -15,6 +15,7 @@ public class FurnitureView {
 	static private Context ctx;
 	public Boolean isShadow=false;
 	public Boolean isMoved=false;
+	public Boolean isRotated=false;
 	
 	public FurnitureView(Context context, float x, float y, float dx, float dy, int color){
 		
@@ -35,6 +36,16 @@ public class FurnitureView {
 		s="x:"+String.valueOf(rect.left)+" y: "+String.valueOf(rect.top) ;
 		s += " "+String.valueOf(rect.right-rect.left)+"x"+String.valueOf(rect.bottom-rect.top)+"\n" ;
 		return s;
+	}
+	
+	public void rotate()
+	{
+		isRotated=!isRotated;
+		
+		int left =(int)( rect.left+0.5*rect.width()-0.5*rect.height());
+		int top = (int)(rect.top-0.5*rect.width()+0.5*rect.height());
+		
+		rect = new Rect(left,top,left+rect.height(),top+rect.width());
 	}
 	
 	public Rect rectInScale(){

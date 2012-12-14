@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.Context;
@@ -12,6 +13,8 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.Menu;
+import android.view.ScaleGestureDetector;
+import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
 import android.view.View.OnDragListener;
@@ -30,13 +33,17 @@ public class ActivityDesigner extends Activity {
 	private Context ctx;
 	private  DragShadowBuilder shadowBuilder;
 	private MapManager mapManager;
-	private SeekBar zoomBar;
 	List<Furniture> furnitureList; 
 	ArrayList<FurnitureView> sFurnitures;
-	
+
 	TextView txtDebug = null;
     @Override
-    
+    public void onWindowFocusChanged(boolean hasFocus) {
+    	
+    	super.onWindowFocusChanged(hasFocus);
+    	MapManager.width =mapArea.getWidth();
+    	MapManager.heigth = mapArea.getHeight();
+    }
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ctx = this;
@@ -45,28 +52,7 @@ public class ActivityDesigner extends Activity {
         LinearLayout temporat = ( LinearLayout ) findViewById( R.id.LinearLayout2);
         temporat.setBackgroundColor(Color.TRANSPARENT);
         listViewCity = ( ListView ) findViewById( R.id.listFurnitures);
-        listViewCity.setAdapter( new FurnitureListAdapter(ctx, R.layout.l_view_list_element, furnitureList ) );
-        
-        zoomBar = (SeekBar)findViewById(R.id.zoomBar);    
-        zoomBar = (SeekBar)findViewById(R.id.zoomBar);  
-        zoomBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-			
-			public void onStopTrackingTouch(SeekBar seekBar) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			public void onStartTrackingTouch(SeekBar seekBar) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			public void onProgressChanged(SeekBar seekBar, int progress,
-					boolean fromUser) {
-				mapManager.scaleChanged(progress);
-			}
-		});
-        
+        listViewCity.setAdapter( new FurnitureListAdapter(ctx, R.layout.l_view_list_element, furnitureList ) );      
         mapArea = (FrameLayout)findViewById(R.id.FrameLaytoDraw);     
         mapManager = new MapManager(mapArea, ctx);
         txtDebug = (TextView) findViewById(R.id.debug1);
@@ -88,13 +74,14 @@ public class ActivityDesigner extends Activity {
 
     public boolean onItemLongClick(AdapterView<?> l, View v,
       int position, long id) {
-     
+    	Log.d("OMG", "FUCK!");
+    	  Vibrator vibe = ( Vibrator ) getSystemService( VIBRATOR_SERVICE );
+          vibe.vibrate( 100 );
     	 ClipData data = ClipData.newPlainText("type", "list");
     	 User.get(ctx).newFurniture=true;
          shadowBuilder = new View.DragShadowBuilder();
          v.startDrag(data,shadowBuilder , furnitureList.get(position), 0);
          return true;
     }};
-    
      
 }
