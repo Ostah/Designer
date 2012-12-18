@@ -11,7 +11,7 @@ public class FurnitureView {
 
 	
 	private Rect rect;
-	private Furniture reference;
+	public Furniture reference;
 	static private Context ctx;
 	public Boolean isShadow=false;
 	public Boolean isMoved=false;
@@ -41,11 +41,15 @@ public class FurnitureView {
 	public void rotate()
 	{
 		isRotated=!isRotated;
-		
+		rect = getRotatedRect();
+	}
+	
+	public Rect getRotatedRect()
+	{
 		int left =(int)( rect.left+0.5*rect.width()-0.5*rect.height());
 		int top = (int)(rect.top-0.5*rect.width()+0.5*rect.height());
 		
-		rect = new Rect(left,top,left+rect.height(),top+rect.width());
+		return new Rect(left,top,left+rect.height(),top+rect.width());
 	}
 	
 	public Rect rectInScale(){

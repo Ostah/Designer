@@ -890,6 +890,7 @@ public final class R {
     public static final class id {
         public static final int FrameLaytoDraw=0x7f080003;
         public static final int LinearLayout2=0x7f080000;
+        public static final int RelativeLayout1=0x7f08000f;
         public static final int debug1=0x7f080002;
         public static final int listFurnitures=0x7f080001;
         public static final int list_element_cost=0x7f080007;
@@ -901,12 +902,18 @@ public final class R {
         public static final int login_password=0x7f080008;
         public static final int login_skip=0x7f08000e;
         public static final int login_username=0x7f080009;
-        public static final int menu_settings=0x7f080014;
-        public static final int register_button=0x7f080013;
-        public static final int register_email=0x7f080011;
-        public static final int register_name=0x7f08000f;
-        public static final int register_password=0x7f080012;
-        public static final int register_surname=0x7f080010;
+        public static final int menu_settings=0x7f08001b;
+        public static final int properties_cost=0x7f080015;
+        public static final int properties_image=0x7f080013;
+        public static final int properties_room=0x7f080010;
+        public static final int properties_text=0x7f080014;
+        public static final int properties_title=0x7f080011;
+        public static final int properties_type=0x7f080012;
+        public static final int register_button=0x7f08001a;
+        public static final int register_email=0x7f080018;
+        public static final int register_name=0x7f080016;
+        public static final int register_password=0x7f080019;
+        public static final int register_surname=0x7f080017;
         public static final int textView1=0x7f08000a;
         public static final int thumbnail=0x7f080004;
     }
@@ -914,7 +921,8 @@ public final class R {
         public static final int l_view_list=0x7f030000;
         public static final int l_view_list_element=0x7f030001;
         public static final int l_view_login=0x7f030002;
-        public static final int l_view_register=0x7f030003;
+        public static final int l_view_properties=0x7f030003;
+        public static final int l_view_register=0x7f030004;
     }
     public static final class menu {
         public static final int l_view_list=0x7f070000;

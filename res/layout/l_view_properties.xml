@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/RelativeLayout1"
+  android:layout_width="500dip"
+  android:layout_height="wrap_content" android:background="@drawable/gradient_bg" android:gravity="right" android:orientation="vertical" android:paddingBottom="10dp" xmlns:android="http://schemas.android.com/apk/res/android" android:scrollbarStyle="insideOverlay" android:scrollbars="vertical">
+    <TextView android:id="@+id/properties_room" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/properties_title" android:layout_below="@+id/properties_type" android:text="Bedroom"/>
+    <TextView android:id="@+id/properties_type" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/properties_room" android:layout_below="@+id/properties_title" android:layout_marginTop="20dp" android:text="Tables"/>
+    <TextView android:id="@+id/properties_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignTop="@+id/properties_image" android:layout_marginLeft="34dp" android:layout_toRightOf="@+id/properties_image" android:text="Table" android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <TextView android:id="@+id/properties_text" android:layout_width="500dip" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_below="@+id/properties_image" android:layout_marginTop="18dp" android:maxLines="5" android:paddingLeft="10dp" android:paddingRight="10dp" android:scrollHorizontally="false" android:scrollbars="vertical" android:text="TextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextView"/>
+    <ImageView android:id="@+id/properties_image" android:layout_width="140dip" android:layout_height="140dip" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:layout_marginLeft="20dp" android:layout_marginTop="26dp" android:scaleType="fitXY" android:src="@drawable/pe142530"/>
+    <TextView android:id="@+id/properties_cost" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignBaseline="@+id/properties_type" android:layout_alignBottom="@+id/properties_type" android:layout_alignParentRight="true" android:layout_marginRight="21dp" android:text="120.0" android:textColor="#10bcc9"/>
+    
+</RelativeLayout>

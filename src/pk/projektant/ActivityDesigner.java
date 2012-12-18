@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.View.DragShadowBuilder;
 import android.view.View.OnDragListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -57,6 +58,13 @@ public class ActivityDesigner extends Activity {
         mapManager = new MapManager(mapArea, ctx);
         txtDebug = (TextView) findViewById(R.id.debug1);
         listViewCity.setOnItemLongClickListener(listSourceItemLongClickListener);
+        listViewCity.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				MapManager.showProperties(furnitureList.get(arg2)); // to musi byc po inicjalizacji managera!
+				
+			}
+		});
         mapArea.setOnDragListener(new MyDragNewListener(mapManager, ctx, txtDebug));
         
         
