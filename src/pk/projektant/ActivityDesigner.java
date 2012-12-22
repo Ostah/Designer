@@ -3,6 +3,8 @@ package pk.projektant;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.codegist.crest.CRest;
+
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.app.Activity;
@@ -49,6 +51,7 @@ public class ActivityDesigner extends Activity {
         super.onCreate(savedInstanceState);
         ctx = this;
         setContentView(R.layout.l_view_list);
+      
         furnitureList = Tokenizer.sFurnitures;
         LinearLayout temporat = ( LinearLayout ) findViewById( R.id.LinearLayout2);
         temporat.setBackgroundColor(Color.TRANSPARENT);

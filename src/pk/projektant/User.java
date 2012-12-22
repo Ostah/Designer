@@ -9,14 +9,14 @@ public final class User {
 	 
     // nale¿y zwróciæ uwagê na u¿ycie s³owa kluczowego volatile
     private static volatile User instance = null;
-    private String id;
-    private String name;
-    private String surname;
-    private String password;
-    private String registrationDate;
-    private String email;
-    private String role;
-    private Boolean remember;
+    private static String id;
+    private static String name;
+    private static String surname;
+    private static String password;
+    private static String registrationDate;
+    private static String email;
+    private static String role;
+    private static Boolean remember;
     
     public static Boolean newFurniture=true;
     
@@ -26,6 +26,7 @@ public final class User {
     
     public static User get(Context cont) {
     	ctx = cont;
+    	Log.d("omg", "tralala");
         if (instance == null) {
             synchronized (User.class) {
                 if (instance == null) {
@@ -35,24 +36,44 @@ public final class User {
                 }
             }
         }
+        if(!isUserSet()){
+        	load();
+        }
         return instance;
     }
  
     public void set(String id, String name, String surname, String password, String registration, String email, String role, Boolean remember){
-    	this.id=id;
-    	this.name=name;
-    	this.surname=surname;
-    	this.password=password;
-    	this.registrationDate=registration;
-    	this.email=email;
-    	this.role=registration;
-    	this.remember = remember;
+    User.id=id;
+    	User.name=name;
+    	User.surname=surname;
+    	User.password=password;
+    	registrationDate=registration;
+    	User.email=email;
+    	role=registration;
+    	User.remember = remember;
     	save();
     }
     
-    public void save()
+    
+    static public void clear()
     {
+    	id="";
+    	name="";
+    	surname="";
+    	password="";
+    	registrationDate="";
+    	email="";
+    	role="";
+    	remember = false;
     	editor.clear();
+    	editor.commit();
+    }
+    
+    static public void save()
+    {
+    	if(editor==null) return;
+    	editor.clear();
+    	editor.putString("id", id);
     	editor.putString("name", name);
     	editor.putString("surname", surname);
     	editor.putString("password", password);
@@ -62,12 +83,19 @@ public final class User {
     	editor.putBoolean("remember", remember);
     	editor.commit();
     }
-    public void load()
+    static public void load()
     {
-    	
+    	if(pref==null) return;
+    	name=pref.getString("name" ,"");
+    	surname=pref.getString("surname", "");
+    	password=pref.getString("password", "");
+    	email=pref.getString("email", "");
+    	role=pref.getString("role", "");
+    	registrationDate=pref.getString("registrationDate", "");
+    	remember =pref.getBoolean("remember", false);
     }
-    public Boolean isUserSet(){
-    	return(email != null && email!="null");
+    static public Boolean isUserSet(){
+    	return(email != null && email!="null" && email != "" );
     }
     // ¿eby unikn¹æ automatycznego tworzenia domyœlnego, publicznego, bezargumentowego konstruktora
     private User() {
@@ -81,13 +109,6 @@ public final class User {
     	email="";
     	role="";
     	remember = false;
-    	
-    	
-    	String Uname = pref.getString("name",null);
-    	if(name != null)
-    	{
-    		
-    	}
     	//Log.d("shared", Uname);
     	
     }
@@ -137,7 +158,7 @@ public final class User {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		User.email = email;
 	}
 
 	public String getRole() {

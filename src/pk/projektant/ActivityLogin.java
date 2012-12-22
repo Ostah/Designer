@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +45,9 @@ public class ActivityLogin extends Activity {
 	String userData ="";
 	Boolean connectionError = false;
 	CheckBox remember = null;
+	Boolean isRemembered=false;
+	TextView txt_username=null;
+	TextView txt_password=null;
 	Context ctx;
 	
     @Override
@@ -61,8 +65,25 @@ public class ActivityLogin extends Activity {
        register = (Button) findViewById(R.id.login_button_register);
        remember = (CheckBox) findViewById(R.id.login_checkbox);
        skip = (Button) findViewById(R.id.login_skip);
-      
+       txt_username = (TextView)  findViewById(R.id.login_username);
+       txt_password = (TextView)  findViewById(R.id.login_password);
        User.get(ctx);
+       
+     
+	if(User.isUserSet()){
+    	   if(User.get(ctx).getRemember())
+    	   {
+    		   isRemembered = true;
+        	   ThreadLogin task = new ThreadLogin();
+    		   task.execute();	 
+    	   }
+    	   else{
+    		   isRemembered=false;
+    		   User.clear();
+    	   }
+    	 
+       }
+       
        btn.setOnClickListener(new View.OnClickListener() {		
     	   public void onClick(View arg0) {
     		   ThreadLogin task = new ThreadLogin();
@@ -108,7 +129,8 @@ public class ActivityLogin extends Activity {
     	{
 			JSONObject jObject = new JSONObject(data);
 			User.get(ctx).set(jObject.getString("id"), jObject.getString("name"), jObject.getString("surname"), jObject.getString("password"), jObject.getString("registrationDate"), jObject.getString("email"), jObject.getString("role"),remember.isChecked());
-		} 
+			User.save();
+    	} 
     	catch (JSONException e) 
     	{
     		  connectionError = true;
@@ -126,8 +148,17 @@ public class ActivityLogin extends Activity {
         try {
 
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-            nameValuePairs.add(new BasicNameValuePair("username", "ja@piotrpaul.pl"));
-            nameValuePairs.add(new BasicNameValuePair("password", "ebea119fa88a161648e0b7855dd94c1f20645f7d"));
+            if(isRemembered)
+            {
+                nameValuePairs.add(new BasicNameValuePair("username", User.get(ctx).getEmail()));
+                nameValuePairs.add(new BasicNameValuePair("password", User.get(ctx).getPassword()));
+        	
+            }
+            else
+            {
+                nameValuePairs.add(new BasicNameValuePair("username", txt_username.getText().toString()));
+                nameValuePairs.add(new BasicNameValuePair("password", AeSimpleSHA1.SHA1( txt_password.getText().toString())));	
+            }
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             HttpResponse response = httpclient.execute(httppost);
@@ -147,7 +178,11 @@ public class ActivityLogin extends Activity {
         catch (IOException e) {
         	connectionError = true;
         	 Log.d("IOException", e.getLocalizedMessage());
-        }
+        } catch (NoSuchAlgorithmException e) {
+        	connectionError = true;
+       	 Log.d("SHA1 Error", e.getLocalizedMessage());
+			e.printStackTrace();
+		}
         return null;
     }
   
@@ -158,6 +193,8 @@ public class ActivityLogin extends Activity {
 		protected void onPreExecute() {
 			Dialog = new ProgressDialog(ctx);
 			Dialog.setMessage("Fetching User");
+			Dialog.setCanceledOnTouchOutside(false);
+			Dialog.setCancelable(false);
 			Dialog.show();
 		}
 
