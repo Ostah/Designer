@@ -11,15 +11,14 @@ import android.widget.TextView;
 class MyDragNewListener implements OnDragListener {
 	  static FurnitureView activeFurniture;
 	  static private MapManager mapManager;
-	  static  private TextView debugTxt;
 	  static  Context ctx;
 	  private Boolean valid = false;
 	  
-	  MyDragNewListener(MapManager m, Context c, TextView debug, Boolean v)
+	  MyDragNewListener(MapManager m, Context c, Boolean v)
 	  {
 		  mapManager = m;
 		  ctx = c;
-		  debugTxt = debug;
+	
 		  valid = v;
 	  }
 	  
@@ -59,7 +58,7 @@ class MyDragNewListener implements OnDragListener {
 	      break;
 	    case DragEvent.ACTION_DRAG_LOCATION:	
 	    	Log.d("drag", "location");
-	    	if(valid) mapManager.moveFurniture(activeFurniture, event.getX(),event.getY(),debugTxt);
+	    	if(valid) mapManager.moveFurniture(activeFurniture, event.getX(),event.getY());
 	    	//Log.d(String.valueOf(event.getX())+" "+String.valueOf(event.getY()),"ll");
 	    	
 	    case DragEvent.ACTION_DRAG_ENDED:

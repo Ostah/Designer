@@ -40,5 +40,9 @@ public class Furniture {
 	 	else if(cathegory.equalsIgnoreCase("Krzes³a")) color = 7;
 	 	
 	}
+	@Override
+	public String toString(){
+		return mName;
+	}
 	
 }

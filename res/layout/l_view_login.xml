@@ -1,5 +1,11 @@
-<RelativeLayout android:layout_width="match_parent"
-	android:layout_height="match_parent" android:gravity="top" xmlns:android="http://schemas.android.com/apk/res/android" android:nextFocusForward="@+id/login_password" android:nextFocusLeft="@+id/login_password" xmlns:tools="http://schemas.android.com/tools">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:nextFocusForward="@+id/login_password"
+    android:nextFocusLeft="@+id/login_password" >
 
 	<EditText
 	    android:id="@+id/login_username"

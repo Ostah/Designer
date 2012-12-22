@@ -1,36 +1,46 @@
 package pk.projektant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.provider.SyncStateContract.Constants;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.LayoutInflater.Filter;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class FurnitureListAdapter extends BaseAdapter{
+public class FurnitureListAdapter extends ArrayAdapter{
 	
 	private int resource;
 	private Context context;
 	private LayoutInflater inflater;
 	private List<Furniture> data;
+	private List<Furniture> original;
+	private List<Furniture> filtered;
+	public Boolean notifyChanged=false;
 	public FurnitureListAdapter(Context ctx, int textViewResourceId, List<Furniture> objects) {
-		super();
+		super(ctx, textViewResourceId,objects);
 		 
 		resource = textViewResourceId;
         inflater = LayoutInflater.from( ctx );
         context=ctx;
         data = objects;
+        
+        original = new ArrayList<Furniture>(objects);
 	}
 	
 	public View getView ( int position, View convertView, ViewGroup parent ) {
 		
 		
-		Furniture furniture = Tokenizer.sFurnitures.get(position);
+		Furniture furniture = data.get(position);
 		FurnitureListCache viewCache;
 		
 		if (convertView == null) {
@@ -75,6 +85,23 @@ public class FurnitureListAdapter extends BaseAdapter{
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	public void filter(String a){
+		filtered = new ArrayList<Furniture>();
+		for(int i=0;i<original.size();i++){
+			if(original.get(i).mName.toLowerCase().contains(a.toLowerCase())){
+				filtered.add(original.get(i));
+			}
+		}
+		data = filtered;
+	      Log.d("FILTER SIZE", String.valueOf(filtered.size()));
+		this.notifyDataSetChanged();
+	}
+
+	public void notifyDataSetChanged() {
+	    super.notifyDataSetChanged();
+	    notifyChanged = true;
 	}
 
 }

@@ -13,10 +13,15 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.MotionEvent;
 import android.view.View.DragShadowBuilder;
+import android.view.View.OnTouchListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -33,13 +38,14 @@ public class ActivityDesigner extends SherlockActivity {
 	
 	private ListView listViewCity;
 	private FrameLayout mapArea;
+	private TextView searchText;
 	private Context ctx;
 	private  DragShadowBuilder shadowBuilder;
 	private MapManager mapManager;
 	List<Furniture> furnitureList; 
 	ArrayList<FurnitureView> sFurnitures;
+	 FurnitureListAdapter aa ;
 
-	TextView txtDebug = null;
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
     	
@@ -52,14 +58,45 @@ public class ActivityDesigner extends SherlockActivity {
         ctx = this;
         setContentView(R.layout.l_view_list);
       
+        searchText = (TextView) findViewById(R.id.search_text);
         furnitureList = Tokenizer.sFurnitures;
         LinearLayout temporat = ( LinearLayout ) findViewById( R.id.LinearLayout2);
         temporat.setBackgroundColor(Color.TRANSPARENT);
         listViewCity = ( ListView ) findViewById( R.id.listFurnitures);
-        listViewCity.setAdapter( new FurnitureListAdapter(ctx, R.layout.l_view_list_element, furnitureList ) );      
+         aa =  new FurnitureListAdapter(ctx, R.layout.l_view_list_element, furnitureList );
+        listViewCity.setAdapter(aa ); 
+        
+//        LinearLayout rootLay = (LinearLayout)findViewById(R.id.LinearLayout2); 
+//        rootLay.setOnTouchListener(new OnTouchListener()
+//        {
+//            public boolean onTouch(View view, MotionEvent ev)
+//            {
+//                hideKeyboard(view);
+//                return false;
+//            }
+//        });
+        
         mapArea = (FrameLayout)findViewById(R.id.FrameLaytoDraw);     
         mapManager = new MapManager(mapArea, ctx,this);
-        txtDebug = (TextView) findViewById(R.id.debug1);
+        searchText.addTextChangedListener(new TextWatcher() {
+ 
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                // When user changed the Text
+              aa.filter(cs.toString());
+              Log.d("FILRET", cs.toString());
+            }
+ 
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+                    int arg3) {
+                // TODO Auto-generated method stub
+ 
+            }
+ 
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+        
         listViewCity.setOnItemLongClickListener(listSourceItemLongClickListener);
         listViewCity.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -68,11 +105,17 @@ public class ActivityDesigner extends SherlockActivity {
 				
 			}
 		});
-        mapArea.setOnDragListener(new MyDragNewListener(mapManager, ctx, txtDebug,true));
-        listViewCity.setOnDragListener(new MyDragNewListener(mapManager, ctx, txtDebug,false));
-        getSupportActionBar();
+        mapArea.setOnDragListener(new MyDragNewListener(mapManager, ctx,true));
+        listViewCity.setOnDragListener(new MyDragNewListener(mapManager, ctx,false));
+       
+        
+      
     }
-
+    protected void hideKeyboard(View view)
+    {
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
     
     private void changeGrid(){
     	 SharedPreferences pref ;
@@ -93,7 +136,7 @@ public class ActivityDesigner extends SherlockActivity {
 	    builder.setTitle("Usuñ wszystkie elementy");
 	    builder.setMessage("Czy na pewno chcesz wyszyœciæ obszar?");
 
-	    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+	    builder.setPositiveButton("TAK", new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int which) {
 	          mapManager.clear();
 	          mapManager.invalidate();
@@ -102,7 +145,7 @@ public class ActivityDesigner extends SherlockActivity {
 
 	    });
 
-	    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+	    builder.setNegativeButton("NIE", new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int which) {
 	            dialog.dismiss();
 	        }
@@ -170,11 +213,10 @@ public class ActivityDesigner extends SherlockActivity {
     
     OnItemLongClickListener listSourceItemLongClickListener = new OnItemLongClickListener(){
 
-    
+    	
     
     public boolean onItemLongClick(AdapterView<?> l, View v,
       int position, long id) {
-    	Log.d("OMG", "FUCK!");
     	 Vibrator vibe = ( Vibrator ) getSystemService( VIBRATOR_SERVICE );
          vibe.vibrate( 100 );
     	 ClipData data = ClipData.newPlainText("type", "list");

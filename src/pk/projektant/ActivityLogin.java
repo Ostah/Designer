@@ -28,10 +28,14 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.MotionEvent;
+import android.view.View.OnTouchListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.RelativeLayout;
 
 public class ActivityLogin extends Activity {
 
@@ -64,6 +68,16 @@ public class ActivityLogin extends Activity {
        txt_username = (TextView)  findViewById(R.id.login_username);
        txt_password = (TextView)  findViewById(R.id.login_password);
        User.get(ctx);
+       RelativeLayout aa = (RelativeLayout)findViewById(R.id.login_layout);
+       aa.setOnTouchListener(new OnTouchListener()
+       {
+    	    public boolean onTouch(View view, MotionEvent ev)
+    	    {
+    	        hideKeyboard(view);
+    	        return false;
+    	    }
+    	});
+   
        
      
 	if(User.isUserSet()){
@@ -134,6 +148,12 @@ public class ActivityLogin extends Activity {
 		}
     }
     
+    protected void hideKeyboard(View view)
+    {
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+    
     public String httpLogin() {
         // Create a new HttpClient and Post Header
     	userData="";
@@ -188,7 +208,7 @@ public class ActivityLogin extends Activity {
 
 		protected void onPreExecute() {
 			Dialog = new ProgressDialog(ctx);
-			Dialog.setMessage("Fetching User");
+			Dialog.setMessage("Autoryzowanie U¿ytkownika");
 			Dialog.setCanceledOnTouchOutside(false);
 			Dialog.setCancelable(false);
 			Dialog.show();
@@ -204,15 +224,15 @@ public class ActivityLogin extends Activity {
 			Dialog.dismiss();	
 			if(userData=="" || connectionError) 
 			{
-				Toast.makeText(ctx,"Connection or Server Error", Toast.LENGTH_SHORT).show();
+				Toast.makeText(ctx,"B³¹d Po³¹czenia", Toast.LENGTH_SHORT).show();
 			}
 			else if(User.get(ctx).getEmail()=="null")
 			{
-				Toast.makeText(ctx,"Wrong Username or Password", Toast.LENGTH_SHORT).show();	
+				Toast.makeText(ctx,"Z³a nazwa u¿ytkownika lub has³o", Toast.LENGTH_SHORT).show();	
 			}
 			else
 			{
-				Toast.makeText(ctx,"Login Succes", Toast.LENGTH_SHORT).show();	
+				Toast.makeText(ctx,"Logowanie zakoñczone", Toast.LENGTH_SHORT).show();	
 				 loginSucces();
 			}
 			
