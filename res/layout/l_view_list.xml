@@ -1,8 +1,13 @@
-<LinearLayout android:id="@+id/LinearLayout2"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:orientation="horizontal" xmlns:tools="http://schemas.android.com/tools"
-	android:weightSum="100">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout2"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:baselineAligned="false"
+    android:weightSum="100" >
+ 
+
 	<RelativeLayout android:layout_width="0dp" android:layout_height="fill_parent"
 		android:divider="#b5b5b5" android:dividerHeight="1dp"
 		 android:layout_weight="30">
@@ -13,6 +18,14 @@
 	</RelativeLayout>
 
 	<FrameLayout android:id="@+id/FrameLaytoDraw" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="70">
+
+		<TextView
+		    android:id="@+id/info_text"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textAppearance="?android:attr/textAppearanceMedium"
+		    android:textSize="10sp" />
+
 	</FrameLayout>
 
 </LinearLayout>

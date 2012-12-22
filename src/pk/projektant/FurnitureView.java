@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 
 @SuppressLint({ "ViewConstructor", "UseValueOf" })
 public class FurnitureView {
@@ -16,6 +17,8 @@ public class FurnitureView {
 	public Boolean isShadow=false;
 	public Boolean isMoved=false;
 	public Boolean isRotated=false;
+	public int mStartX=0;
+	public int mStartY=0;
 	
 	public FurnitureView(Context context, float x, float y, float dx, float dy, int color){
 		
@@ -26,9 +29,18 @@ public class FurnitureView {
 	
 	public FurnitureView(Context context,float x, float y, Furniture reference){
         ctx = context;  
-        this.reference = reference;
-        rect = new Rect((int)x,(int)y,(int)(x+this.reference.mX),(int)(y+this.reference.mY));  
+        	this.reference = reference;
+            rect = new Rect((int)x,(int)y,(int)(x+this.reference.mX),(int)(y+this.reference.mY));                
     }
+	
+	public FurnitureView(Context context,float x, float y){
+		ctx = context; 
+		reference=null;
+		mStartX=(int)x;
+		mStartY=(int)y;
+		rect = new Rect((int)x-1,(int)y-1,(int)x,(int)(y));  
+		Log.d("dd","dd");
+	}
 	
 	public String getString()
 	{
@@ -42,6 +54,28 @@ public class FurnitureView {
 	{
 		isRotated=!isRotated;
 		rect = getRotatedRect();
+	}
+	
+	public void resize(float x, float y)
+	{
+		Rect a = rect;
+		if(x>=mStartX){
+			a.left=mStartX;
+			a.right=(int) x;
+		}
+		else if(x<mStartX){
+			a.right=mStartX;
+			a.left=(int) x;
+		}
+		
+		if(y>=mStartY){
+			a.top=mStartY;
+			a.bottom=(int) y;
+		}
+		else if(y<mStartY){
+			a.bottom=mStartY;
+			a.top=(int) y;
+		}
 	}
 	
 	public Rect getRotatedRect()
@@ -78,6 +112,8 @@ public class FurnitureView {
 	  
 	public FurnitureView(FurnitureView f) {
 		this.reference = f.reference;
+		this.mStartX = new Integer(f.mStartX);
+		this.mStartY = new Integer(f.mStartY);
 		this.rect = new Rect(f.rect);
 		this.reference = f.reference;	
 	}
@@ -117,6 +153,29 @@ public class FurnitureView {
 			toReturn.offset(MapManager.mOffsetX, MapManager.mOffsetY);	
 		}
 		return toReturn;
+	}
+	
+	public Rect getResizedRect(float x, float y)
+	{
+		Rect a = new Rect(rect);
+		if(x>=mStartX){
+			a.left=mStartX;
+			a.right=(int) x;
+		}
+		else if(x<mStartX){
+			a.right=mStartX;
+			a.left=(int) x;
+		}
+		
+		if(y>=mStartY){
+			a.top=mStartY;
+			a.bottom=(int) y;
+		}
+		else if(y<mStartY){
+			a.bottom=mStartY;
+			a.top=(int) y;
+		}
+		return a;
 	}
 	
 	public FurnitureView getShadow()

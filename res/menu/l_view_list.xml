@@ -1,6 +1,41 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/menu_settings"
-        android:title="@string/menu_settings"
+        android:title="Ustawienia"
         android:orderInCategory="100"
         android:showAsAction="never" />
+    
+    
+    <item android:id="@+id/menu_wall"
+        android:title="Sciana"
+        android:icon="@drawable/icon_wall"
+        android:orderInCategory="80"
+        android:showAsAction="always"/>
+    
+     <item android:id="@+id/menu_clear"
+        android:title="Sciana"
+        android:icon="@drawable/icon_clear"
+        android:orderInCategory="80"
+        android:showAsAction="always"/>
+    
+     <item android:id="@+id/menu_center_view"
+        android:title="Wyśrodkuj"
+        android:icon="@drawable/icon_center"
+        android:orderInCategory="50"
+        android:showAsAction="always"/>
+     
+     <item android:id="@+id/menu_show_grid"
+        android:title="Siatka"
+        android:icon="@drawable/icon_grid"
+        android:orderInCategory="100"
+        android:showAsAction="always"/>
+    
+    <item android:id="@+id/menu_logout"
+        android:title="Wyloguj"
+        android:orderInCategory="100"
+        android:showAsAction="never"/>
+    
+    <item android:id="@+id/menu_exit"
+        android:title="Wyjdź"
+        android:orderInCategory="100"
+        android:showAsAction="never"/>
 </menu>

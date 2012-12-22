@@ -18,7 +18,7 @@ public final class User {
     private static String role;
     private static Boolean remember;
     
-    public static Boolean newFurniture=true;
+    public static String dragType="";
     
     static SharedPreferences pref ;
     static Editor editor ;
@@ -43,13 +43,13 @@ public final class User {
     }
  
     public void set(String id, String name, String surname, String password, String registration, String email, String role, Boolean remember){
-    User.id=id;
+    	User.id=id;
     	User.name=name;
     	User.surname=surname;
     	User.password=password;
-    	registrationDate=registration;
+    	User.registrationDate=registration;
     	User.email=email;
-    	role=registration;
+    	User.role=registration;
     	User.remember = remember;
     	save();
     }

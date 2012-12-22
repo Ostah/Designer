@@ -1,55 +1,48 @@
 package pk.projektant;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ActionBar.LayoutParams;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
+import android.os.Vibrator;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
 import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MapManager {
 
-	private FrameLayout mMapArea;
+	public FrameLayout mMapArea;
 	private FurnitureView mFurnitureShadow;
+	private TextView mInfoText;
 	private FurnitureView mFurnitureActive;
 	private String debugString = "";
 	private TextView debugTV;
 	private ArrayList<FurnitureView> sFv;
 	static private Context ctx;
 	private DrawManager drawManager;
-
+	private Activity act;
 	private float yInit = 0.0f;
 	private float xInit = 0.0f;
 
 	private Boolean isScaling = false;
+	public Boolean isWallDrawning = false;
+	
 	private float xDown = 0.0f;
 	private float yDown = 0.0f;
 	ScaleGestureDetector scaleGestureDetector;
@@ -59,6 +52,9 @@ public class MapManager {
 
 	public static int mOffsetX = 0;
 	public static int mOffsetY = 0;
+	
+	public static int onScreenX =0;
+	public static int onScreenY =0;
 	public static int width = 0;
 	public static int heigth = 0;
 
@@ -78,18 +74,19 @@ public class MapManager {
 		return new Integer((int) ((p - mOffsetY) / mScale));
 	}
 
-	MapManager(FrameLayout mapArea, Context context) {
+	MapManager(FrameLayout mapArea, Context context, Activity a) {
 		sFv = new ArrayList<FurnitureView>();
+		act = a;
 		this.mMapArea = mapArea;
 		scaleGestureDetector = new ScaleGestureDetector(context,
 				new simpleOnScaleGestureListener());
 		drawManager = new DrawManager(context, sFv);
 		mapArea.addView(drawManager);
-
-		drawManager.invalidate();
+		mInfoText = (TextView) act.findViewById(R.id.info_text);
+		invalidate();
 		mFurnitureShadow = null;
 		ctx = context;
-
+		
 		mapArea.setOnTouchListener(new OnTouchListener() {
 
 			public boolean onTouch(View v, MotionEvent event) {
@@ -97,20 +94,25 @@ public class MapManager {
 				heigth = mMapArea.getHeight();
 				scaleGestureDetector.onTouchEvent(event);
 				if (isScaling)
+				{
+					Log.d("tap","scaling");
 					return false;
+				}
+					
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
 					tapStart = System.currentTimeMillis();
 					tapCount++;
-					drawManager.invalidate();
+					invalidate();
 					mOffsetXBefore = mOffsetX;
 					mOffsetYBefore = mOffsetY;
 					xInit = event.getX();
 					yInit = event.getY();
-
+					Log.d("tap","dowm");
 				}
 				
 				// DWUKLIK --------------------------------------------------------------------
 				if (event.getAction() == MotionEvent.ACTION_UP) {
+					Log.d("tap","up");
 					long time = System.currentTimeMillis() - tapStart;
 					tapDuration = tapDuration + time;
 					if (tapCount == 2) {
@@ -129,14 +131,6 @@ public class MapManager {
 													DialogInterface dialog,
 													int item) {
 												if( item==0 ){	
-//													AlertDialog.Builder builder2 = new AlertDialog.Builder(ctx);
-//													builder2.setTitle("Make your selection");
-//													alert2.setContentView(R.layout.l_view_properties);
-//													AlertDialog alert2 = builder2.create();
-//													alert2.requestWindowFeature(Window.)
-//													
-//													alert2.show();66666 u
-													
 													 showProperties(tapFurniture.reference);
 												}
 												else if(item == 1)
@@ -145,7 +139,7 @@ public class MapManager {
 												}
 												else if(item == 2){
 													sFv.remove(tapFurniture);
-													drawManager.invalidate();
+													invalidate();
 												}
 													
 											}
@@ -165,7 +159,7 @@ public class MapManager {
 				if (event.getAction() == MotionEvent.ACTION_MOVE) {
 					mOffsetX = mOffsetXBefore - (int) ((xInit - event.getX()));
 					mOffsetY = mOffsetYBefore - (int) ((yInit - event.getY()));
-					drawManager.invalidate();
+					invalidate();
 				}
 
 				return false;
@@ -175,27 +169,54 @@ public class MapManager {
 
 		mapArea.setOnLongClickListener(new View.OnLongClickListener() {
 			public boolean onLongClick(View view) {
+				
 				Log.d("Long",
 						String.valueOf(xInit) + " " + String.valueOf(yInit));
-
-				// znajdz prostok¹t
-				FurnitureView f = findFurniture((int) xInit, (int) yInit);
-				if (f == null)
-					Log.d("CLICK", "null");
-				else {
-					User.newFurniture = false;
+				if(isWallDrawning) // sciana
+				{
+					Vibrator vibe = ( Vibrator ) act.getSystemService( Activity.VIBRATOR_SERVICE);
+			        vibe.vibrate( 100 );
+					User.dragType = "wall";
 					ClipData data = ClipData.newPlainText("type", "map");
 					DragShadowBuilder shadowBuilder = new View.DragShadowBuilder();
-					view.startDrag(data, shadowBuilder, f, 0);
-					mFurnitureActive = f;
-					f.isMoved = true;
+					view.startDrag(data, shadowBuilder, null, 0);
+				
 				}
+				else //niesciana
+				{
+					// znajdz prostok¹t
+					FurnitureView f = findFurniture((int) xInit, (int) yInit);
+					if (f == null)
+						Log.d("CLICK", "null");
+					else {
+						User.dragType = "move";
+						ClipData data = ClipData.newPlainText("type", "map");
+						DragShadowBuilder shadowBuilder = new View.DragShadowBuilder();
+						view.startDrag(data, shadowBuilder, f, 0);
+						mFurnitureActive = f;
+						f.isMoved = true;
+						Vibrator vibe = ( Vibrator ) act.getSystemService( Activity.VIBRATOR_SERVICE);
+				        vibe.vibrate( 100 );
+					}
+				}
+				
 				return false;
 			}
 		});
 
 	}
-
+	
+	public void invalidate(){
+		drawManager.invalidate();
+		mInfoText.setText("X: "+String.valueOf(mOffsetX)+" Y: "+String.valueOf(mOffsetY));
+	}
+	public void centerView(){
+		mScale= 1.0f;
+		mOffsetX=0;
+		mOffsetY=0;
+		invalidate();
+		
+	}
 	static void  showProperties(Furniture f){
 
 	Dialog dialog = new Dialog(ctx);
@@ -243,7 +264,7 @@ public class MapManager {
 		if(isRectangleValid(f, f.getRotatedRect()))
 		{
 			f.rotate();	
-			drawManager.invalidate();	
+			invalidate();	
 		}
 		else {
 			Toast.makeText(ctx, "Can't rotate here",
@@ -281,11 +302,18 @@ public class MapManager {
 		debugString += f.getString();
 		// Log.d("move", String.valueOf(x)+" "+String.valueOf(y));
 
-		Boolean valid = isMoveValid(f, x, y);
+		Boolean valid=true;
+		if(isWallDrawning&&User.dragType=="wall"){
+			valid = isRectangleValid(f, f.getResizedRect(x, y));
+		}
+		else{
+			valid = isMoveValid(f, x, y);
+		}
 		if (mFurnitureShadow == null) {
 			if (valid) {
-				f.move(x, y, true);
-				drawManager.invalidate();
+				if(isWallDrawning&&User.dragType=="wall") f.resize(x, y);
+				else f.move(x, y, true);
+				invalidate();
 			} else {
 				Log.d("INVALID!", "INVALID!");
 				mFurnitureShadow = f.getShadow();
@@ -293,16 +321,21 @@ public class MapManager {
 			}
 		} else {
 			if (!valid) {
-				mFurnitureShadow.move(x, y, true);
-				drawManager.invalidate();
+				
+				if(isWallDrawning&&User.dragType=="wall") mFurnitureShadow.resize(x, y);
+				else mFurnitureShadow.move(x, y, true);
+				invalidate();
 			} else {
 				Log.d("VALID!", "VALID!");
-				drawManager.invalidate();
+				invalidate();
 				sFv.remove(mFurnitureShadow);
-				drawManager.invalidate();
+				invalidate();
 				mFurnitureShadow = null;
-				f.move(x, y, true);
-				drawManager.invalidate();
+				
+				if(isWallDrawning&&User.dragType=="wall") f.resize(x, y);
+				else f.move(x, y, true);
+				
+				invalidate();
 			}
 		}
 		tv.setText(debugString);
@@ -312,6 +345,12 @@ public class MapManager {
 		Rect newPosition = new Rect(f.getRect(false));
 		newPosition.offsetTo((int) x, (int) y);
 		return isRectangleValid(f, newPosition);
+	}
+	
+	public void removeView(FurnitureView f){
+		drop();
+		sFv.remove(f);
+		invalidate();
 	}
 	
 	private Boolean isRectangleValid(FurnitureView f, Rect newPosition)
@@ -342,7 +381,7 @@ public class MapManager {
 			mFurnitureActive.isMoved = false;
 			mFurnitureActive = null;
 		}
-		drawManager.invalidate();
+		invalidate();
 	}
 
 	public void clear() {
@@ -369,7 +408,7 @@ public class MapManager {
 
 			mOffsetX -= (int) ((int) (mMapArea.getWidth() * 0.5) * scaleChange);
 			mOffsetY -= (int) ((int) (mMapArea.getHeight() * 0.5) * scaleChange);
-			drawManager.invalidate();
+			invalidate();
 			debugString = "SCALE: " + String.valueOf(mScale);
 			debugTV.setText(debugString);
 			return false;

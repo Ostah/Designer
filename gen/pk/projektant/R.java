@@ -9,944 +9,4210 @@ package pk.projektant;
 
 public final class R {
     public static final class attr {
+        /**  Custom divider drawable to use for elements in the action bar. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionBarDivider=0x7f01000e;
+        /**  Custom item state list drawable background for action bar items. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionBarItemBackground=0x7f01000f;
+        /**  Size of the Action Bar, including the contextual
+             bar used to present Action Modes. 
+         <p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+<p>May be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>wrap_content</code></td><td>0</td><td></td></tr>
+</table>
+         */
+        public static final int actionBarSize=0x7f01000d;
+        /**  Reference to a style for the split Action Bar. This style
+             controls the split component that holds the menu/action
+             buttons. actionBarStyle is still used for the primary
+             bar. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionBarSplitStyle=0x7f01000b;
+        /**  Reference to a style for the Action Bar 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionBarStyle=0x7f01000a;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionBarTabBarStyle=0x7f010007;
+        /**  Default style for tabs within an action bar 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionBarTabStyle=0x7f010006;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionBarTabTextStyle=0x7f010008;
+        /**  Reference to a theme that should be used to inflate widgets
+             and layouts destined for the action bar. Most of the time
+             this will be a reference to the current theme, but when
+             the action bar has a significantly different contrast
+             profile than the rest of the activity the difference
+             can become important. If this is set to @null the current
+             theme will be used.
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionBarWidgetTheme=0x7f01000c;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionButtonStyle=0x7f01003a;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionDropDownStyle=0x7f010039;
+        /**  TextAppearance style that will be applied to text that
+             appears within action menu items. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionMenuTextAppearance=0x7f010010;
+        /**  Color for text that appears within action menu items. 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int actionMenuTextColor=0x7f010011;
+        /**  Background drawable to use for action mode UI 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionModeBackground=0x7f010014;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionModeCloseButtonStyle=0x7f010013;
+        /**  Drawable to use for the close action mode button 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionModeCloseDrawable=0x7f010016;
+        /**  PopupWindow style to use for action modes when showing as a window overlay. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionModePopupWindowStyle=0x7f010018;
+        /**  Drawable to use for the Share action button in WebView selection action modes 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionModeShareDrawable=0x7f010017;
+        /**  Background drawable to use for action mode UI in the lower split bar 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionModeSplitBackground=0x7f010015;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionModeStyle=0x7f010012;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionOverflowButtonStyle=0x7f010009;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionSpinnerItemStyle=0x7f01003f;
+        /**  Drawable used as a background for activated items. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int activatedBackgroundIndicator=0x7f010047;
+        /**  Default ActivityChooserView style. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int activityChooserViewStyle=0x7f010046;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int background=0x7f010002;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int backgroundSplit=0x7f010003;
+        /**  Specifies a background drawable for a second stacked row of the action bar. 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int backgroundStacked=0x7f01004e;
+        /**  Small Button style. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int buttonStyleSmall=0x7f010019;
+        /**  Specifies a layout for custom navigation. Overrides navigationMode. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int customNavigationLayout=0x7f01004f;
+        /**  Options affecting how the action bar is displayed. 
+         <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>useLogo</code></td><td>0x1</td><td></td></tr>
+<tr><td><code>showHome</code></td><td>0x2</td><td></td></tr>
+<tr><td><code>homeAsUp</code></td><td>0x4</td><td></td></tr>
+<tr><td><code>showTitle</code></td><td>0x8</td><td></td></tr>
+<tr><td><code>showCustom</code></td><td>0x10</td><td></td></tr>
+<tr><td><code>disableHome</code></td><td>0x20</td><td></td></tr>
+</table>
+         */
+        public static final int displayOptions=0x7f010049;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int divider=0x7f010005;
+        /**  Drawable to use for generic vertical dividers. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int dividerVertical=0x7f010038;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int dropDownListViewStyle=0x7f01003c;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int dropdownListPreferredItemHeight=0x7f01003e;
+        /**  The drawable to show in the button for expanding the activities overflow popup.
+             <strong>Note:</strong> Clients would like to set this drawable
+             as a clue about the action the chosen activity will perform. For
+             example, if share activity is to be chosen the drawable should
+             give a clue that sharing is to be performed.
+         
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int expandActivityOverflowButtonDrawable=0x7f01005e;
+        /**  Default background for the menu header. 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int headerBackground=0x7f010058;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int height=0x7f010004;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int homeAsUpIndicator=0x7f01003b;
+        /**  Specifies a layout to use for the "home" section of the action bar. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int homeLayout=0x7f010050;
+        /**  Default horizontal divider between rows of menu items. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int horizontalDivider=0x7f010056;
+        /**  Specifies the drawable used for the application icon. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int icon=0x7f01004c;
+        /**  The default state of the SearchView. If true, it will be iconified when not in
+             use and expanded when clicked. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int iconifiedByDefault=0x7f01005f;
+        /**  Specifies a style resource to use for an indeterminate progress spinner. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int indeterminateProgressStyle=0x7f010052;
+        /**  The maximal number of items initially shown in the activity list. 
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int initialActivityCount=0x7f01005d;
+        /**  Default background for each menu item. 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int itemBackground=0x7f010059;
+        /**  Default disabled icon alpha for each menu item that shows an icon. 
+         <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int itemIconDisabledAlpha=0x7f01005b;
+        /**  Specifies padding that should be applied to the left and right sides of
+             system-provided items in the bar. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int itemPadding=0x7f010054;
+        /**  Default appearance of menu item text. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int itemTextAppearance=0x7f010055;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int listPopupWindowStyle=0x7f010045;
+        /**  A smaller, sleeker list item height. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int listPreferredItemHeightSmall=0x7f010032;
+        /**  The preferred padding along the left edge of list items. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int listPreferredItemPaddingLeft=0x7f010033;
+        /**  The preferred padding along the right edge of list items. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int listPreferredItemPaddingRight=0x7f010034;
+        /**  Specifies the drawable used for the application logo. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int logo=0x7f01004d;
+        /**  The type of navigation to use. 
+         <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>normal</code></td><td>0</td><td> Normal static title text </td></tr>
+<tr><td><code>listMode</code></td><td>1</td><td> The action bar will use a selection list for navigation. </td></tr>
+<tr><td><code>tabMode</code></td><td>2</td><td> The action bar will use a series of horizontal tabs for navigation. </td></tr>
+</table>
+         */
+        public static final int navigationMode=0x7f010048;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int popupMenuStyle=0x7f01003d;
+        /**  Whether space should be reserved in layout when an icon is missing. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int preserveIconSpacing=0x7f01005c;
+        /**  Specifies the horizontal padding on either end for an embedded progress bar. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int progressBarPadding=0x7f010053;
+        /**  Specifies a style resource to use for an embedded progress bar. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int progressBarStyle=0x7f010051;
+        /**  An optional query hint string to be displayed in the empty query field. 
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int queryHint=0x7f010060;
+        /**  SearchView AutoCompleteTextView style 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int searchAutoCompleteTextView=0x7f010024;
+        /**  SearchView dropdown background 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int searchDropdownBackground=0x7f010025;
+        /**  The list item height for search results. @hide 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int searchResultListItemHeight=0x7f01002f;
+        /**  SearchView close button icon 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int searchViewCloseIcon=0x7f010026;
+        /**  SearchView query refinement icon 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int searchViewEditQuery=0x7f01002a;
+        /**  SearchView query refinement icon background 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int searchViewEditQueryBackground=0x7f01002b;
+        /**  SearchView Go button icon 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int searchViewGoIcon=0x7f010027;
+        /**  SearchView Search icon 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int searchViewSearchIcon=0x7f010028;
+        /**  SearchView text field background for the left section 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int searchViewTextField=0x7f01002c;
+        /**  SearchView text field background for the right section 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int searchViewTextFieldRight=0x7f01002d;
+        /**  SearchView Voice button icon 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int searchViewVoiceIcon=0x7f010029;
+        /**  Background drawable for standalone items that need focus/pressed states. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int selectableItemBackground=0x7f01001a;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int spinnerDropDownItemStyle=0x7f010023;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int spinnerItemStyle=0x7f010022;
+        /**  Specifies subtitle text used for navigationMode="normal" 
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int subtitle=0x7f01004b;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int subtitleTextStyle=0x7f010001;
+        /**  Text color, typeface, size, and style for the text inside of a popup menu. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int textAppearanceLargePopupMenu=0x7f01001c;
+        /**  The preferred TextAppearance for the primary text of small list items. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int textAppearanceListItemSmall=0x7f010035;
+        /**  Text color, typeface, size, and style for system search result subtitle. Defaults to primary inverse text color. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int textAppearanceSearchResultSubtitle=0x7f010031;
+        /**  Text color, typeface, size, and style for system search result title. Defaults to primary inverse text color. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int textAppearanceSearchResultTitle=0x7f010030;
+        /**  Text color, typeface, size, and style for "small" text. Defaults to secondary text color. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int textAppearanceSmall=0x7f01001e;
+        /**  Text color, typeface, size, and style for small text inside of a popup menu. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int textAppearanceSmallPopupMenu=0x7f01001d;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textColorPrimary=0x7f01001f;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textColorPrimaryDisableOnly=0x7f010020;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textColorPrimaryInverse=0x7f010021;
+        /**  Text color for urls in search suggestions, used by things like global search and the browser. @hide 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int textColorSearchUrl=0x7f01002e;
+        /**  Specifies title text used for navigationMode="normal" 
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int title=0x7f01004a;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int titleTextStyle=0x7f010000;
+        /**  Default vertical divider between menu items. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int verticalDivider=0x7f010057;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int windowActionBar=0x7f010041;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int windowActionBarOverlay=0x7f010042;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int windowActionModeOverlay=0x7f010043;
+        /**  Default animations for the menu. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int windowAnimationStyle=0x7f01005a;
+        /**  This Drawable is overlaid over the foreground of the Window's content area, usually
+             to place a shadow below the title.  
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int windowContentOverlay=0x7f01001b;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int windowMinWidthMajor=0x7f010036;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int windowMinWidthMinor=0x7f010037;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int windowNoTitle=0x7f010040;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int windowSplitActionBar=0x7f010044;
+    }
+    public static final class bool {
+        public static final int abs__action_bar_embed_tabs=0x7f060000;
+        public static final int abs__action_bar_expanded_action_views_exclusive=0x7f060002;
+        /**  Whether action menu items should be displayed in ALLCAPS or not.
+         Defaults to true. If this is not appropriate for specific locales
+         it should be disabled in that locale's resources. 
+         */
+        public static final int abs__config_actionMenuItemAllCaps=0x7f060004;
+        /**  Whether action menu items should obey the "withText" showAsAction
+         flag. This may be set to false for situations where space is
+         extremely limited. 
+ Whether action menu items should obey the "withText" showAsAction
+         flag. This may be set to false for situations where space is
+         extremely limited. 
+         */
+        public static final int abs__config_allowActionMenuItemTextWithIcon=0x7f060005;
+        /**  Sets whether menu shortcuts should be displayed on panel menus when
+         a keyboard is present. 
+         */
+        public static final int abs__config_showMenuShortcutsWhenKeyboardPresent=0x7f060003;
+        public static final int abs__split_action_bar_is_narrow=0x7f060001;
+    }
+    public static final class color {
+        public static final int abs__background_holo_dark=0x7f070000;
+        public static final int abs__background_holo_light=0x7f070001;
+        public static final int abs__bright_foreground_disabled_holo_dark=0x7f070004;
+        public static final int abs__bright_foreground_disabled_holo_light=0x7f070005;
+        public static final int abs__bright_foreground_holo_dark=0x7f070002;
+        public static final int abs__bright_foreground_holo_light=0x7f070003;
+        public static final int abs__bright_foreground_inverse_holo_dark=0x7f070006;
+        public static final int abs__bright_foreground_inverse_holo_light=0x7f070007;
+        public static final int abs__holo_blue_light=0x7f070008;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f070009;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f07000a;
+        public static final int abs__primary_text_holo_dark=0x7f07000b;
+        public static final int abs__primary_text_holo_light=0x7f07000c;
+    }
+    public static final class dimen {
+        /**  Default height of an action bar. 
+ Default height of an action bar. 
+ Default height of an action bar. 
+ Default height of an action bar. 
+ Default height of an action bar. 
+ Default height of an action bar. 
+ Default height of an action bar. 
+ Default height of an action bar. 
+         */
+        public static final int abs__action_bar_default_height=0x7f080001;
+        /**  Vertical padding around action bar icons. 
+ Vertical padding around action bar icons. 
+ Vertical padding around action bar icons. 
+ Vertical padding around action bar icons. 
+ Vertical padding around action bar icons. 
+ Vertical padding around action bar icons. 
+ Vertical padding around action bar icons. 
+ Vertical padding around action bar icons. 
+         */
+        public static final int abs__action_bar_icon_vertical_padding=0x7f080002;
+        /**  Bottom margin for action bar subtitles 
+ Bottom margin for action bar subtitles 
+ Bottom margin for action bar subtitles 
+ Bottom margin for action bar subtitles 
+ Bottom margin for action bar subtitles 
+ Bottom margin for action bar subtitles 
+ Bottom margin for action bar subtitles 
+ Bottom margin for action bar subtitles 
+         */
+        public static final int abs__action_bar_subtitle_bottom_margin=0x7f080006;
+        /**  Text size for action bar subtitles 
+ Text size for action bar subtitles 
+ Text size for action bar subtitles 
+ Text size for action bar subtitles 
+ Text size for action bar subtitles 
+ Text size for action bar subtitles 
+ Text size for action bar subtitles 
+ Text size for action bar subtitles 
+         */
+        public static final int abs__action_bar_subtitle_text_size=0x7f080004;
+        /**  Top margin for action bar subtitles 
+ Top margin for action bar subtitles 
+ Top margin for action bar subtitles 
+ Top margin for action bar subtitles 
+ Top margin for action bar subtitles 
+ Top margin for action bar subtitles 
+ Top margin for action bar subtitles 
+ Top margin for action bar subtitles 
+         */
+        public static final int abs__action_bar_subtitle_top_margin=0x7f080005;
+        /**  Text size for action bar titles 
+ Text size for action bar titles 
+ Text size for action bar titles 
+ Text size for action bar titles 
+ Text size for action bar titles 
+ Text size for action bar titles 
+ Text size for action bar titles 
+ Text size for action bar titles 
+         */
+        public static final int abs__action_bar_title_text_size=0x7f080003;
+        /**  Minimum width for an action button in the menu area of an action bar 
+ Minimum width for an action button in the menu area of an action bar 
+         */
+        public static final int abs__action_button_min_width=0x7f080007;
+        /**  Dialog title height 
+         */
+        public static final int abs__alert_dialog_title_height=0x7f080008;
+        /**  The maximum width we would prefer dialogs to be.  0 if there is no
+         maximum (let them grow as large as the screen).  Actual values are
+         specified for -large and -xlarge configurations. 
+         */
+        public static final int abs__config_prefDialogWidth=0x7f080000;
+        /**  The platform's desired minimum size for a dialog's width when it
+         is along the major axis (that is the screen is landscape).  This may
+         be either a fraction or a dimension. 
+ The platform's desired minimum size for a dialog's width when it
+         is along the major axis (that is the screen is landscape).  This may
+         be either a fraction or a dimension. 
+ The platform's desired minimum size for a dialog's width when it
+         is along the major axis (that is the screen is landscape).  This may
+         be either a fraction or a dimension. 
+         */
+        public static final int abs__dialog_min_width_major=0x7f080009;
+        /**  The platform's desired minimum size for a dialog's width when it
+         is along the minor axis (that is the screen is portrait).  This may
+         be either a fraction or a dimension. 
+ The platform's desired minimum size for a dialog's width when it
+         is along the minor axis (that is the screen is portrait).  This may
+         be either a fraction or a dimension. 
+ The platform's desired minimum size for a dialog's width when it
+         is along the minor axis (that is the screen is portrait).  This may
+         be either a fraction or a dimension. 
+         */
+        public static final int abs__dialog_min_width_minor=0x7f08000a;
+        /**  Width of the icon in a dropdown list 
+         */
+        public static final int abs__dropdownitem_icon_width=0x7f08000d;
+        /**  Text padding for dropdown items 
+         */
+        public static final int abs__dropdownitem_text_padding_left=0x7f08000b;
+        /**  Text padding for dropdown items 
+         */
+        public static final int abs__dropdownitem_text_padding_right=0x7f08000c;
+        /**  Preferred width of the search view. 
+         */
+        public static final int abs__search_view_preferred_width=0x7f08000f;
+        /**  Minimum width of the search view text entry area. 
+         */
+        public static final int abs__search_view_text_min_width=0x7f08000e;
+        /**  Minimum width for an action button in the menu area of an action bar 
+ Minimum width for an action button in the menu area of an action bar 
+         */
+        public static final int action_button_min_width=0x7f080010;
     }
     public static final class drawable {
-        public static final int background=0x7f020000;
-        public static final int gradient_bg=0x7f020001;
-        public static final int gradient_bg_hover=0x7f020002;
-        public static final int ic_action_search=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int image_bg=0x7f020005;
-        public static final int list_selector=0x7f020006;
-        public static final int pe057970=0x7f020007;
-        public static final int pe069926=0x7f020008;
-        public static final int pe084883=0x7f020009;
-        public static final int pe086041=0x7f02000a;
-        public static final int pe088388=0x7f02000b;
-        public static final int pe088472=0x7f02000c;
-        public static final int pe088475=0x7f02000d;
-        public static final int pe089088=0x7f02000e;
-        public static final int pe089090=0x7f02000f;
-        public static final int pe098984=0x7f020010;
-        public static final int pe099435=0x7f020011;
-        public static final int pe099774=0x7f020012;
-        public static final int pe101319=0x7f020013;
-        public static final int pe101350=0x7f020014;
-        public static final int pe101352=0x7f020015;
-        public static final int pe101356=0x7f020016;
-        public static final int pe103471=0x7f020017;
-        public static final int pe103979=0x7f020018;
-        public static final int pe104730=0x7f020019;
-        public static final int pe105482=0x7f02001a;
-        public static final int pe105496=0x7f02001b;
-        public static final int pe106024=0x7f02001c;
-        public static final int pe106025=0x7f02001d;
-        public static final int pe106147=0x7f02001e;
-        public static final int pe106162=0x7f02001f;
-        public static final int pe107222=0x7f020020;
-        public static final int pe107227=0x7f020021;
-        public static final int pe107241=0x7f020022;
-        public static final int pe107374=0x7f020023;
-        public static final int pe107806=0x7f020024;
-        public static final int pe107839=0x7f020025;
-        public static final int pe107840=0x7f020026;
-        public static final int pe107979=0x7f020027;
-        public static final int pe108181=0x7f020028;
-        public static final int pe108707=0x7f020029;
-        public static final int pe109053=0x7f02002a;
-        public static final int pe110704=0x7f02002b;
-        public static final int pe112124=0x7f02002c;
-        public static final int pe112144=0x7f02002d;
-        public static final int pe112163=0x7f02002e;
-        public static final int pe112186=0x7f02002f;
-        public static final int pe112301=0x7f020030;
-        public static final int pe112343=0x7f020031;
-        public static final int pe112359=0x7f020032;
-        public static final int pe112607=0x7f020033;
-        public static final int pe112698=0x7f020034;
-        public static final int pe113267=0x7f020035;
-        public static final int pe113340=0x7f020036;
-        public static final int pe114614=0x7f020037;
-        public static final int pe114805=0x7f020038;
-        public static final int pe115108=0x7f020039;
-        public static final int pe115176=0x7f02003a;
-        public static final int pe115315=0x7f02003b;
-        public static final int pe115547=0x7f02003c;
-        public static final int pe115802=0x7f02003d;
-        public static final int pe116830=0x7f02003e;
-        public static final int pe116965=0x7f02003f;
-        public static final int pe117210=0x7f020040;
-        public static final int pe118673=0x7f020041;
-        public static final int pe118674=0x7f020042;
-        public static final int pe119623=0x7f020043;
-        public static final int pe120743=0x7f020044;
-        public static final int pe124751=0x7f020045;
-        public static final int pe124882=0x7f020046;
-        public static final int pe125263=0x7f020047;
-        public static final int pe125269=0x7f020048;
-        public static final int pe126583=0x7f020049;
-        public static final int pe126584=0x7f02004a;
-        public static final int pe126864=0x7f02004b;
-        public static final int pe128002=0x7f02004c;
-        public static final int pe129510=0x7f02004d;
-        public static final int pe129674=0x7f02004e;
-        public static final int pe130209=0x7f02004f;
-        public static final int pe130212=0x7f020050;
-        public static final int pe134835=0x7f020051;
-        public static final int pe136865=0x7f020052;
-        public static final int pe136910=0x7f020053;
-        public static final int pe137909=0x7f020054;
-        public static final int pe138555=0x7f020055;
-        public static final int pe139670=0x7f020056;
-        public static final int pe139739=0x7f020057;
-        public static final int pe141902=0x7f020058;
-        public static final int pe142507=0x7f020059;
-        public static final int pe142530=0x7f02005a;
-        public static final int pe144299=0x7f02005b;
-        public static final int pe144300=0x7f02005c;
-        public static final int pe144967=0x7f02005d;
-        public static final int pe144968=0x7f02005e;
-        public static final int pe144986=0x7f02005f;
-        public static final int pe145008=0x7f020060;
-        public static final int pe145184=0x7f020061;
-        public static final int pe146011=0x7f020062;
-        public static final int pe146071=0x7f020063;
-        public static final int pe146541=0x7f020064;
-        public static final int pe146644=0x7f020065;
-        public static final int pe153318=0x7f020066;
-        public static final int pe157411=0x7f020067;
-        public static final int pe158403=0x7f020068;
-        public static final int pe160026=0x7f020069;
-        public static final int pe160028=0x7f02006a;
-        public static final int pe160519=0x7f02006b;
-        public static final int pe160660=0x7f02006c;
-        public static final int pe160665=0x7f02006d;
-        public static final int pe160745=0x7f02006e;
-        public static final int pe160749=0x7f02006f;
-        public static final int pe163007=0x7f020070;
-        public static final int pe164179=0x7f020071;
-        public static final int pe164522=0x7f020072;
-        public static final int pe164584=0x7f020073;
-        public static final int pe165203=0x7f020074;
-        public static final int pe165205=0x7f020075;
-        public static final int pe165393=0x7f020076;
-        public static final int pe165522=0x7f020077;
-        public static final int pe165624=0x7f020078;
-        public static final int pe165866=0x7f020079;
-        public static final int pe166013=0x7f02007a;
-        public static final int pe166680=0x7f02007b;
-        public static final int pe167057=0x7f02007c;
-        public static final int pe168411=0x7f02007d;
-        public static final int pe168445=0x7f02007e;
-        public static final int pe168771=0x7f02007f;
-        public static final int pe168779=0x7f020080;
-        public static final int pe168792=0x7f020081;
-        public static final int pe171058=0x7f020082;
-        public static final int pe171155=0x7f020083;
-        public static final int pe171808=0x7f020084;
-        public static final int pe172508=0x7f020085;
-        public static final int pe174052=0x7f020086;
-        public static final int pe174381=0x7f020087;
-        public static final int pe174958=0x7f020088;
-        public static final int pe174959=0x7f020089;
-        public static final int pe174960=0x7f02008a;
-        public static final int pe174963=0x7f02008b;
-        public static final int pe175207=0x7f02008c;
-        public static final int pe175906=0x7f02008d;
-        public static final int pe181365=0x7f02008e;
-        public static final int pe182165=0x7f02008f;
-        public static final int pe182307=0x7f020090;
-        public static final int pe182318=0x7f020091;
-        public static final int pe182323=0x7f020092;
-        public static final int pe182325=0x7f020093;
-        public static final int pe182330=0x7f020094;
-        public static final int pe182454=0x7f020095;
-        public static final int pe182455=0x7f020096;
-        public static final int pe184361=0x7f020097;
-        public static final int pe184857=0x7f020098;
-        public static final int pe185756=0x7f020099;
-        public static final int pe185759=0x7f02009a;
-        public static final int pe186737=0x7f02009b;
-        public static final int pe187151=0x7f02009c;
-        public static final int pe187158=0x7f02009d;
-        public static final int pe187379=0x7f02009e;
-        public static final int pe187383=0x7f02009f;
-        public static final int pe187560=0x7f0200a0;
-        public static final int pe188667=0x7f0200a1;
-        public static final int pe188668=0x7f0200a2;
-        public static final int pe188915=0x7f0200a3;
-        public static final int pe189132=0x7f0200a4;
-        public static final int pe189154=0x7f0200a5;
-        public static final int pe189155=0x7f0200a6;
-        public static final int pe189157=0x7f0200a7;
-        public static final int pe189159=0x7f0200a8;
-        public static final int pe189160=0x7f0200a9;
-        public static final int pe189178=0x7f0200aa;
-        public static final int pe189506=0x7f0200ab;
-        public static final int pe190638=0x7f0200ac;
-        public static final int pe190672=0x7f0200ad;
-        public static final int pe190678=0x7f0200ae;
-        public static final int pe190690=0x7f0200af;
-        public static final int pe190703=0x7f0200b0;
-        public static final int pe190717=0x7f0200b1;
-        public static final int pe190723=0x7f0200b2;
-        public static final int pe190771=0x7f0200b3;
-        public static final int pe190789=0x7f0200b4;
-        public static final int pe191678=0x7f0200b5;
-        public static final int pe192706=0x7f0200b6;
-        public static final int pe193323=0x7f0200b7;
-        public static final int pe193529=0x7f0200b8;
-        public static final int pe193795=0x7f0200b9;
-        public static final int pe194090=0x7f0200ba;
-        public static final int pe194455=0x7f0200bb;
-        public static final int pe194633=0x7f0200bc;
-        public static final int pe196040=0x7f0200bd;
-        public static final int pe196765=0x7f0200be;
-        public static final int pe196884=0x7f0200bf;
-        public static final int pe198863=0x7f0200c0;
-        public static final int pe202930=0x7f0200c1;
-        public static final int pe203254=0x7f0200c2;
-        public static final int pe204482=0x7f0200c3;
-        public static final int pe204486=0x7f0200c4;
-        public static final int pe204505=0x7f0200c5;
-        public static final int pe204562=0x7f0200c6;
-        public static final int pe204571=0x7f0200c7;
-        public static final int pe205039=0x7f0200c8;
-        public static final int pe205041=0x7f0200c9;
-        public static final int pe205598=0x7f0200ca;
-        public static final int pe207217=0x7f0200cb;
-        public static final int pe207628=0x7f0200cc;
-        public static final int pe208078=0x7f0200cd;
-        public static final int pe208348=0x7f0200ce;
-        public static final int pe208350=0x7f0200cf;
-        public static final int pe208352=0x7f0200d0;
-        public static final int pe208363=0x7f0200d1;
-        public static final int pe208365=0x7f0200d2;
-        public static final int pe209308=0x7f0200d3;
-        public static final int pe209359=0x7f0200d4;
-        public static final int pe209696=0x7f0200d5;
-        public static final int pe210580=0x7f0200d6;
-        public static final int pe210805=0x7f0200d7;
-        public static final int pe210807=0x7f0200d8;
-        public static final int pe210810=0x7f0200d9;
-        public static final int pe210812=0x7f0200da;
-        public static final int pe210815=0x7f0200db;
-        public static final int pe210816=0x7f0200dc;
-        public static final int pe213729=0x7f0200dd;
-        public static final int pe214749=0x7f0200de;
-        public static final int pe215205=0x7f0200df;
-        public static final int pe215207=0x7f0200e0;
-        public static final int pe215404=0x7f0200e1;
-        public static final int pe216495=0x7f0200e2;
-        public static final int pe216801=0x7f0200e3;
-        public static final int pe217023=0x7f0200e4;
-        public static final int pe217185=0x7f0200e5;
-        public static final int pe217933=0x7f0200e6;
-        public static final int pe218801=0x7f0200e7;
-        public static final int pe220023=0x7f0200e8;
-        public static final int pe220057=0x7f0200e9;
-        public static final int pe220099=0x7f0200ea;
-        public static final int pe220587=0x7f0200eb;
-        public static final int pe220918=0x7f0200ec;
-        public static final int pe220929=0x7f0200ed;
-        public static final int pe221150=0x7f0200ee;
-        public static final int pe221151=0x7f0200ef;
-        public static final int pe221597=0x7f0200f0;
-        public static final int pe221696=0x7f0200f1;
-        public static final int pe222561=0x7f0200f2;
-        public static final int pe224144=0x7f0200f3;
-        public static final int pe228916=0x7f0200f4;
-        public static final int pe229443=0x7f0200f5;
-        public static final int pe231360=0x7f0200f6;
-        public static final int pe231364=0x7f0200f7;
-        public static final int pe231368=0x7f0200f8;
-        public static final int pe231380=0x7f0200f9;
-        public static final int pe231384=0x7f0200fa;
-        public static final int pe231388=0x7f0200fb;
-        public static final int pe231392=0x7f0200fc;
-        public static final int pe231396=0x7f0200fd;
-        public static final int pe231417=0x7f0200fe;
-        public static final int pe231430=0x7f0200ff;
-        public static final int pe231433=0x7f020100;
-        public static final int pe231442=0x7f020101;
-        public static final int pe231450=0x7f020102;
-        public static final int pe231459=0x7f020103;
-        public static final int pe231895=0x7f020104;
-        public static final int pe232044=0x7f020105;
-        public static final int pe232230=0x7f020106;
-        public static final int pe232275=0x7f020107;
-        public static final int pe232388=0x7f020108;
-        public static final int pe232398=0x7f020109;
-        public static final int pe232419=0x7f02010a;
-        public static final int pe232435=0x7f02010b;
-        public static final int pe233888=0x7f02010c;
-        public static final int pe234030=0x7f02010d;
-        public static final int pe234032=0x7f02010e;
-        public static final int pe235217=0x7f02010f;
-        public static final int pe235223=0x7f020110;
-        public static final int pe235225=0x7f020111;
-        public static final int pe235232=0x7f020112;
-        public static final int pe235554=0x7f020113;
-        public static final int pe235699=0x7f020114;
-        public static final int pe237569=0x7f020115;
-        public static final int pe238330=0x7f020116;
-        public static final int pe238863=0x7f020117;
-        public static final int pe239256=0x7f020118;
-        public static final int pe239336=0x7f020119;
-        public static final int pe239730=0x7f02011a;
-        public static final int pe239732=0x7f02011b;
-        public static final int pe240328=0x7f02011c;
-        public static final int pe240329=0x7f02011d;
-        public static final int pe240330=0x7f02011e;
-        public static final int pe240680=0x7f02011f;
-        public static final int pe240835=0x7f020120;
-        public static final int pe241158=0x7f020121;
-        public static final int pe241248=0x7f020122;
-        public static final int pe241249=0x7f020123;
-        public static final int pe241795=0x7f020124;
-        public static final int pe242088=0x7f020125;
-        public static final int pe242377=0x7f020126;
-        public static final int pe242588=0x7f020127;
-        public static final int pe243300=0x7f020128;
-        public static final int pe244903=0x7f020129;
-        public static final int pe244904=0x7f02012a;
-        public static final int pe244911=0x7f02012b;
-        public static final int pe244968=0x7f02012c;
-        public static final int pe244999=0x7f02012d;
-        public static final int pe245027=0x7f02012e;
-        public static final int pe245259=0x7f02012f;
-        public static final int pe245322=0x7f020130;
-        public static final int pe245361=0x7f020131;
-        public static final int pe245447=0x7f020132;
-        public static final int pe245475=0x7f020133;
-        public static final int pe245605=0x7f020134;
-        public static final int pe245637=0x7f020135;
-        public static final int pe245683=0x7f020136;
-        public static final int pe245721=0x7f020137;
-        public static final int pe245747=0x7f020138;
-        public static final int pe245752=0x7f020139;
-        public static final int pe246429=0x7f02013a;
-        public static final int pe247163=0x7f02013b;
-        public static final int pe248785=0x7f02013c;
-        public static final int pe249231=0x7f02013d;
-        public static final int pe249299=0x7f02013e;
-        public static final int pe249410=0x7f02013f;
-        public static final int pe249514=0x7f020140;
-        public static final int pe249762=0x7f020141;
-        public static final int pe250674=0x7f020142;
-        public static final int pe250686=0x7f020143;
-        public static final int pe250689=0x7f020144;
-        public static final int pe250690=0x7f020145;
-        public static final int pe250692=0x7f020146;
-        public static final int pe250694=0x7f020147;
-        public static final int pe250696=0x7f020148;
-        public static final int pe250698=0x7f020149;
-        public static final int pe250700=0x7f02014a;
-        public static final int pe250796=0x7f02014b;
-        public static final int pe251060=0x7f02014c;
-        public static final int pe251172=0x7f02014d;
-        public static final int pe251365=0x7f02014e;
-        public static final int pe252960=0x7f02014f;
-        public static final int pe253176=0x7f020150;
-        public static final int pe254160=0x7f020151;
-        public static final int pe254547=0x7f020152;
-        public static final int pe256068=0x7f020153;
-        public static final int pe256601=0x7f020154;
-        public static final int pe256736=0x7f020155;
-        public static final int pe257168=0x7f020156;
-        public static final int pe257171=0x7f020157;
-        public static final int pe257172=0x7f020158;
-        public static final int pe257173=0x7f020159;
-        public static final int pe257174=0x7f02015a;
-        public static final int pe257175=0x7f02015b;
-        public static final int pe257178=0x7f02015c;
-        public static final int pe257180=0x7f02015d;
-        public static final int pe257183=0x7f02015e;
-        public static final int pe257184=0x7f02015f;
-        public static final int pe257185=0x7f020160;
-        public static final int pe257204=0x7f020161;
-        public static final int pe257206=0x7f020162;
-        public static final int pe257207=0x7f020163;
-        public static final int pe257258=0x7f020164;
-        public static final int pe257343=0x7f020165;
-        public static final int pe257358=0x7f020166;
-        public static final int pe257558=0x7f020167;
-        public static final int pe257566=0x7f020168;
-        public static final int pe257604=0x7f020169;
-        public static final int pe257843=0x7f02016a;
-        public static final int pe257845=0x7f02016b;
-        public static final int pe257847=0x7f02016c;
-        public static final int pe257849=0x7f02016d;
-        public static final int pe257851=0x7f02016e;
-        public static final int pe258080=0x7f02016f;
-        public static final int pe258088=0x7f020170;
-        public static final int pe258155=0x7f020171;
-        public static final int pe258754=0x7f020172;
-        public static final int pe258965=0x7f020173;
-        public static final int pe259032=0x7f020174;
-        public static final int pe259036=0x7f020175;
-        public static final int pe259272=0x7f020176;
-        public static final int pe259279=0x7f020177;
-        public static final int pe259489=0x7f020178;
-        public static final int pe259787=0x7f020179;
-        public static final int pe260056=0x7f02017a;
-        public static final int pe261464=0x7f02017b;
-        public static final int pe261591=0x7f02017c;
-        public static final int pe261592=0x7f02017d;
-        public static final int pe261990=0x7f02017e;
-        public static final int pe261992=0x7f02017f;
-        public static final int pe261994=0x7f020180;
-        public static final int pe262079=0x7f020181;
-        public static final int pe262080=0x7f020182;
-        public static final int pe262089=0x7f020183;
-        public static final int pe262237=0x7f020184;
-        public static final int pe262924=0x7f020185;
-        public static final int pe262926=0x7f020186;
-        public static final int pe262931=0x7f020187;
-        public static final int pe263431=0x7f020188;
-        public static final int pe263671=0x7f020189;
-        public static final int pe263748=0x7f02018a;
-        public static final int pe264205=0x7f02018b;
-        public static final int pe264293=0x7f02018c;
-        public static final int pe264294=0x7f02018d;
-        public static final int pe264297=0x7f02018e;
-        public static final int pe264429=0x7f02018f;
-        public static final int pe264586=0x7f020190;
-        public static final int pe264597=0x7f020191;
-        public static final int pe264609=0x7f020192;
-        public static final int pe264611=0x7f020193;
-        public static final int pe264616=0x7f020194;
-        public static final int pe264629=0x7f020195;
-        public static final int pe264831=0x7f020196;
-        public static final int pe264832=0x7f020197;
-        public static final int pe264983=0x7f020198;
-        public static final int pe265459=0x7f020199;
-        public static final int pe265478=0x7f02019a;
-        public static final int pe265511=0x7f02019b;
-        public static final int pe265512=0x7f02019c;
-        public static final int pe265583=0x7f02019d;
-        public static final int pe265614=0x7f02019e;
-        public static final int pe265710=0x7f02019f;
-        public static final int pe265784=0x7f0201a0;
-        public static final int pe266201=0x7f0201a1;
-        public static final int pe266249=0x7f0201a2;
-        public static final int pe266296=0x7f0201a3;
-        public static final int pe266424=0x7f0201a4;
-        public static final int pe266425=0x7f0201a5;
-        public static final int pe266762=0x7f0201a6;
-        public static final int pe266769=0x7f0201a7;
-        public static final int pe266770=0x7f0201a8;
-        public static final int pe266808=0x7f0201a9;
-        public static final int pe266810=0x7f0201aa;
-        public static final int pe267706=0x7f0201ab;
-        public static final int pe267758=0x7f0201ac;
-        public static final int pe267798=0x7f0201ad;
-        public static final int pe267804=0x7f0201ae;
-        public static final int pe268223=0x7f0201af;
-        public static final int pe268311=0x7f0201b0;
-        public static final int pe268322=0x7f0201b1;
-        public static final int pe268324=0x7f0201b2;
-        public static final int pe268326=0x7f0201b3;
-        public static final int pe268328=0x7f0201b4;
-        public static final int pe268332=0x7f0201b5;
-        public static final int pe268336=0x7f0201b6;
-        public static final int pe268368=0x7f0201b7;
-        public static final int pe268372=0x7f0201b8;
-        public static final int pe268376=0x7f0201b9;
-        public static final int pe268393=0x7f0201ba;
-        public static final int pe268424=0x7f0201bb;
-        public static final int pe268429=0x7f0201bc;
-        public static final int pe268431=0x7f0201bd;
-        public static final int pe269526=0x7f0201be;
-        public static final int pe269730=0x7f0201bf;
-        public static final int pe269859=0x7f0201c0;
-        public static final int pe269964=0x7f0201c1;
-        public static final int pe269965=0x7f0201c2;
-        public static final int pe269966=0x7f0201c3;
-        public static final int pe269967=0x7f0201c4;
-        public static final int pe269968=0x7f0201c5;
-        public static final int pe270199=0x7f0201c6;
-        public static final int pe270203=0x7f0201c7;
-        public static final int pe270284=0x7f0201c8;
-        public static final int pe270290=0x7f0201c9;
-        public static final int pe270300=0x7f0201ca;
-        public static final int pe270517=0x7f0201cb;
-        public static final int pe270930=0x7f0201cc;
-        public static final int pe271072=0x7f0201cd;
-        public static final int pe272144=0x7f0201ce;
-        public static final int pe272318=0x7f0201cf;
-        public static final int pe272321=0x7f0201d0;
-        public static final int pe272444=0x7f0201d1;
-        public static final int pe272447=0x7f0201d2;
-        public static final int pe272450=0x7f0201d3;
-        public static final int pe272453=0x7f0201d4;
-        public static final int pe272456=0x7f0201d5;
-        public static final int pe272885=0x7f0201d6;
-        public static final int pe272889=0x7f0201d7;
-        public static final int pe272892=0x7f0201d8;
-        public static final int pe272894=0x7f0201d9;
-        public static final int pe272897=0x7f0201da;
-        public static final int pe272900=0x7f0201db;
-        public static final int pe272902=0x7f0201dc;
-        public static final int pe272915=0x7f0201dd;
-        public static final int pe272916=0x7f0201de;
-        public static final int pe272917=0x7f0201df;
-        public static final int pe274176=0x7f0201e0;
-        public static final int pe274833=0x7f0201e1;
-        public static final int pe274851=0x7f0201e2;
-        public static final int pe274855=0x7f0201e3;
-        public static final int pe275465=0x7f0201e4;
-        public static final int pe275561=0x7f0201e5;
-        public static final int pe275631=0x7f0201e6;
-        public static final int pe275632=0x7f0201e7;
-        public static final int pe276072=0x7f0201e8;
-        public static final int pe276076=0x7f0201e9;
-        public static final int pe276080=0x7f0201ea;
-        public static final int pe276084=0x7f0201eb;
-        public static final int pe276088=0x7f0201ec;
-        public static final int pe276092=0x7f0201ed;
-        public static final int pe276096=0x7f0201ee;
-        public static final int pe276117=0x7f0201ef;
-        public static final int pe276129=0x7f0201f0;
-        public static final int pe276134=0x7f0201f1;
-        public static final int pe276229=0x7f0201f2;
-        public static final int pe276233=0x7f0201f3;
-        public static final int pe276252=0x7f0201f4;
-        public static final int pe276255=0x7f0201f5;
-        public static final int pe276272=0x7f0201f6;
-        public static final int pe276523=0x7f0201f7;
-        public static final int pe276553=0x7f0201f8;
-        public static final int pe276698=0x7f0201f9;
-        public static final int pe276703=0x7f0201fa;
-        public static final int pe276709=0x7f0201fb;
-        public static final int pe277861=0x7f0201fc;
-        public static final int pe277975=0x7f0201fd;
-        public static final int pe277986=0x7f0201fe;
-        public static final int pe278241=0x7f0201ff;
-        public static final int pe278264=0x7f020200;
-        public static final int pe278271=0x7f020201;
-        public static final int pe278272=0x7f020202;
-        public static final int pe278281=0x7f020203;
-        public static final int pe278584=0x7f020204;
-        public static final int pe278665=0x7f020205;
-        public static final int pe278708=0x7f020206;
-        public static final int pe278807=0x7f020207;
-        public static final int pe278847=0x7f020208;
-        public static final int pe278966=0x7f020209;
-        public static final int pe279135=0x7f02020a;
-        public static final int pe279208=0x7f02020b;
-        public static final int pe279467=0x7f02020c;
-        public static final int pe279468=0x7f02020d;
-        public static final int pe279634=0x7f02020e;
-        public static final int pe279639=0x7f02020f;
-        public static final int pe279640=0x7f020210;
-        public static final int pe279641=0x7f020211;
-        public static final int pe279642=0x7f020212;
-        public static final int pe279656=0x7f020213;
-        public static final int pe279703=0x7f020214;
-        public static final int pe279794=0x7f020215;
-        public static final int pe279799=0x7f020216;
-        public static final int pe279804=0x7f020217;
-        public static final int pe279811=0x7f020218;
-        public static final int pe279851=0x7f020219;
-        public static final int pe279857=0x7f02021a;
-        public static final int pe279858=0x7f02021b;
-        public static final int pe279942=0x7f02021c;
-        public static final int pe280937=0x7f02021d;
-        public static final int pe281131=0x7f02021e;
-        public static final int pe281470=0x7f02021f;
-        public static final int pe281570=0x7f020220;
-        public static final int pe281613=0x7f020221;
-        public static final int pe281614=0x7f020222;
-        public static final int pe281615=0x7f020223;
-        public static final int pe281824=0x7f020224;
-        public static final int pe281826=0x7f020225;
-        public static final int pe282026=0x7f020226;
-        public static final int pe282087=0x7f020227;
-        public static final int pe282088=0x7f020228;
-        public static final int pe282185=0x7f020229;
-        public static final int pe283008=0x7f02022a;
-        public static final int pe283012=0x7f02022b;
-        public static final int pe283688=0x7f02022c;
-        public static final int pe283781=0x7f02022d;
-        public static final int pe283938=0x7f02022e;
-        public static final int pe283940=0x7f02022f;
-        public static final int pe283950=0x7f020230;
-        public static final int pe283951=0x7f020231;
-        public static final int pe283995=0x7f020232;
-        public static final int pe284000=0x7f020233;
-        public static final int pe284009=0x7f020234;
-        public static final int pe284012=0x7f020235;
-        public static final int pe284024=0x7f020236;
-        public static final int pe284025=0x7f020237;
-        public static final int pe284026=0x7f020238;
-        public static final int pe284030=0x7f020239;
-        public static final int pe284034=0x7f02023a;
-        public static final int pe284039=0x7f02023b;
-        public static final int pe284054=0x7f02023c;
-        public static final int pe284138=0x7f02023d;
-        public static final int pe284142=0x7f02023e;
-        public static final int pe284145=0x7f02023f;
-        public static final int pe284173=0x7f020240;
-        public static final int pe284330=0x7f020241;
-        public static final int pe284377=0x7f020242;
-        public static final int pe284493=0x7f020243;
-        public static final int pe284808=0x7f020244;
-        public static final int pe284809=0x7f020245;
-        public static final int pe284975=0x7f020246;
-        public static final int pe285008=0x7f020247;
-        public static final int pe285158=0x7f020248;
-        public static final int pe285541=0x7f020249;
-        public static final int pe285759=0x7f02024a;
-        public static final int pe286249=0x7f02024b;
-        public static final int pe286862=0x7f02024c;
-        public static final int pe286865=0x7f02024d;
-        public static final int pe286973=0x7f02024e;
-        public static final int pe287097=0x7f02024f;
-        public static final int pe287222=0x7f020250;
-        public static final int pe287229=0x7f020251;
-        public static final int pe287231=0x7f020252;
-        public static final int pe287533=0x7f020253;
-        public static final int pe287541=0x7f020254;
-        public static final int pe287550=0x7f020255;
-        public static final int pe287567=0x7f020256;
-        public static final int pe287572=0x7f020257;
-        public static final int pe287577=0x7f020258;
-        public static final int pe287582=0x7f020259;
-        public static final int pe287612=0x7f02025a;
-        public static final int pe288085=0x7f02025b;
-        public static final int pe288098=0x7f02025c;
-        public static final int pe288111=0x7f02025d;
-        public static final int pe288127=0x7f02025e;
-        public static final int pe288186=0x7f02025f;
-        public static final int pe288188=0x7f020260;
-        public static final int pe288200=0x7f020261;
-        public static final int pe288202=0x7f020262;
-        public static final int pe288944=0x7f020263;
-        public static final int pe289033=0x7f020264;
-        public static final int pe289034=0x7f020265;
-        public static final int pe289186=0x7f020266;
-        public static final int pe289193=0x7f020267;
-        public static final int pe289349=0x7f020268;
-        public static final int pe289991=0x7f020269;
-        public static final int pe290709=0x7f02026a;
-        public static final int pe290711=0x7f02026b;
-        public static final int pe291825=0x7f02026c;
-        public static final int pe291826=0x7f02026d;
-        public static final int pe291841=0x7f02026e;
-        public static final int pe291912=0x7f02026f;
-        public static final int pe292041=0x7f020270;
-        public static final int pe292042=0x7f020271;
-        public static final int pe292043=0x7f020272;
-        public static final int pe292044=0x7f020273;
-        public static final int pe292080=0x7f020274;
-        public static final int pe292700=0x7f020275;
-        public static final int pe292905=0x7f020276;
-        public static final int pe293444=0x7f020277;
-        public static final int pe293452=0x7f020278;
-        public static final int pe293620=0x7f020279;
-        public static final int pe293625=0x7f02027a;
-        public static final int pe293626=0x7f02027b;
-        public static final int pe293721=0x7f02027c;
-        public static final int pe293726=0x7f02027d;
-        public static final int pe294490=0x7f02027e;
-        public static final int pe295088=0x7f02027f;
-        public static final int pe295215=0x7f020280;
-        public static final int pe296725=0x7f020281;
-        public static final int pe296727=0x7f020282;
-        public static final int pe296729=0x7f020283;
-        public static final int pe296731=0x7f020284;
-        public static final int pe296735=0x7f020285;
-        public static final int pe296737=0x7f020286;
-        public static final int pe296739=0x7f020287;
-        public static final int pe298367=0x7f020288;
-        public static final int pe298413=0x7f020289;
-        public static final int pe298450=0x7f02028a;
-        public static final int pe299390=0x7f02028b;
-        public static final int pe299397=0x7f02028c;
-        public static final int pe299399=0x7f02028d;
-        public static final int pe299458=0x7f02028e;
-        public static final int pe299476=0x7f02028f;
-        public static final int pe299534=0x7f020290;
-        public static final int pe299576=0x7f020291;
-        public static final int pe299591=0x7f020292;
-        public static final int pe299596=0x7f020293;
-        public static final int pe299604=0x7f020294;
-        public static final int pe300515=0x7f020295;
-        public static final int pe300519=0x7f020296;
-        public static final int pe300524=0x7f020297;
-        public static final int pe300526=0x7f020298;
-        public static final int pe300528=0x7f020299;
-        public static final int pe300530=0x7f02029a;
-        public static final int pe300605=0x7f02029b;
-        public static final int pe300782=0x7f02029c;
-        public static final int pe300787=0x7f02029d;
-        public static final int pe300791=0x7f02029e;
-        public static final int pe300817=0x7f02029f;
-        public static final int pe300831=0x7f0202a0;
-        public static final int pe300840=0x7f0202a1;
-        public static final int pe300845=0x7f0202a2;
-        public static final int pe301068=0x7f0202a3;
-        public static final int pe301220=0x7f0202a4;
-        public static final int pe301225=0x7f0202a5;
-        public static final int pe301230=0x7f0202a6;
-        public static final int pe301235=0x7f0202a7;
-        public static final int pe301251=0x7f0202a8;
-        public static final int pe301257=0x7f0202a9;
-        public static final int pe301262=0x7f0202aa;
-        public static final int pe301273=0x7f0202ab;
-        public static final int pe301310=0x7f0202ac;
-        public static final int pe301315=0x7f0202ad;
-        public static final int pe301320=0x7f0202ae;
-        public static final int pe301325=0x7f0202af;
-        public static final int pe301377=0x7f0202b0;
-        public static final int pe301380=0x7f0202b1;
-        public static final int pe301494=0x7f0202b2;
-        public static final int pe301496=0x7f0202b3;
-        public static final int pe301498=0x7f0202b4;
-        public static final int pe301500=0x7f0202b5;
-        public static final int pe301501=0x7f0202b6;
-        public static final int pe301504=0x7f0202b7;
-        public static final int pe301927=0x7f0202b8;
-        public static final int pe302109=0x7f0202b9;
-        public static final int pe302111=0x7f0202ba;
-        public static final int pe302113=0x7f0202bb;
-        public static final int pe302114=0x7f0202bc;
-        public static final int pe302115=0x7f0202bd;
-        public static final int pe302171=0x7f0202be;
-        public static final int pe302315=0x7f0202bf;
-        public static final int pe302405=0x7f0202c0;
-        public static final int pe302728=0x7f0202c1;
-        public static final int pe302740=0x7f0202c2;
-        public static final int pe303038=0x7f0202c3;
-        public static final int pe303174=0x7f0202c4;
-        public static final int pe303176=0x7f0202c5;
-        public static final int pe303188=0x7f0202c6;
-        public static final int pe303200=0x7f0202c7;
-        public static final int pe303246=0x7f0202c8;
-        public static final int pe303248=0x7f0202c9;
-        public static final int pe303250=0x7f0202ca;
-        public static final int pe303252=0x7f0202cb;
-        public static final int pe303420=0x7f0202cc;
-        public static final int pe303449=0x7f0202cd;
-        public static final int pe303475=0x7f0202ce;
-        public static final int pe303486=0x7f0202cf;
-        public static final int pe303498=0x7f0202d0;
-        public static final int pe303499=0x7f0202d1;
-        public static final int pe303500=0x7f0202d2;
-        public static final int pe303505=0x7f0202d3;
-        public static final int pe303506=0x7f0202d4;
-        public static final int pe303507=0x7f0202d5;
-        public static final int pe303512=0x7f0202d6;
-        public static final int pe303513=0x7f0202d7;
-        public static final int pe303514=0x7f0202d8;
-        public static final int pe303515=0x7f0202d9;
-        public static final int pe303519=0x7f0202da;
-        public static final int pe304277=0x7f0202db;
-        public static final int pe304328=0x7f0202dc;
-        public static final int pe304721=0x7f0202dd;
-        public static final int pe304772=0x7f0202de;
-        public static final int pe304774=0x7f0202df;
-        public static final int pe304825=0x7f0202e0;
-        public static final int pe304870=0x7f0202e1;
-        public static final int pe304872=0x7f0202e2;
-        public static final int pe304879=0x7f0202e3;
-        public static final int pe304881=0x7f0202e4;
-        public static final int pe304888=0x7f0202e5;
-        public static final int pe305745=0x7f0202e6;
-        public static final int pe306201=0x7f0202e7;
-        public static final int pe306203=0x7f0202e8;
-        public static final int pe306310=0x7f0202e9;
-        public static final int pe306475=0x7f0202ea;
-        public static final int pe306481=0x7f0202eb;
-        public static final int pe306482=0x7f0202ec;
-        public static final int pe306503=0x7f0202ed;
-        public static final int pe306799=0x7f0202ee;
-        public static final int pe307022=0x7f0202ef;
-        public static final int pe307024=0x7f0202f0;
-        public static final int pe307025=0x7f0202f1;
-        public static final int pe307163=0x7f0202f2;
-        public static final int pe307559=0x7f0202f3;
-        public static final int pe307576=0x7f0202f4;
-        public static final int pe307578=0x7f0202f5;
-        public static final int pe307580=0x7f0202f6;
-        public static final int pe307582=0x7f0202f7;
-        public static final int pe307773=0x7f0202f8;
-        public static final int pe307925=0x7f0202f9;
-        public static final int pe308943=0x7f0202fa;
-        public static final int pe308945=0x7f0202fb;
-        public static final int pe308948=0x7f0202fc;
-        public static final int pe308950=0x7f0202fd;
-        public static final int pe309153=0x7f0202fe;
-        public static final int pe309330=0x7f0202ff;
-        public static final int pe309558=0x7f020300;
-        public static final int pe310352=0x7f020301;
-        public static final int pe310361=0x7f020302;
-        public static final int pe310362=0x7f020303;
-        public static final int pe310458=0x7f020304;
-        public static final int pe311011=0x7f020305;
-        public static final int pe311012=0x7f020306;
-        public static final int pe311016=0x7f020307;
-        public static final int pe311018=0x7f020308;
-        public static final int pe311056=0x7f020309;
-        public static final int pe311438=0x7f02030a;
-        public static final int pe311652=0x7f02030b;
-        public static final int pe311851=0x7f02030c;
-        public static final int pe312373=0x7f02030d;
-        public static final int pe312377=0x7f02030e;
-        public static final int pe312640=0x7f02030f;
-        public static final int pe312666=0x7f020310;
-        public static final int pe312833=0x7f020311;
-        public static final int pe314154=0x7f020312;
-        public static final int pe314270=0x7f020313;
-        public static final int pe314271=0x7f020314;
-        public static final int pe314334=0x7f020315;
-        public static final int pe314441=0x7f020316;
-        public static final int pe315198=0x7f020317;
-        public static final int pe315523=0x7f020318;
-        public static final int pe315588=0x7f020319;
-        public static final int pe315595=0x7f02031a;
-        public static final int pe315614=0x7f02031b;
-        public static final int pe315619=0x7f02031c;
-        public static final int pe315620=0x7f02031d;
-        public static final int pe315622=0x7f02031e;
-        public static final int pe315624=0x7f02031f;
-        public static final int pe315626=0x7f020320;
-        public static final int pe315633=0x7f020321;
-        public static final int pe315634=0x7f020322;
-        public static final int pe315636=0x7f020323;
-        public static final int pe315638=0x7f020324;
-        public static final int pe315640=0x7f020325;
-        public static final int pe315659=0x7f020326;
-        public static final int pe315670=0x7f020327;
-        public static final int pe315671=0x7f020328;
-        public static final int pe315677=0x7f020329;
-        public static final int pe315683=0x7f02032a;
-        public static final int pe315687=0x7f02032b;
-        public static final int pe315695=0x7f02032c;
-        public static final int pe315697=0x7f02032d;
-        public static final int pe315708=0x7f02032e;
-        public static final int pe315709=0x7f02032f;
-        public static final int pe315717=0x7f020330;
-        public static final int pe315721=0x7f020331;
-        public static final int pe315730=0x7f020332;
-        public static final int pe315893=0x7f020333;
-        public static final int pe315900=0x7f020334;
-        public static final int pe316041=0x7f020335;
-        public static final int pe316571=0x7f020336;
-        public static final int pe316572=0x7f020337;
-        public static final int pe317432=0x7f020338;
-        public static final int pe317742=0x7f020339;
-        public static final int pe318005=0x7f02033a;
-        public static final int pe319846=0x7f02033b;
-        public static final int pe319848=0x7f02033c;
-        public static final int pe321875=0x7f02033d;
-        public static final int pe322249=0x7f02033e;
-        public static final int pe323332=0x7f02033f;
-        public static final int pe323334=0x7f020340;
-        public static final int pe323336=0x7f020341;
-        public static final int pe323337=0x7f020342;
-        public static final int pe324213=0x7f020343;
-        public static final int pe324342=0x7f020344;
-        public static final int pe324382=0x7f020345;
-        public static final int pe325730=0x7f020346;
-        public static final int pe325734=0x7f020347;
-        public static final int pe325992=0x7f020348;
-        public static final int pe325998=0x7f020349;
-        public static final int pe327298=0x7f02034a;
-        public static final int pe327585=0x7f02034b;
-        public static final int pe327586=0x7f02034c;
-        public static final int pe327656=0x7f02034d;
-        public static final int pe327664=0x7f02034e;
-        public static final int pe327665=0x7f02034f;
-        public static final int pe327668=0x7f020350;
-        public static final int pe327669=0x7f020351;
-        public static final int pe329646=0x7f020352;
-        public static final int pe329647=0x7f020353;
-        public static final int pe329648=0x7f020354;
-        public static final int pe329650=0x7f020355;
-        public static final int pe329651=0x7f020356;
-        public static final int pe329652=0x7f020357;
-        public static final int pe329653=0x7f020358;
-        public static final int pe329654=0x7f020359;
-        public static final int pe330471=0x7f02035a;
-        public static final int pe331417=0x7f02035b;
-        public static final int pe331773=0x7f02035c;
-        public static final int pe332940=0x7f02035d;
-        public static final int pe332942=0x7f02035e;
-        public static final int pe335724=0x7f02035f;
-        public static final int pe335725=0x7f020360;
-        public static final int pe335726=0x7f020361;
-        public static final int pe335729=0x7f020362;
-        public static final int pe335767=0x7f020363;
-        public static final int pe335768=0x7f020364;
-        public static final int pe335769=0x7f020365;
-        public static final int pe335771=0x7f020366;
-        public static final int pe335775=0x7f020367;
-        public static final int pe335776=0x7f020368;
-        public static final int pe335777=0x7f020369;
-        public static final int pe336355=0x7f02036a;
+        public static final int abs__ab_bottom_solid_dark_holo=0x7f020000;
+        public static final int abs__ab_bottom_solid_inverse_holo=0x7f020001;
+        public static final int abs__ab_bottom_solid_light_holo=0x7f020002;
+        public static final int abs__ab_bottom_transparent_dark_holo=0x7f020003;
+        public static final int abs__ab_bottom_transparent_light_holo=0x7f020004;
+        public static final int abs__ab_share_pack_holo_dark=0x7f020005;
+        public static final int abs__ab_share_pack_holo_light=0x7f020006;
+        public static final int abs__ab_solid_dark_holo=0x7f020007;
+        public static final int abs__ab_solid_light_holo=0x7f020008;
+        public static final int abs__ab_solid_shadow_holo=0x7f020009;
+        public static final int abs__ab_stacked_solid_dark_holo=0x7f02000a;
+        public static final int abs__ab_stacked_solid_light_holo=0x7f02000b;
+        public static final int abs__ab_stacked_transparent_dark_holo=0x7f02000c;
+        public static final int abs__ab_stacked_transparent_light_holo=0x7f02000d;
+        public static final int abs__ab_transparent_dark_holo=0x7f02000e;
+        public static final int abs__ab_transparent_light_holo=0x7f02000f;
+        public static final int abs__activated_background_holo_dark=0x7f020010;
+        public static final int abs__activated_background_holo_light=0x7f020011;
+        public static final int abs__btn_cab_done_default_holo_dark=0x7f020012;
+        public static final int abs__btn_cab_done_default_holo_light=0x7f020013;
+        public static final int abs__btn_cab_done_focused_holo_dark=0x7f020014;
+        public static final int abs__btn_cab_done_focused_holo_light=0x7f020015;
+        public static final int abs__btn_cab_done_holo_dark=0x7f020016;
+        public static final int abs__btn_cab_done_holo_light=0x7f020017;
+        public static final int abs__btn_cab_done_pressed_holo_dark=0x7f020018;
+        public static final int abs__btn_cab_done_pressed_holo_light=0x7f020019;
+        public static final int abs__cab_background_bottom_holo_dark=0x7f02001a;
+        public static final int abs__cab_background_bottom_holo_light=0x7f02001b;
+        public static final int abs__cab_background_top_holo_dark=0x7f02001c;
+        public static final int abs__cab_background_top_holo_light=0x7f02001d;
+        public static final int abs__dialog_full_holo_dark=0x7f02001e;
+        public static final int abs__dialog_full_holo_light=0x7f02001f;
+        public static final int abs__ic_ab_back_holo_dark=0x7f020020;
+        public static final int abs__ic_ab_back_holo_light=0x7f020021;
+        public static final int abs__ic_cab_done_holo_dark=0x7f020022;
+        public static final int abs__ic_cab_done_holo_light=0x7f020023;
+        public static final int abs__ic_clear=0x7f020024;
+        public static final int abs__ic_clear_disabled=0x7f020025;
+        public static final int abs__ic_clear_holo_light=0x7f020026;
+        public static final int abs__ic_clear_normal=0x7f020027;
+        public static final int abs__ic_clear_search_api_disabled_holo_light=0x7f020028;
+        public static final int abs__ic_clear_search_api_holo_light=0x7f020029;
+        public static final int abs__ic_go=0x7f02002a;
+        public static final int abs__ic_go_search_api_holo_light=0x7f02002b;
+        public static final int abs__ic_menu_moreoverflow_holo_dark=0x7f02002c;
+        public static final int abs__ic_menu_moreoverflow_holo_light=0x7f02002d;
+        public static final int abs__ic_menu_moreoverflow_normal_holo_dark=0x7f02002e;
+        public static final int abs__ic_menu_moreoverflow_normal_holo_light=0x7f02002f;
+        public static final int abs__ic_menu_share_holo_dark=0x7f020030;
+        public static final int abs__ic_menu_share_holo_light=0x7f020031;
+        public static final int abs__ic_search=0x7f020032;
+        public static final int abs__ic_search_api_holo_light=0x7f020033;
+        public static final int abs__ic_voice_search=0x7f020034;
+        public static final int abs__ic_voice_search_api_holo_light=0x7f020035;
+        public static final int abs__item_background_holo_dark=0x7f020036;
+        public static final int abs__item_background_holo_light=0x7f020037;
+        public static final int abs__list_activated_holo=0x7f020038;
+        public static final int abs__list_divider_holo_dark=0x7f020039;
+        public static final int abs__list_divider_holo_light=0x7f02003a;
+        public static final int abs__list_focused_holo=0x7f02003b;
+        public static final int abs__list_longpressed_holo=0x7f02003c;
+        public static final int abs__list_pressed_holo_dark=0x7f02003d;
+        public static final int abs__list_pressed_holo_light=0x7f02003e;
+        public static final int abs__list_selector_background_transition_holo_dark=0x7f02003f;
+        public static final int abs__list_selector_background_transition_holo_light=0x7f020040;
+        public static final int abs__list_selector_disabled_holo_dark=0x7f020041;
+        public static final int abs__list_selector_disabled_holo_light=0x7f020042;
+        public static final int abs__list_selector_holo_dark=0x7f020043;
+        public static final int abs__list_selector_holo_light=0x7f020044;
+        public static final int abs__menu_dropdown_panel_holo_dark=0x7f020045;
+        public static final int abs__menu_dropdown_panel_holo_light=0x7f020046;
+        public static final int abs__progress_bg_holo_dark=0x7f020047;
+        public static final int abs__progress_bg_holo_light=0x7f020048;
+        public static final int abs__progress_horizontal_holo_dark=0x7f020049;
+        public static final int abs__progress_horizontal_holo_light=0x7f02004a;
+        public static final int abs__progress_medium_holo=0x7f02004b;
+        public static final int abs__progress_primary_holo_dark=0x7f02004c;
+        public static final int abs__progress_primary_holo_light=0x7f02004d;
+        public static final int abs__progress_secondary_holo_dark=0x7f02004e;
+        public static final int abs__progress_secondary_holo_light=0x7f02004f;
+        public static final int abs__search_dropdown_dark=0x7f020050;
+        public static final int abs__search_dropdown_light=0x7f020051;
+        public static final int abs__spinner_48_inner_holo=0x7f020052;
+        public static final int abs__spinner_48_outer_holo=0x7f020053;
+        public static final int abs__spinner_ab_default_holo_dark=0x7f020054;
+        public static final int abs__spinner_ab_default_holo_light=0x7f020055;
+        public static final int abs__spinner_ab_disabled_holo_dark=0x7f020056;
+        public static final int abs__spinner_ab_disabled_holo_light=0x7f020057;
+        public static final int abs__spinner_ab_focused_holo_dark=0x7f020058;
+        public static final int abs__spinner_ab_focused_holo_light=0x7f020059;
+        public static final int abs__spinner_ab_holo_dark=0x7f02005a;
+        public static final int abs__spinner_ab_holo_light=0x7f02005b;
+        public static final int abs__spinner_ab_pressed_holo_dark=0x7f02005c;
+        public static final int abs__spinner_ab_pressed_holo_light=0x7f02005d;
+        public static final int abs__tab_indicator_ab_holo=0x7f02005e;
+        public static final int abs__tab_selected_focused_holo=0x7f02005f;
+        public static final int abs__tab_selected_holo=0x7f020060;
+        public static final int abs__tab_selected_pressed_holo=0x7f020061;
+        public static final int abs__tab_unselected_pressed_holo=0x7f020062;
+        public static final int abs__textfield_search_default_holo_dark=0x7f020063;
+        public static final int abs__textfield_search_default_holo_light=0x7f020064;
+        public static final int abs__textfield_search_right_default_holo_dark=0x7f020065;
+        public static final int abs__textfield_search_right_default_holo_light=0x7f020066;
+        public static final int abs__textfield_search_right_selected_holo_dark=0x7f020067;
+        public static final int abs__textfield_search_right_selected_holo_light=0x7f020068;
+        public static final int abs__textfield_search_selected_holo_dark=0x7f020069;
+        public static final int abs__textfield_search_selected_holo_light=0x7f02006a;
+        public static final int abs__textfield_searchview_holo_dark=0x7f02006b;
+        public static final int abs__textfield_searchview_holo_light=0x7f02006c;
+        public static final int abs__textfield_searchview_right_holo_dark=0x7f02006d;
+        public static final int abs__textfield_searchview_right_holo_light=0x7f02006e;
+        public static final int background=0x7f02006f;
+        public static final int gradient_bg=0x7f020070;
+        public static final int gradient_bg_hover=0x7f020071;
+        public static final int ic_action_search=0x7f020072;
+        public static final int ic_launcher=0x7f020073;
+        public static final int icon_center=0x7f020074;
+        public static final int icon_clear=0x7f020075;
+        public static final int icon_grid=0x7f020076;
+        public static final int icon_wall=0x7f020077;
+        public static final int icon_wall_active=0x7f020078;
+        public static final int image_bg=0x7f020079;
+        public static final int list_selector=0x7f02007a;
+        public static final int pe057970=0x7f02007b;
+        public static final int pe069926=0x7f02007c;
+        public static final int pe084883=0x7f02007d;
+        public static final int pe086041=0x7f02007e;
+        public static final int pe088388=0x7f02007f;
+        public static final int pe088472=0x7f020080;
+        public static final int pe088475=0x7f020081;
+        public static final int pe089088=0x7f020082;
+        public static final int pe089090=0x7f020083;
+        public static final int pe098984=0x7f020084;
+        public static final int pe099435=0x7f020085;
+        public static final int pe099774=0x7f020086;
+        public static final int pe101319=0x7f020087;
+        public static final int pe101350=0x7f020088;
+        public static final int pe101352=0x7f020089;
+        public static final int pe101356=0x7f02008a;
+        public static final int pe103471=0x7f02008b;
+        public static final int pe103979=0x7f02008c;
+        public static final int pe104730=0x7f02008d;
+        public static final int pe105482=0x7f02008e;
+        public static final int pe105496=0x7f02008f;
+        public static final int pe106024=0x7f020090;
+        public static final int pe106025=0x7f020091;
+        public static final int pe106147=0x7f020092;
+        public static final int pe106162=0x7f020093;
+        public static final int pe107222=0x7f020094;
+        public static final int pe107227=0x7f020095;
+        public static final int pe107241=0x7f020096;
+        public static final int pe107374=0x7f020097;
+        public static final int pe107806=0x7f020098;
+        public static final int pe107839=0x7f020099;
+        public static final int pe107840=0x7f02009a;
+        public static final int pe107979=0x7f02009b;
+        public static final int pe108181=0x7f02009c;
+        public static final int pe108707=0x7f02009d;
+        public static final int pe109053=0x7f02009e;
+        public static final int pe110704=0x7f02009f;
+        public static final int pe112124=0x7f0200a0;
+        public static final int pe112144=0x7f0200a1;
+        public static final int pe112163=0x7f0200a2;
+        public static final int pe112186=0x7f0200a3;
+        public static final int pe112301=0x7f0200a4;
+        public static final int pe112343=0x7f0200a5;
+        public static final int pe112359=0x7f0200a6;
+        public static final int pe112607=0x7f0200a7;
+        public static final int pe112698=0x7f0200a8;
+        public static final int pe113267=0x7f0200a9;
+        public static final int pe113340=0x7f0200aa;
+        public static final int pe114614=0x7f0200ab;
+        public static final int pe114805=0x7f0200ac;
+        public static final int pe115108=0x7f0200ad;
+        public static final int pe115176=0x7f0200ae;
+        public static final int pe115315=0x7f0200af;
+        public static final int pe115547=0x7f0200b0;
+        public static final int pe115802=0x7f0200b1;
+        public static final int pe116830=0x7f0200b2;
+        public static final int pe116965=0x7f0200b3;
+        public static final int pe117210=0x7f0200b4;
+        public static final int pe118673=0x7f0200b5;
+        public static final int pe118674=0x7f0200b6;
+        public static final int pe119623=0x7f0200b7;
+        public static final int pe120743=0x7f0200b8;
+        public static final int pe124751=0x7f0200b9;
+        public static final int pe124882=0x7f0200ba;
+        public static final int pe125263=0x7f0200bb;
+        public static final int pe125269=0x7f0200bc;
+        public static final int pe126583=0x7f0200bd;
+        public static final int pe126584=0x7f0200be;
+        public static final int pe126864=0x7f0200bf;
+        public static final int pe128002=0x7f0200c0;
+        public static final int pe129510=0x7f0200c1;
+        public static final int pe129674=0x7f0200c2;
+        public static final int pe130209=0x7f0200c3;
+        public static final int pe130212=0x7f0200c4;
+        public static final int pe134835=0x7f0200c5;
+        public static final int pe136865=0x7f0200c6;
+        public static final int pe136910=0x7f0200c7;
+        public static final int pe137909=0x7f0200c8;
+        public static final int pe138555=0x7f0200c9;
+        public static final int pe139670=0x7f0200ca;
+        public static final int pe139739=0x7f0200cb;
+        public static final int pe141902=0x7f0200cc;
+        public static final int pe142507=0x7f0200cd;
+        public static final int pe142530=0x7f0200ce;
+        public static final int pe144299=0x7f0200cf;
+        public static final int pe144300=0x7f0200d0;
+        public static final int pe144967=0x7f0200d1;
+        public static final int pe144968=0x7f0200d2;
+        public static final int pe144986=0x7f0200d3;
+        public static final int pe145008=0x7f0200d4;
+        public static final int pe145184=0x7f0200d5;
+        public static final int pe146011=0x7f0200d6;
+        public static final int pe146071=0x7f0200d7;
+        public static final int pe146541=0x7f0200d8;
+        public static final int pe146644=0x7f0200d9;
+        public static final int pe153318=0x7f0200da;
+        public static final int pe157411=0x7f0200db;
+        public static final int pe158403=0x7f0200dc;
+        public static final int pe160026=0x7f0200dd;
+        public static final int pe160028=0x7f0200de;
+        public static final int pe160519=0x7f0200df;
+        public static final int pe160660=0x7f0200e0;
+        public static final int pe160665=0x7f0200e1;
+        public static final int pe160745=0x7f0200e2;
+        public static final int pe160749=0x7f0200e3;
+        public static final int pe163007=0x7f0200e4;
+        public static final int pe164179=0x7f0200e5;
+        public static final int pe164522=0x7f0200e6;
+        public static final int pe164584=0x7f0200e7;
+        public static final int pe165203=0x7f0200e8;
+        public static final int pe165205=0x7f0200e9;
+        public static final int pe165393=0x7f0200ea;
+        public static final int pe165522=0x7f0200eb;
+        public static final int pe165624=0x7f0200ec;
+        public static final int pe165866=0x7f0200ed;
+        public static final int pe166013=0x7f0200ee;
+        public static final int pe166680=0x7f0200ef;
+        public static final int pe167057=0x7f0200f0;
+        public static final int pe168411=0x7f0200f1;
+        public static final int pe168445=0x7f0200f2;
+        public static final int pe168771=0x7f0200f3;
+        public static final int pe168779=0x7f0200f4;
+        public static final int pe168792=0x7f0200f5;
+        public static final int pe171058=0x7f0200f6;
+        public static final int pe171155=0x7f0200f7;
+        public static final int pe171808=0x7f0200f8;
+        public static final int pe172508=0x7f0200f9;
+        public static final int pe174052=0x7f0200fa;
+        public static final int pe174381=0x7f0200fb;
+        public static final int pe174958=0x7f0200fc;
+        public static final int pe174959=0x7f0200fd;
+        public static final int pe174960=0x7f0200fe;
+        public static final int pe174963=0x7f0200ff;
+        public static final int pe175207=0x7f020100;
+        public static final int pe175906=0x7f020101;
+        public static final int pe181365=0x7f020102;
+        public static final int pe182165=0x7f020103;
+        public static final int pe182307=0x7f020104;
+        public static final int pe182318=0x7f020105;
+        public static final int pe182323=0x7f020106;
+        public static final int pe182325=0x7f020107;
+        public static final int pe182330=0x7f020108;
+        public static final int pe182454=0x7f020109;
+        public static final int pe182455=0x7f02010a;
+        public static final int pe184361=0x7f02010b;
+        public static final int pe184857=0x7f02010c;
+        public static final int pe185756=0x7f02010d;
+        public static final int pe185759=0x7f02010e;
+        public static final int pe186737=0x7f02010f;
+        public static final int pe187151=0x7f020110;
+        public static final int pe187158=0x7f020111;
+        public static final int pe187379=0x7f020112;
+        public static final int pe187383=0x7f020113;
+        public static final int pe187560=0x7f020114;
+        public static final int pe188667=0x7f020115;
+        public static final int pe188668=0x7f020116;
+        public static final int pe188915=0x7f020117;
+        public static final int pe189132=0x7f020118;
+        public static final int pe189154=0x7f020119;
+        public static final int pe189155=0x7f02011a;
+        public static final int pe189157=0x7f02011b;
+        public static final int pe189159=0x7f02011c;
+        public static final int pe189160=0x7f02011d;
+        public static final int pe189178=0x7f02011e;
+        public static final int pe189506=0x7f02011f;
+        public static final int pe190638=0x7f020120;
+        public static final int pe190672=0x7f020121;
+        public static final int pe190678=0x7f020122;
+        public static final int pe190690=0x7f020123;
+        public static final int pe190703=0x7f020124;
+        public static final int pe190717=0x7f020125;
+        public static final int pe190723=0x7f020126;
+        public static final int pe190771=0x7f020127;
+        public static final int pe190789=0x7f020128;
+        public static final int pe191678=0x7f020129;
+        public static final int pe192706=0x7f02012a;
+        public static final int pe193323=0x7f02012b;
+        public static final int pe193529=0x7f02012c;
+        public static final int pe193795=0x7f02012d;
+        public static final int pe194090=0x7f02012e;
+        public static final int pe194455=0x7f02012f;
+        public static final int pe194633=0x7f020130;
+        public static final int pe196040=0x7f020131;
+        public static final int pe196765=0x7f020132;
+        public static final int pe196884=0x7f020133;
+        public static final int pe198863=0x7f020134;
+        public static final int pe202930=0x7f020135;
+        public static final int pe203254=0x7f020136;
+        public static final int pe204482=0x7f020137;
+        public static final int pe204486=0x7f020138;
+        public static final int pe204505=0x7f020139;
+        public static final int pe204562=0x7f02013a;
+        public static final int pe204571=0x7f02013b;
+        public static final int pe205039=0x7f02013c;
+        public static final int pe205041=0x7f02013d;
+        public static final int pe205598=0x7f02013e;
+        public static final int pe207217=0x7f02013f;
+        public static final int pe207628=0x7f020140;
+        public static final int pe208078=0x7f020141;
+        public static final int pe208348=0x7f020142;
+        public static final int pe208350=0x7f020143;
+        public static final int pe208352=0x7f020144;
+        public static final int pe208363=0x7f020145;
+        public static final int pe208365=0x7f020146;
+        public static final int pe209308=0x7f020147;
+        public static final int pe209359=0x7f020148;
+        public static final int pe209696=0x7f020149;
+        public static final int pe210580=0x7f02014a;
+        public static final int pe210805=0x7f02014b;
+        public static final int pe210807=0x7f02014c;
+        public static final int pe210810=0x7f02014d;
+        public static final int pe210812=0x7f02014e;
+        public static final int pe210815=0x7f02014f;
+        public static final int pe210816=0x7f020150;
+        public static final int pe213729=0x7f020151;
+        public static final int pe214749=0x7f020152;
+        public static final int pe215205=0x7f020153;
+        public static final int pe215207=0x7f020154;
+        public static final int pe215404=0x7f020155;
+        public static final int pe216495=0x7f020156;
+        public static final int pe216801=0x7f020157;
+        public static final int pe217023=0x7f020158;
+        public static final int pe217185=0x7f020159;
+        public static final int pe217933=0x7f02015a;
+        public static final int pe218801=0x7f02015b;
+        public static final int pe220023=0x7f02015c;
+        public static final int pe220057=0x7f02015d;
+        public static final int pe220099=0x7f02015e;
+        public static final int pe220587=0x7f02015f;
+        public static final int pe220918=0x7f020160;
+        public static final int pe220929=0x7f020161;
+        public static final int pe221150=0x7f020162;
+        public static final int pe221151=0x7f020163;
+        public static final int pe221597=0x7f020164;
+        public static final int pe221696=0x7f020165;
+        public static final int pe222561=0x7f020166;
+        public static final int pe224144=0x7f020167;
+        public static final int pe228916=0x7f020168;
+        public static final int pe229443=0x7f020169;
+        public static final int pe231360=0x7f02016a;
+        public static final int pe231364=0x7f02016b;
+        public static final int pe231368=0x7f02016c;
+        public static final int pe231380=0x7f02016d;
+        public static final int pe231384=0x7f02016e;
+        public static final int pe231388=0x7f02016f;
+        public static final int pe231392=0x7f020170;
+        public static final int pe231396=0x7f020171;
+        public static final int pe231417=0x7f020172;
+        public static final int pe231430=0x7f020173;
+        public static final int pe231433=0x7f020174;
+        public static final int pe231442=0x7f020175;
+        public static final int pe231450=0x7f020176;
+        public static final int pe231459=0x7f020177;
+        public static final int pe231895=0x7f020178;
+        public static final int pe232044=0x7f020179;
+        public static final int pe232230=0x7f02017a;
+        public static final int pe232275=0x7f02017b;
+        public static final int pe232388=0x7f02017c;
+        public static final int pe232398=0x7f02017d;
+        public static final int pe232419=0x7f02017e;
+        public static final int pe232435=0x7f02017f;
+        public static final int pe233888=0x7f020180;
+        public static final int pe234030=0x7f020181;
+        public static final int pe234032=0x7f020182;
+        public static final int pe235217=0x7f020183;
+        public static final int pe235223=0x7f020184;
+        public static final int pe235225=0x7f020185;
+        public static final int pe235232=0x7f020186;
+        public static final int pe235554=0x7f020187;
+        public static final int pe235699=0x7f020188;
+        public static final int pe237569=0x7f020189;
+        public static final int pe238330=0x7f02018a;
+        public static final int pe238863=0x7f02018b;
+        public static final int pe239256=0x7f02018c;
+        public static final int pe239336=0x7f02018d;
+        public static final int pe239730=0x7f02018e;
+        public static final int pe239732=0x7f02018f;
+        public static final int pe240328=0x7f020190;
+        public static final int pe240329=0x7f020191;
+        public static final int pe240330=0x7f020192;
+        public static final int pe240680=0x7f020193;
+        public static final int pe240835=0x7f020194;
+        public static final int pe241158=0x7f020195;
+        public static final int pe241248=0x7f020196;
+        public static final int pe241249=0x7f020197;
+        public static final int pe241795=0x7f020198;
+        public static final int pe242088=0x7f020199;
+        public static final int pe242377=0x7f02019a;
+        public static final int pe242588=0x7f02019b;
+        public static final int pe243300=0x7f02019c;
+        public static final int pe244903=0x7f02019d;
+        public static final int pe244904=0x7f02019e;
+        public static final int pe244911=0x7f02019f;
+        public static final int pe244968=0x7f0201a0;
+        public static final int pe244999=0x7f0201a1;
+        public static final int pe245027=0x7f0201a2;
+        public static final int pe245259=0x7f0201a3;
+        public static final int pe245322=0x7f0201a4;
+        public static final int pe245361=0x7f0201a5;
+        public static final int pe245447=0x7f0201a6;
+        public static final int pe245475=0x7f0201a7;
+        public static final int pe245605=0x7f0201a8;
+        public static final int pe245637=0x7f0201a9;
+        public static final int pe245683=0x7f0201aa;
+        public static final int pe245721=0x7f0201ab;
+        public static final int pe245747=0x7f0201ac;
+        public static final int pe245752=0x7f0201ad;
+        public static final int pe246429=0x7f0201ae;
+        public static final int pe247163=0x7f0201af;
+        public static final int pe248785=0x7f0201b0;
+        public static final int pe249231=0x7f0201b1;
+        public static final int pe249299=0x7f0201b2;
+        public static final int pe249410=0x7f0201b3;
+        public static final int pe249514=0x7f0201b4;
+        public static final int pe249762=0x7f0201b5;
+        public static final int pe250674=0x7f0201b6;
+        public static final int pe250686=0x7f0201b7;
+        public static final int pe250689=0x7f0201b8;
+        public static final int pe250690=0x7f0201b9;
+        public static final int pe250692=0x7f0201ba;
+        public static final int pe250694=0x7f0201bb;
+        public static final int pe250696=0x7f0201bc;
+        public static final int pe250698=0x7f0201bd;
+        public static final int pe250700=0x7f0201be;
+        public static final int pe250796=0x7f0201bf;
+        public static final int pe251060=0x7f0201c0;
+        public static final int pe251172=0x7f0201c1;
+        public static final int pe251365=0x7f0201c2;
+        public static final int pe252960=0x7f0201c3;
+        public static final int pe253176=0x7f0201c4;
+        public static final int pe254160=0x7f0201c5;
+        public static final int pe254547=0x7f0201c6;
+        public static final int pe256068=0x7f0201c7;
+        public static final int pe256601=0x7f0201c8;
+        public static final int pe256736=0x7f0201c9;
+        public static final int pe257168=0x7f0201ca;
+        public static final int pe257171=0x7f0201cb;
+        public static final int pe257172=0x7f0201cc;
+        public static final int pe257173=0x7f0201cd;
+        public static final int pe257174=0x7f0201ce;
+        public static final int pe257175=0x7f0201cf;
+        public static final int pe257178=0x7f0201d0;
+        public static final int pe257180=0x7f0201d1;
+        public static final int pe257183=0x7f0201d2;
+        public static final int pe257184=0x7f0201d3;
+        public static final int pe257185=0x7f0201d4;
+        public static final int pe257204=0x7f0201d5;
+        public static final int pe257206=0x7f0201d6;
+        public static final int pe257207=0x7f0201d7;
+        public static final int pe257258=0x7f0201d8;
+        public static final int pe257343=0x7f0201d9;
+        public static final int pe257358=0x7f0201da;
+        public static final int pe257558=0x7f0201db;
+        public static final int pe257566=0x7f0201dc;
+        public static final int pe257604=0x7f0201dd;
+        public static final int pe257843=0x7f0201de;
+        public static final int pe257845=0x7f0201df;
+        public static final int pe257847=0x7f0201e0;
+        public static final int pe257849=0x7f0201e1;
+        public static final int pe257851=0x7f0201e2;
+        public static final int pe258080=0x7f0201e3;
+        public static final int pe258088=0x7f0201e4;
+        public static final int pe258155=0x7f0201e5;
+        public static final int pe258754=0x7f0201e6;
+        public static final int pe258965=0x7f0201e7;
+        public static final int pe259032=0x7f0201e8;
+        public static final int pe259036=0x7f0201e9;
+        public static final int pe259272=0x7f0201ea;
+        public static final int pe259279=0x7f0201eb;
+        public static final int pe259489=0x7f0201ec;
+        public static final int pe259787=0x7f0201ed;
+        public static final int pe260056=0x7f0201ee;
+        public static final int pe261464=0x7f0201ef;
+        public static final int pe261591=0x7f0201f0;
+        public static final int pe261592=0x7f0201f1;
+        public static final int pe261990=0x7f0201f2;
+        public static final int pe261992=0x7f0201f3;
+        public static final int pe261994=0x7f0201f4;
+        public static final int pe262079=0x7f0201f5;
+        public static final int pe262080=0x7f0201f6;
+        public static final int pe262089=0x7f0201f7;
+        public static final int pe262237=0x7f0201f8;
+        public static final int pe262924=0x7f0201f9;
+        public static final int pe262926=0x7f0201fa;
+        public static final int pe262931=0x7f0201fb;
+        public static final int pe263431=0x7f0201fc;
+        public static final int pe263671=0x7f0201fd;
+        public static final int pe263748=0x7f0201fe;
+        public static final int pe264205=0x7f0201ff;
+        public static final int pe264293=0x7f020200;
+        public static final int pe264294=0x7f020201;
+        public static final int pe264297=0x7f020202;
+        public static final int pe264429=0x7f020203;
+        public static final int pe264586=0x7f020204;
+        public static final int pe264597=0x7f020205;
+        public static final int pe264609=0x7f020206;
+        public static final int pe264611=0x7f020207;
+        public static final int pe264616=0x7f020208;
+        public static final int pe264629=0x7f020209;
+        public static final int pe264831=0x7f02020a;
+        public static final int pe264832=0x7f02020b;
+        public static final int pe264983=0x7f02020c;
+        public static final int pe265459=0x7f02020d;
+        public static final int pe265478=0x7f02020e;
+        public static final int pe265511=0x7f02020f;
+        public static final int pe265512=0x7f020210;
+        public static final int pe265583=0x7f020211;
+        public static final int pe265614=0x7f020212;
+        public static final int pe265710=0x7f020213;
+        public static final int pe265784=0x7f020214;
+        public static final int pe266201=0x7f020215;
+        public static final int pe266249=0x7f020216;
+        public static final int pe266296=0x7f020217;
+        public static final int pe266424=0x7f020218;
+        public static final int pe266425=0x7f020219;
+        public static final int pe266762=0x7f02021a;
+        public static final int pe266769=0x7f02021b;
+        public static final int pe266770=0x7f02021c;
+        public static final int pe266808=0x7f02021d;
+        public static final int pe266810=0x7f02021e;
+        public static final int pe267706=0x7f02021f;
+        public static final int pe267758=0x7f020220;
+        public static final int pe267798=0x7f020221;
+        public static final int pe267804=0x7f020222;
+        public static final int pe268223=0x7f020223;
+        public static final int pe268311=0x7f020224;
+        public static final int pe268322=0x7f020225;
+        public static final int pe268324=0x7f020226;
+        public static final int pe268326=0x7f020227;
+        public static final int pe268328=0x7f020228;
+        public static final int pe268332=0x7f020229;
+        public static final int pe268336=0x7f02022a;
+        public static final int pe268368=0x7f02022b;
+        public static final int pe268372=0x7f02022c;
+        public static final int pe268376=0x7f02022d;
+        public static final int pe268393=0x7f02022e;
+        public static final int pe268424=0x7f02022f;
+        public static final int pe268429=0x7f020230;
+        public static final int pe268431=0x7f020231;
+        public static final int pe269526=0x7f020232;
+        public static final int pe269730=0x7f020233;
+        public static final int pe269859=0x7f020234;
+        public static final int pe269964=0x7f020235;
+        public static final int pe269965=0x7f020236;
+        public static final int pe269966=0x7f020237;
+        public static final int pe269967=0x7f020238;
+        public static final int pe269968=0x7f020239;
+        public static final int pe270199=0x7f02023a;
+        public static final int pe270203=0x7f02023b;
+        public static final int pe270284=0x7f02023c;
+        public static final int pe270290=0x7f02023d;
+        public static final int pe270300=0x7f02023e;
+        public static final int pe270517=0x7f02023f;
+        public static final int pe270930=0x7f020240;
+        public static final int pe271072=0x7f020241;
+        public static final int pe272144=0x7f020242;
+        public static final int pe272318=0x7f020243;
+        public static final int pe272321=0x7f020244;
+        public static final int pe272444=0x7f020245;
+        public static final int pe272447=0x7f020246;
+        public static final int pe272450=0x7f020247;
+        public static final int pe272453=0x7f020248;
+        public static final int pe272456=0x7f020249;
+        public static final int pe272885=0x7f02024a;
+        public static final int pe272889=0x7f02024b;
+        public static final int pe272892=0x7f02024c;
+        public static final int pe272894=0x7f02024d;
+        public static final int pe272897=0x7f02024e;
+        public static final int pe272900=0x7f02024f;
+        public static final int pe272902=0x7f020250;
+        public static final int pe272915=0x7f020251;
+        public static final int pe272916=0x7f020252;
+        public static final int pe272917=0x7f020253;
+        public static final int pe274176=0x7f020254;
+        public static final int pe274833=0x7f020255;
+        public static final int pe274851=0x7f020256;
+        public static final int pe274855=0x7f020257;
+        public static final int pe275465=0x7f020258;
+        public static final int pe275561=0x7f020259;
+        public static final int pe275631=0x7f02025a;
+        public static final int pe275632=0x7f02025b;
+        public static final int pe276072=0x7f02025c;
+        public static final int pe276076=0x7f02025d;
+        public static final int pe276080=0x7f02025e;
+        public static final int pe276084=0x7f02025f;
+        public static final int pe276088=0x7f020260;
+        public static final int pe276092=0x7f020261;
+        public static final int pe276096=0x7f020262;
+        public static final int pe276117=0x7f020263;
+        public static final int pe276129=0x7f020264;
+        public static final int pe276134=0x7f020265;
+        public static final int pe276229=0x7f020266;
+        public static final int pe276233=0x7f020267;
+        public static final int pe276252=0x7f020268;
+        public static final int pe276255=0x7f020269;
+        public static final int pe276272=0x7f02026a;
+        public static final int pe276523=0x7f02026b;
+        public static final int pe276553=0x7f02026c;
+        public static final int pe276698=0x7f02026d;
+        public static final int pe276703=0x7f02026e;
+        public static final int pe276709=0x7f02026f;
+        public static final int pe277861=0x7f020270;
+        public static final int pe277975=0x7f020271;
+        public static final int pe277986=0x7f020272;
+        public static final int pe278241=0x7f020273;
+        public static final int pe278264=0x7f020274;
+        public static final int pe278271=0x7f020275;
+        public static final int pe278272=0x7f020276;
+        public static final int pe278281=0x7f020277;
+        public static final int pe278584=0x7f020278;
+        public static final int pe278665=0x7f020279;
+        public static final int pe278708=0x7f02027a;
+        public static final int pe278807=0x7f02027b;
+        public static final int pe278847=0x7f02027c;
+        public static final int pe278966=0x7f02027d;
+        public static final int pe279135=0x7f02027e;
+        public static final int pe279208=0x7f02027f;
+        public static final int pe279467=0x7f020280;
+        public static final int pe279468=0x7f020281;
+        public static final int pe279634=0x7f020282;
+        public static final int pe279639=0x7f020283;
+        public static final int pe279640=0x7f020284;
+        public static final int pe279641=0x7f020285;
+        public static final int pe279642=0x7f020286;
+        public static final int pe279656=0x7f020287;
+        public static final int pe279703=0x7f020288;
+        public static final int pe279794=0x7f020289;
+        public static final int pe279799=0x7f02028a;
+        public static final int pe279804=0x7f02028b;
+        public static final int pe279811=0x7f02028c;
+        public static final int pe279851=0x7f02028d;
+        public static final int pe279857=0x7f02028e;
+        public static final int pe279858=0x7f02028f;
+        public static final int pe279942=0x7f020290;
+        public static final int pe280937=0x7f020291;
+        public static final int pe281131=0x7f020292;
+        public static final int pe281470=0x7f020293;
+        public static final int pe281570=0x7f020294;
+        public static final int pe281613=0x7f020295;
+        public static final int pe281614=0x7f020296;
+        public static final int pe281615=0x7f020297;
+        public static final int pe281824=0x7f020298;
+        public static final int pe281826=0x7f020299;
+        public static final int pe282026=0x7f02029a;
+        public static final int pe282087=0x7f02029b;
+        public static final int pe282088=0x7f02029c;
+        public static final int pe282185=0x7f02029d;
+        public static final int pe283008=0x7f02029e;
+        public static final int pe283012=0x7f02029f;
+        public static final int pe283688=0x7f0202a0;
+        public static final int pe283781=0x7f0202a1;
+        public static final int pe283938=0x7f0202a2;
+        public static final int pe283940=0x7f0202a3;
+        public static final int pe283950=0x7f0202a4;
+        public static final int pe283951=0x7f0202a5;
+        public static final int pe283995=0x7f0202a6;
+        public static final int pe284000=0x7f0202a7;
+        public static final int pe284009=0x7f0202a8;
+        public static final int pe284012=0x7f0202a9;
+        public static final int pe284024=0x7f0202aa;
+        public static final int pe284025=0x7f0202ab;
+        public static final int pe284026=0x7f0202ac;
+        public static final int pe284030=0x7f0202ad;
+        public static final int pe284034=0x7f0202ae;
+        public static final int pe284039=0x7f0202af;
+        public static final int pe284054=0x7f0202b0;
+        public static final int pe284138=0x7f0202b1;
+        public static final int pe284142=0x7f0202b2;
+        public static final int pe284145=0x7f0202b3;
+        public static final int pe284173=0x7f0202b4;
+        public static final int pe284330=0x7f0202b5;
+        public static final int pe284377=0x7f0202b6;
+        public static final int pe284493=0x7f0202b7;
+        public static final int pe284808=0x7f0202b8;
+        public static final int pe284809=0x7f0202b9;
+        public static final int pe284975=0x7f0202ba;
+        public static final int pe285008=0x7f0202bb;
+        public static final int pe285158=0x7f0202bc;
+        public static final int pe285541=0x7f0202bd;
+        public static final int pe285759=0x7f0202be;
+        public static final int pe286249=0x7f0202bf;
+        public static final int pe286862=0x7f0202c0;
+        public static final int pe286865=0x7f0202c1;
+        public static final int pe286973=0x7f0202c2;
+        public static final int pe287097=0x7f0202c3;
+        public static final int pe287222=0x7f0202c4;
+        public static final int pe287229=0x7f0202c5;
+        public static final int pe287231=0x7f0202c6;
+        public static final int pe287533=0x7f0202c7;
+        public static final int pe287541=0x7f0202c8;
+        public static final int pe287550=0x7f0202c9;
+        public static final int pe287567=0x7f0202ca;
+        public static final int pe287572=0x7f0202cb;
+        public static final int pe287577=0x7f0202cc;
+        public static final int pe287582=0x7f0202cd;
+        public static final int pe287612=0x7f0202ce;
+        public static final int pe288085=0x7f0202cf;
+        public static final int pe288098=0x7f0202d0;
+        public static final int pe288111=0x7f0202d1;
+        public static final int pe288127=0x7f0202d2;
+        public static final int pe288186=0x7f0202d3;
+        public static final int pe288188=0x7f0202d4;
+        public static final int pe288200=0x7f0202d5;
+        public static final int pe288202=0x7f0202d6;
+        public static final int pe288944=0x7f0202d7;
+        public static final int pe289033=0x7f0202d8;
+        public static final int pe289034=0x7f0202d9;
+        public static final int pe289186=0x7f0202da;
+        public static final int pe289193=0x7f0202db;
+        public static final int pe289349=0x7f0202dc;
+        public static final int pe289991=0x7f0202dd;
+        public static final int pe290709=0x7f0202de;
+        public static final int pe290711=0x7f0202df;
+        public static final int pe291825=0x7f0202e0;
+        public static final int pe291826=0x7f0202e1;
+        public static final int pe291841=0x7f0202e2;
+        public static final int pe291912=0x7f0202e3;
+        public static final int pe292041=0x7f0202e4;
+        public static final int pe292042=0x7f0202e5;
+        public static final int pe292043=0x7f0202e6;
+        public static final int pe292044=0x7f0202e7;
+        public static final int pe292080=0x7f0202e8;
+        public static final int pe292700=0x7f0202e9;
+        public static final int pe292905=0x7f0202ea;
+        public static final int pe293444=0x7f0202eb;
+        public static final int pe293452=0x7f0202ec;
+        public static final int pe293620=0x7f0202ed;
+        public static final int pe293625=0x7f0202ee;
+        public static final int pe293626=0x7f0202ef;
+        public static final int pe293721=0x7f0202f0;
+        public static final int pe293726=0x7f0202f1;
+        public static final int pe294490=0x7f0202f2;
+        public static final int pe295088=0x7f0202f3;
+        public static final int pe295215=0x7f0202f4;
+        public static final int pe296725=0x7f0202f5;
+        public static final int pe296727=0x7f0202f6;
+        public static final int pe296729=0x7f0202f7;
+        public static final int pe296731=0x7f0202f8;
+        public static final int pe296735=0x7f0202f9;
+        public static final int pe296737=0x7f0202fa;
+        public static final int pe296739=0x7f0202fb;
+        public static final int pe298367=0x7f0202fc;
+        public static final int pe298413=0x7f0202fd;
+        public static final int pe298450=0x7f0202fe;
+        public static final int pe299390=0x7f0202ff;
+        public static final int pe299397=0x7f020300;
+        public static final int pe299399=0x7f020301;
+        public static final int pe299458=0x7f020302;
+        public static final int pe299476=0x7f020303;
+        public static final int pe299534=0x7f020304;
+        public static final int pe299576=0x7f020305;
+        public static final int pe299591=0x7f020306;
+        public static final int pe299596=0x7f020307;
+        public static final int pe299604=0x7f020308;
+        public static final int pe300515=0x7f020309;
+        public static final int pe300519=0x7f02030a;
+        public static final int pe300524=0x7f02030b;
+        public static final int pe300526=0x7f02030c;
+        public static final int pe300528=0x7f02030d;
+        public static final int pe300530=0x7f02030e;
+        public static final int pe300605=0x7f02030f;
+        public static final int pe300782=0x7f020310;
+        public static final int pe300787=0x7f020311;
+        public static final int pe300791=0x7f020312;
+        public static final int pe300817=0x7f020313;
+        public static final int pe300831=0x7f020314;
+        public static final int pe300840=0x7f020315;
+        public static final int pe300845=0x7f020316;
+        public static final int pe301068=0x7f020317;
+        public static final int pe301220=0x7f020318;
+        public static final int pe301225=0x7f020319;
+        public static final int pe301230=0x7f02031a;
+        public static final int pe301235=0x7f02031b;
+        public static final int pe301251=0x7f02031c;
+        public static final int pe301257=0x7f02031d;
+        public static final int pe301262=0x7f02031e;
+        public static final int pe301273=0x7f02031f;
+        public static final int pe301310=0x7f020320;
+        public static final int pe301315=0x7f020321;
+        public static final int pe301320=0x7f020322;
+        public static final int pe301325=0x7f020323;
+        public static final int pe301377=0x7f020324;
+        public static final int pe301380=0x7f020325;
+        public static final int pe301494=0x7f020326;
+        public static final int pe301496=0x7f020327;
+        public static final int pe301498=0x7f020328;
+        public static final int pe301500=0x7f020329;
+        public static final int pe301501=0x7f02032a;
+        public static final int pe301504=0x7f02032b;
+        public static final int pe301927=0x7f02032c;
+        public static final int pe302109=0x7f02032d;
+        public static final int pe302111=0x7f02032e;
+        public static final int pe302113=0x7f02032f;
+        public static final int pe302114=0x7f020330;
+        public static final int pe302115=0x7f020331;
+        public static final int pe302171=0x7f020332;
+        public static final int pe302315=0x7f020333;
+        public static final int pe302405=0x7f020334;
+        public static final int pe302728=0x7f020335;
+        public static final int pe302740=0x7f020336;
+        public static final int pe303038=0x7f020337;
+        public static final int pe303174=0x7f020338;
+        public static final int pe303176=0x7f020339;
+        public static final int pe303188=0x7f02033a;
+        public static final int pe303200=0x7f02033b;
+        public static final int pe303246=0x7f02033c;
+        public static final int pe303248=0x7f02033d;
+        public static final int pe303250=0x7f02033e;
+        public static final int pe303252=0x7f02033f;
+        public static final int pe303420=0x7f020340;
+        public static final int pe303449=0x7f020341;
+        public static final int pe303475=0x7f020342;
+        public static final int pe303486=0x7f020343;
+        public static final int pe303498=0x7f020344;
+        public static final int pe303499=0x7f020345;
+        public static final int pe303500=0x7f020346;
+        public static final int pe303505=0x7f020347;
+        public static final int pe303506=0x7f020348;
+        public static final int pe303507=0x7f020349;
+        public static final int pe303512=0x7f02034a;
+        public static final int pe303513=0x7f02034b;
+        public static final int pe303514=0x7f02034c;
+        public static final int pe303515=0x7f02034d;
+        public static final int pe303519=0x7f02034e;
+        public static final int pe304277=0x7f02034f;
+        public static final int pe304328=0x7f020350;
+        public static final int pe304721=0x7f020351;
+        public static final int pe304772=0x7f020352;
+        public static final int pe304774=0x7f020353;
+        public static final int pe304825=0x7f020354;
+        public static final int pe304870=0x7f020355;
+        public static final int pe304872=0x7f020356;
+        public static final int pe304879=0x7f020357;
+        public static final int pe304881=0x7f020358;
+        public static final int pe304888=0x7f020359;
+        public static final int pe305745=0x7f02035a;
+        public static final int pe306201=0x7f02035b;
+        public static final int pe306203=0x7f02035c;
+        public static final int pe306310=0x7f02035d;
+        public static final int pe306475=0x7f02035e;
+        public static final int pe306481=0x7f02035f;
+        public static final int pe306482=0x7f020360;
+        public static final int pe306503=0x7f020361;
+        public static final int pe306799=0x7f020362;
+        public static final int pe307022=0x7f020363;
+        public static final int pe307024=0x7f020364;
+        public static final int pe307025=0x7f020365;
+        public static final int pe307163=0x7f020366;
+        public static final int pe307559=0x7f020367;
+        public static final int pe307576=0x7f020368;
+        public static final int pe307578=0x7f020369;
+        public static final int pe307580=0x7f02036a;
+        public static final int pe307582=0x7f02036b;
+        public static final int pe307773=0x7f02036c;
+        public static final int pe307925=0x7f02036d;
+        public static final int pe308943=0x7f02036e;
+        public static final int pe308945=0x7f02036f;
+        public static final int pe308948=0x7f020370;
+        public static final int pe308950=0x7f020371;
+        public static final int pe309153=0x7f020372;
+        public static final int pe309330=0x7f020373;
+        public static final int pe309558=0x7f020374;
+        public static final int pe310352=0x7f020375;
+        public static final int pe310361=0x7f020376;
+        public static final int pe310362=0x7f020377;
+        public static final int pe310458=0x7f020378;
+        public static final int pe311011=0x7f020379;
+        public static final int pe311012=0x7f02037a;
+        public static final int pe311016=0x7f02037b;
+        public static final int pe311018=0x7f02037c;
+        public static final int pe311056=0x7f02037d;
+        public static final int pe311438=0x7f02037e;
+        public static final int pe311652=0x7f02037f;
+        public static final int pe311851=0x7f020380;
+        public static final int pe312373=0x7f020381;
+        public static final int pe312377=0x7f020382;
+        public static final int pe312640=0x7f020383;
+        public static final int pe312666=0x7f020384;
+        public static final int pe312833=0x7f020385;
+        public static final int pe314154=0x7f020386;
+        public static final int pe314270=0x7f020387;
+        public static final int pe314271=0x7f020388;
+        public static final int pe314334=0x7f020389;
+        public static final int pe314441=0x7f02038a;
+        public static final int pe315198=0x7f02038b;
+        public static final int pe315523=0x7f02038c;
+        public static final int pe315588=0x7f02038d;
+        public static final int pe315595=0x7f02038e;
+        public static final int pe315614=0x7f02038f;
+        public static final int pe315619=0x7f020390;
+        public static final int pe315620=0x7f020391;
+        public static final int pe315622=0x7f020392;
+        public static final int pe315624=0x7f020393;
+        public static final int pe315626=0x7f020394;
+        public static final int pe315633=0x7f020395;
+        public static final int pe315634=0x7f020396;
+        public static final int pe315636=0x7f020397;
+        public static final int pe315638=0x7f020398;
+        public static final int pe315640=0x7f020399;
+        public static final int pe315659=0x7f02039a;
+        public static final int pe315670=0x7f02039b;
+        public static final int pe315671=0x7f02039c;
+        public static final int pe315677=0x7f02039d;
+        public static final int pe315683=0x7f02039e;
+        public static final int pe315687=0x7f02039f;
+        public static final int pe315695=0x7f0203a0;
+        public static final int pe315697=0x7f0203a1;
+        public static final int pe315708=0x7f0203a2;
+        public static final int pe315709=0x7f0203a3;
+        public static final int pe315717=0x7f0203a4;
+        public static final int pe315721=0x7f0203a5;
+        public static final int pe315730=0x7f0203a6;
+        public static final int pe315893=0x7f0203a7;
+        public static final int pe315900=0x7f0203a8;
+        public static final int pe316041=0x7f0203a9;
+        public static final int pe316571=0x7f0203aa;
+        public static final int pe316572=0x7f0203ab;
+        public static final int pe317432=0x7f0203ac;
+        public static final int pe317742=0x7f0203ad;
+        public static final int pe318005=0x7f0203ae;
+        public static final int pe319846=0x7f0203af;
+        public static final int pe319848=0x7f0203b0;
+        public static final int pe321875=0x7f0203b1;
+        public static final int pe322249=0x7f0203b2;
+        public static final int pe323332=0x7f0203b3;
+        public static final int pe323334=0x7f0203b4;
+        public static final int pe323336=0x7f0203b5;
+        public static final int pe323337=0x7f0203b6;
+        public static final int pe324213=0x7f0203b7;
+        public static final int pe324342=0x7f0203b8;
+        public static final int pe324382=0x7f0203b9;
+        public static final int pe325730=0x7f0203ba;
+        public static final int pe325734=0x7f0203bb;
+        public static final int pe325992=0x7f0203bc;
+        public static final int pe325998=0x7f0203bd;
+        public static final int pe327298=0x7f0203be;
+        public static final int pe327585=0x7f0203bf;
+        public static final int pe327586=0x7f0203c0;
+        public static final int pe327656=0x7f0203c1;
+        public static final int pe327664=0x7f0203c2;
+        public static final int pe327665=0x7f0203c3;
+        public static final int pe327668=0x7f0203c4;
+        public static final int pe327669=0x7f0203c5;
+        public static final int pe329646=0x7f0203c6;
+        public static final int pe329647=0x7f0203c7;
+        public static final int pe329648=0x7f0203c8;
+        public static final int pe329650=0x7f0203c9;
+        public static final int pe329651=0x7f0203ca;
+        public static final int pe329652=0x7f0203cb;
+        public static final int pe329653=0x7f0203cc;
+        public static final int pe329654=0x7f0203cd;
+        public static final int pe330471=0x7f0203ce;
+        public static final int pe331417=0x7f0203cf;
+        public static final int pe331773=0x7f0203d0;
+        public static final int pe332940=0x7f0203d1;
+        public static final int pe332942=0x7f0203d2;
+        public static final int pe335724=0x7f0203d3;
+        public static final int pe335725=0x7f0203d4;
+        public static final int pe335726=0x7f0203d5;
+        public static final int pe335729=0x7f0203d6;
+        public static final int pe335767=0x7f0203d7;
+        public static final int pe335768=0x7f0203d8;
+        public static final int pe335769=0x7f0203d9;
+        public static final int pe335771=0x7f0203da;
+        public static final int pe335775=0x7f0203db;
+        public static final int pe335776=0x7f0203dc;
+        public static final int pe335777=0x7f0203dd;
+        public static final int pe336355=0x7f0203de;
+        public static final int wall=0x7f0203df;
+        public static final int wall_active=0x7f0203e0;
     }
     public static final class id {
-        public static final int FrameLaytoDraw=0x7f080003;
-        public static final int LinearLayout2=0x7f080000;
-        public static final int RelativeLayout1=0x7f08000f;
-        public static final int debug1=0x7f080002;
-        public static final int listFurnitures=0x7f080001;
-        public static final int list_element_cost=0x7f080007;
-        public static final int list_element_image=0x7f080005;
-        public static final int list_element_name=0x7f080006;
-        public static final int login_button_go=0x7f08000d;
-        public static final int login_button_register=0x7f08000b;
-        public static final int login_checkbox=0x7f08000c;
-        public static final int login_password=0x7f080008;
-        public static final int login_skip=0x7f08000e;
-        public static final int login_username=0x7f080009;
-        public static final int menu_settings=0x7f08001b;
-        public static final int properties_cost=0x7f080015;
-        public static final int properties_image=0x7f080013;
-        public static final int properties_room=0x7f080010;
-        public static final int properties_text=0x7f080014;
-        public static final int properties_title=0x7f080011;
-        public static final int properties_type=0x7f080012;
-        public static final int register_button=0x7f08001a;
-        public static final int register_email=0x7f080018;
-        public static final int register_name=0x7f080016;
-        public static final int register_password=0x7f080019;
-        public static final int register_surname=0x7f080017;
-        public static final int textView1=0x7f08000a;
-        public static final int thumbnail=0x7f080004;
+        public static final int FrameLaytoDraw=0x7f050036;
+        public static final int LinearLayout2=0x7f050033;
+        public static final int RelativeLayout1=0x7f050043;
+        public static final int abs__action_bar=0x7f050022;
+        public static final int abs__action_bar_container=0x7f050021;
+        public static final int abs__action_bar_subtitle=0x7f050011;
+        public static final int abs__action_bar_title=0x7f050010;
+        public static final int abs__action_context_bar=0x7f050023;
+        public static final int abs__action_menu_divider=0x7f05000c;
+        public static final int abs__action_menu_presenter=0x7f05000d;
+        public static final int abs__action_mode_bar=0x7f050026;
+        public static final int abs__action_mode_bar_stub=0x7f050025;
+        public static final int abs__action_mode_close_button=0x7f050014;
+        public static final int abs__activity_chooser_view_content=0x7f050015;
+        public static final int abs__checkbox=0x7f05001e;
+        public static final int abs__content=0x7f05001d;
+        public static final int abs__default_activity_button=0x7f050018;
+        public static final int abs__expand_activities_button=0x7f050016;
+        public static final int abs__home=0x7f05000a;
+        public static final int abs__icon=0x7f05001a;
+        public static final int abs__image=0x7f050017;
+        public static final int abs__imageButton=0x7f050012;
+        public static final int abs__list_item=0x7f050019;
+        public static final int abs__progress_circular=0x7f05000e;
+        public static final int abs__progress_horizontal=0x7f05000f;
+        public static final int abs__radio=0x7f050020;
+        public static final int abs__search_badge=0x7f050029;
+        public static final int abs__search_bar=0x7f050028;
+        public static final int abs__search_button=0x7f05002a;
+        public static final int abs__search_close_btn=0x7f05002f;
+        public static final int abs__search_edit_frame=0x7f05002b;
+        public static final int abs__search_go_btn=0x7f050031;
+        public static final int abs__search_mag_icon=0x7f05002c;
+        public static final int abs__search_plate=0x7f05002d;
+        public static final int abs__search_src_text=0x7f05002e;
+        public static final int abs__search_voice_btn=0x7f050032;
+        public static final int abs__shortcut=0x7f05001f;
+        public static final int abs__split_action_bar=0x7f050024;
+        public static final int abs__submit_area=0x7f050030;
+        public static final int abs__textButton=0x7f050013;
+        public static final int abs__title=0x7f05001b;
+        public static final int abs__titleDivider=0x7f05001c;
+        public static final int abs__up=0x7f05000b;
+        public static final int debug1=0x7f050035;
+        public static final int disableHome=0x7f050009;
+        public static final int edit_query=0x7f050027;
+        public static final int homeAsUp=0x7f050006;
+        public static final int info_text=0x7f050037;
+        public static final int listFurnitures=0x7f050034;
+        public static final int listMode=0x7f050002;
+        public static final int list_element_cost=0x7f05003b;
+        public static final int list_element_image=0x7f050039;
+        public static final int list_element_name=0x7f05003a;
+        public static final int login_button_go=0x7f050041;
+        public static final int login_button_register=0x7f05003f;
+        public static final int login_checkbox=0x7f050040;
+        public static final int login_password=0x7f05003c;
+        public static final int login_skip=0x7f050042;
+        public static final int login_username=0x7f05003d;
+        public static final int menu_center_view=0x7f050052;
+        public static final int menu_clear=0x7f050051;
+        public static final int menu_exit=0x7f050055;
+        public static final int menu_logout=0x7f050054;
+        public static final int menu_settings=0x7f05004f;
+        public static final int menu_show_grid=0x7f050053;
+        public static final int menu_wall=0x7f050050;
+        public static final int normal=0x7f050001;
+        public static final int properties_cost=0x7f050049;
+        public static final int properties_image=0x7f050047;
+        public static final int properties_room=0x7f050044;
+        public static final int properties_text=0x7f050048;
+        public static final int properties_title=0x7f050045;
+        public static final int properties_type=0x7f050046;
+        public static final int register_button=0x7f05004e;
+        public static final int register_email=0x7f05004c;
+        public static final int register_name=0x7f05004a;
+        public static final int register_password=0x7f05004d;
+        public static final int register_surname=0x7f05004b;
+        public static final int showCustom=0x7f050008;
+        public static final int showHome=0x7f050005;
+        public static final int showTitle=0x7f050007;
+        public static final int tabMode=0x7f050003;
+        public static final int textView1=0x7f05003e;
+        public static final int thumbnail=0x7f050038;
+        public static final int useLogo=0x7f050004;
+        public static final int wrap_content=0x7f050000;
+    }
+    public static final class integer {
+        public static final int abs__max_action_buttons=0x7f090000;
     }
     public static final class layout {
-        public static final int l_view_list=0x7f030000;
-        public static final int l_view_list_element=0x7f030001;
-        public static final int l_view_login=0x7f030002;
-        public static final int l_view_properties=0x7f030003;
-        public static final int l_view_register=0x7f030004;
+        public static final int abs__action_bar_home=0x7f030000;
+        public static final int abs__action_bar_tab=0x7f030001;
+        public static final int abs__action_bar_tab_bar_view=0x7f030002;
+        public static final int abs__action_bar_title_item=0x7f030003;
+        public static final int abs__action_menu_item_layout=0x7f030004;
+        public static final int abs__action_menu_layout=0x7f030005;
+        public static final int abs__action_mode_bar=0x7f030006;
+        public static final int abs__action_mode_close_item=0x7f030007;
+        public static final int abs__activity_chooser_view=0x7f030008;
+        public static final int abs__activity_chooser_view_list_item=0x7f030009;
+        public static final int abs__dialog_title_holo=0x7f03000a;
+        public static final int abs__list_menu_item_checkbox=0x7f03000b;
+        public static final int abs__list_menu_item_icon=0x7f03000c;
+        public static final int abs__list_menu_item_layout=0x7f03000d;
+        public static final int abs__list_menu_item_radio=0x7f03000e;
+        public static final int abs__popup_menu_item_layout=0x7f03000f;
+        public static final int abs__screen_action_bar=0x7f030010;
+        public static final int abs__screen_action_bar_overlay=0x7f030011;
+        public static final int abs__screen_simple=0x7f030012;
+        public static final int abs__screen_simple_overlay_action_mode=0x7f030013;
+        public static final int abs__search_dropdown_item_icons_2line=0x7f030014;
+        public static final int abs__search_view=0x7f030015;
+        public static final int abs__simple_dropdown_hint=0x7f030016;
+        public static final int l_view_list=0x7f030017;
+        public static final int l_view_list_element=0x7f030018;
+        public static final int l_view_login=0x7f030019;
+        public static final int l_view_properties=0x7f03001a;
+        public static final int l_view_register=0x7f03001b;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001c;
+        public static final int sherlock_spinner_item=0x7f03001d;
     }
     public static final class menu {
-        public static final int l_view_list=0x7f070000;
-        public static final int l_view_login=0x7f070001;
-        public static final int l_view_register=0x7f070002;
+        public static final int l_view_list=0x7f0c0000;
+        public static final int l_view_login=0x7f0c0001;
+        public static final int l_view_register=0x7f0c0002;
     }
     public static final class raw {
         public static final int data=0x7f040000;
     }
     public static final class string {
-        public static final int app_name=0x7f050000;
-        public static final int data_file=0x7f050009;
-        public static final int hello_world=0x7f050001;
-        public static final int login_go=0x7f050007;
-        public static final int login_password=0x7f050006;
-        public static final int login_register=0x7f050008;
-        public static final int login_title=0x7f050004;
-        public static final int login_username=0x7f050005;
-        public static final int menu_settings=0x7f050002;
-        public static final int title_activity_activity_register=0x7f05000b;
-        public static final int title_activity_view__list=0x7f05000a;
-        public static final int title_activity_view__login=0x7f050003;
+        /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
+         */
+        public static final int abs__action_bar_home_description=0x7f0a0000;
+        /**  Content description for the action bar "up" affordance. [CHAR LIMIT=NONE] 
+         */
+        public static final int abs__action_bar_up_description=0x7f0a0001;
+        /**  Content description for the action menu overflow button. [CHAR LIMIT=NONE] 
+         */
+        public static final int abs__action_menu_overflow_description=0x7f0a0002;
+        /**  Label for the "Done" button on the far left of action mode toolbars. 
+         */
+        public static final int abs__action_mode_done=0x7f0a0003;
+        /**  Title default for a dialog showing possible activities in ActivityChooserView [CHAR LIMIT=25] 
+         */
+        public static final int abs__activity_chooser_view_dialog_title_default=0x7f0a0005;
+        /**  Title for a button to expand the list of activities in ActivityChooserView [CHAR LIMIT=25] 
+         */
+        public static final int abs__activity_chooser_view_see_all=0x7f0a0004;
+        /**  Description of the shwoing of a popup window with activities to choose from. [CHAR LIMIT=NONE] 
+         */
+        public static final int abs__activitychooserview_choose_application=0x7f0a0007;
+        /**  SearchView accessibility description for clear button [CHAR LIMIT=NONE] 
+         */
+        public static final int abs__searchview_description_clear=0x7f0a000c;
+        /**  SearchView accessibility description for search text field [CHAR LIMIT=NONE] 
+         */
+        public static final int abs__searchview_description_query=0x7f0a000b;
+        /**  SearchView accessibility description for search button [CHAR LIMIT=NONE] 
+         */
+        public static final int abs__searchview_description_search=0x7f0a000a;
+        /**  SearchView accessibility description for submit button [CHAR LIMIT=NONE] 
+         */
+        public static final int abs__searchview_description_submit=0x7f0a000d;
+        /**  SearchView accessibility description for voice button [CHAR LIMIT=NONE] 
+         */
+        public static final int abs__searchview_description_voice=0x7f0a000e;
+        /**  Title for a dialog showing possible activities for sharing in ShareActionProvider [CHAR LIMIT=25] 
+         */
+        public static final int abs__share_action_provider_share_with=0x7f0a0006;
+        /**  Description of the choose target button in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
+         */
+        public static final int abs__shareactionprovider_share_with=0x7f0a0008;
+        /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
+         */
+        public static final int abs__shareactionprovider_share_with_application=0x7f0a0009;
+        public static final int app_name=0x7f0a000f;
+        public static final int data_file=0x7f0a0018;
+        public static final int hello_world=0x7f0a0010;
+        public static final int login_go=0x7f0a0016;
+        public static final int login_password=0x7f0a0015;
+        public static final int login_register=0x7f0a0017;
+        public static final int login_title=0x7f0a0013;
+        public static final int login_username=0x7f0a0014;
+        public static final int menu_settings=0x7f0a0011;
+        public static final int title_activity_activity_register=0x7f0a001a;
+        public static final int title_activity_view__list=0x7f0a0019;
+        public static final int title_activity_view__login=0x7f0a0012;
     }
     public static final class style {
-        public static final int AppTheme=0x7f060000;
+        public static final int AppTheme=0x7f0b0059;
+        public static final int DialogWindowTitle_Sherlock=0x7f0b0036;
+        public static final int DialogWindowTitle_Sherlock_Light=0x7f0b0037;
+        public static final int Sherlock___TextAppearance_Small=0x7f0b004a;
+        public static final int Sherlock___Theme=0x7f0b004e;
+        public static final int Sherlock___Theme_DarkActionBar=0x7f0b0050;
+        public static final int Sherlock___Theme_Dialog=0x7f0b0051;
+        public static final int Sherlock___Theme_Light=0x7f0b004f;
+        public static final int Sherlock___Widget_ActionBar=0x7f0b0001;
+        public static final int Sherlock___Widget_ActionMode=0x7f0b0016;
+        public static final int Sherlock___Widget_ActivityChooserView=0x7f0b001e;
+        public static final int Sherlock___Widget_Holo_DropDownItem=0x7f0b0029;
+        public static final int Sherlock___Widget_Holo_ListView=0x7f0b0026;
+        public static final int Sherlock___Widget_Holo_Spinner=0x7f0b0023;
+        public static final int Sherlock___Widget_SearchAutoCompleteTextView=0x7f0b0033;
+        public static final int TextAppearance_Sherlock_DialogWindowTitle=0x7f0b0048;
+        public static final int TextAppearance_Sherlock_Light_DialogWindowTitle=0x7f0b0049;
+        public static final int TextAppearance_Sherlock_Light_Small=0x7f0b004c;
+        public static final int TextAppearance_Sherlock_Light_Widget_PopupMenu_Large=0x7f0b0043;
+        public static final int TextAppearance_Sherlock_Light_Widget_PopupMenu_Small=0x7f0b0045;
+        public static final int TextAppearance_Sherlock_Small=0x7f0b004b;
+        public static final int TextAppearance_Sherlock_Widget_ActionBar_Menu=0x7f0b0038;
+        public static final int TextAppearance_Sherlock_Widget_ActionBar_Subtitle=0x7f0b003b;
+        public static final int TextAppearance_Sherlock_Widget_ActionBar_Subtitle_Inverse=0x7f0b003c;
+        public static final int TextAppearance_Sherlock_Widget_ActionBar_Title=0x7f0b0039;
+        public static final int TextAppearance_Sherlock_Widget_ActionBar_Title_Inverse=0x7f0b003a;
+        public static final int TextAppearance_Sherlock_Widget_ActionMode_Subtitle=0x7f0b003f;
+        public static final int TextAppearance_Sherlock_Widget_ActionMode_Subtitle_Inverse=0x7f0b0040;
+        public static final int TextAppearance_Sherlock_Widget_ActionMode_Title=0x7f0b003d;
+        public static final int TextAppearance_Sherlock_Widget_ActionMode_Title_Inverse=0x7f0b003e;
+        public static final int TextAppearance_Sherlock_Widget_DropDownHint=0x7f0b004d;
+        public static final int TextAppearance_Sherlock_Widget_DropDownItem=0x7f0b0047;
+        public static final int TextAppearance_Sherlock_Widget_PopupMenu=0x7f0b0041;
+        public static final int TextAppearance_Sherlock_Widget_PopupMenu_Large=0x7f0b0042;
+        public static final int TextAppearance_Sherlock_Widget_PopupMenu_Small=0x7f0b0044;
+        public static final int TextAppearance_Sherlock_Widget_TextView_SpinnerItem=0x7f0b0046;
+        public static final int Theme_Sherlock=0x7f0b0052;
+        public static final int Theme_Sherlock_Dialog=0x7f0b0057;
+        public static final int Theme_Sherlock_Light=0x7f0b0053;
+        public static final int Theme_Sherlock_Light_DarkActionBar=0x7f0b0054;
+        public static final int Theme_Sherlock_Light_Dialog=0x7f0b0058;
+        public static final int Theme_Sherlock_Light_NoActionBar=0x7f0b0056;
+        public static final int Theme_Sherlock_NoActionBar=0x7f0b0055;
+        public static final int Widget=0x7f0b0000;
+        public static final int Widget_Sherlock_ActionBar=0x7f0b0002;
+        public static final int Widget_Sherlock_ActionBar_Solid=0x7f0b0003;
+        public static final int Widget_Sherlock_ActionBar_TabBar=0x7f0b000a;
+        public static final int Widget_Sherlock_ActionBar_TabText=0x7f0b000d;
+        public static final int Widget_Sherlock_ActionBar_TabView=0x7f0b0007;
+        public static final int Widget_Sherlock_ActionButton=0x7f0b0010;
+        public static final int Widget_Sherlock_ActionButton_CloseMode=0x7f0b0012;
+        public static final int Widget_Sherlock_ActionButton_Overflow=0x7f0b0014;
+        public static final int Widget_Sherlock_ActionMode=0x7f0b0017;
+        public static final int Widget_Sherlock_ActivityChooserView=0x7f0b001f;
+        public static final int Widget_Sherlock_Button_Small=0x7f0b0021;
+        public static final int Widget_Sherlock_DropDownItem_Spinner=0x7f0b002a;
+        public static final int Widget_Sherlock_Light_ActionBar=0x7f0b0004;
+        public static final int Widget_Sherlock_Light_ActionBar_Solid=0x7f0b0005;
+        public static final int Widget_Sherlock_Light_ActionBar_Solid_Inverse=0x7f0b0006;
+        public static final int Widget_Sherlock_Light_ActionBar_TabBar=0x7f0b000b;
+        public static final int Widget_Sherlock_Light_ActionBar_TabBar_Inverse=0x7f0b000c;
+        public static final int Widget_Sherlock_Light_ActionBar_TabText=0x7f0b000e;
+        public static final int Widget_Sherlock_Light_ActionBar_TabText_Inverse=0x7f0b000f;
+        public static final int Widget_Sherlock_Light_ActionBar_TabView=0x7f0b0008;
+        public static final int Widget_Sherlock_Light_ActionBar_TabView_Inverse=0x7f0b0009;
+        public static final int Widget_Sherlock_Light_ActionButton=0x7f0b0011;
+        public static final int Widget_Sherlock_Light_ActionButton_CloseMode=0x7f0b0013;
+        public static final int Widget_Sherlock_Light_ActionButton_Overflow=0x7f0b0015;
+        public static final int Widget_Sherlock_Light_ActionMode=0x7f0b0018;
+        public static final int Widget_Sherlock_Light_ActionMode_Inverse=0x7f0b0019;
+        public static final int Widget_Sherlock_Light_ActivityChooserView=0x7f0b0020;
+        public static final int Widget_Sherlock_Light_Button_Small=0x7f0b0022;
+        public static final int Widget_Sherlock_Light_DropDownItem_Spinner=0x7f0b002b;
+        public static final int Widget_Sherlock_Light_ListPopupWindow=0x7f0b001b;
+        public static final int Widget_Sherlock_Light_ListView_DropDown=0x7f0b0028;
+        public static final int Widget_Sherlock_Light_PopupMenu=0x7f0b001d;
+        public static final int Widget_Sherlock_Light_PopupWindow_ActionMode=0x7f0b002d;
+        public static final int Widget_Sherlock_Light_ProgressBar=0x7f0b002f;
+        public static final int Widget_Sherlock_Light_ProgressBar_Horizontal=0x7f0b0031;
+        public static final int Widget_Sherlock_Light_SearchAutoCompleteTextView=0x7f0b0035;
+        public static final int Widget_Sherlock_Light_Spinner_DropDown_ActionBar=0x7f0b0025;
+        public static final int Widget_Sherlock_ListPopupWindow=0x7f0b001a;
+        public static final int Widget_Sherlock_ListView_DropDown=0x7f0b0027;
+        public static final int Widget_Sherlock_PopupMenu=0x7f0b001c;
+        public static final int Widget_Sherlock_PopupWindow_ActionMode=0x7f0b002c;
+        public static final int Widget_Sherlock_ProgressBar=0x7f0b002e;
+        public static final int Widget_Sherlock_ProgressBar_Horizontal=0x7f0b0030;
+        public static final int Widget_Sherlock_SearchAutoCompleteTextView=0x7f0b0034;
+        public static final int Widget_Sherlock_Spinner_DropDown_ActionBar=0x7f0b0024;
+        public static final int Widget_Sherlock_TextView_SpinnerItem=0x7f0b0032;
     }
+    public static final class styleable {
+        /**  Attributes used to style the Action Bar. 
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SherlockActionBar_background pk.projektant:background}</code></td><td> Specifies a background drawable for the action bar.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_backgroundSplit pk.projektant:backgroundSplit}</code></td><td> Specifies a background drawable for the bottom component of a split action bar.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_backgroundStacked pk.projektant:backgroundStacked}</code></td><td> Specifies a background drawable for a second stacked row of the action bar.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_customNavigationLayout pk.projektant:customNavigationLayout}</code></td><td> Specifies a layout for custom navigation.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_displayOptions pk.projektant:displayOptions}</code></td><td> Options affecting how the action bar is displayed.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_divider pk.projektant:divider}</code></td><td> Specifies the drawable used for item dividers.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_height pk.projektant:height}</code></td><td> Specifies a fixed height.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_homeLayout pk.projektant:homeLayout}</code></td><td> Specifies a layout to use for the "home" section of the action bar.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_icon pk.projektant:icon}</code></td><td> Specifies the drawable used for the application icon.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_indeterminateProgressStyle pk.projektant:indeterminateProgressStyle}</code></td><td> Specifies a style resource to use for an indeterminate progress spinner.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_itemPadding pk.projektant:itemPadding}</code></td><td> Specifies padding that should be applied to the left and right sides of
+             system-provided items in the bar.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_logo pk.projektant:logo}</code></td><td> Specifies the drawable used for the application logo.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_navigationMode pk.projektant:navigationMode}</code></td><td> The type of navigation to use.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_progressBarPadding pk.projektant:progressBarPadding}</code></td><td> Specifies the horizontal padding on either end for an embedded progress bar.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_progressBarStyle pk.projektant:progressBarStyle}</code></td><td> Specifies a style resource to use for an embedded progress bar.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_subtitle pk.projektant:subtitle}</code></td><td> Specifies subtitle text used for navigationMode="normal" </td></tr>
+           <tr><td><code>{@link #SherlockActionBar_subtitleTextStyle pk.projektant:subtitleTextStyle}</code></td><td> Specifies a style to use for subtitle text.</td></tr>
+           <tr><td><code>{@link #SherlockActionBar_title pk.projektant:title}</code></td><td> Specifies title text used for navigationMode="normal" </td></tr>
+           <tr><td><code>{@link #SherlockActionBar_titleTextStyle pk.projektant:titleTextStyle}</code></td><td> Specifies a style to use for title text.</td></tr>
+           </table>
+           @see #SherlockActionBar_background
+           @see #SherlockActionBar_backgroundSplit
+           @see #SherlockActionBar_backgroundStacked
+           @see #SherlockActionBar_customNavigationLayout
+           @see #SherlockActionBar_displayOptions
+           @see #SherlockActionBar_divider
+           @see #SherlockActionBar_height
+           @see #SherlockActionBar_homeLayout
+           @see #SherlockActionBar_icon
+           @see #SherlockActionBar_indeterminateProgressStyle
+           @see #SherlockActionBar_itemPadding
+           @see #SherlockActionBar_logo
+           @see #SherlockActionBar_navigationMode
+           @see #SherlockActionBar_progressBarPadding
+           @see #SherlockActionBar_progressBarStyle
+           @see #SherlockActionBar_subtitle
+           @see #SherlockActionBar_subtitleTextStyle
+           @see #SherlockActionBar_title
+           @see #SherlockActionBar_titleTextStyle
+         */
+        public static final int[] SherlockActionBar = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010048, 0x7f010049,
+            0x7f01004a, 0x7f01004b, 0x7f01004c, 0x7f01004d,
+            0x7f01004e, 0x7f01004f, 0x7f010050, 0x7f010051,
+            0x7f010052, 0x7f010053, 0x7f010054
+        };
+        /**
+          <p>
+          @attr description
+           Specifies a background drawable for the action bar. 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:background
+        */
+        public static final int SherlockActionBar_background = 2;
+        /**
+          <p>
+          @attr description
+           Specifies a background drawable for the bottom component of a split action bar. 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:backgroundSplit
+        */
+        public static final int SherlockActionBar_backgroundSplit = 3;
+        /**
+          <p>
+          @attr description
+           Specifies a background drawable for a second stacked row of the action bar. 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:backgroundStacked
+        */
+        public static final int SherlockActionBar_backgroundStacked = 12;
+        /**
+          <p>
+          @attr description
+           Specifies a layout for custom navigation. Overrides navigationMode. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:customNavigationLayout
+        */
+        public static final int SherlockActionBar_customNavigationLayout = 13;
+        /**
+          <p>
+          @attr description
+           Options affecting how the action bar is displayed. 
+
+
+          <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>useLogo</code></td><td>0x1</td><td></td></tr>
+<tr><td><code>showHome</code></td><td>0x2</td><td></td></tr>
+<tr><td><code>homeAsUp</code></td><td>0x4</td><td></td></tr>
+<tr><td><code>showTitle</code></td><td>0x8</td><td></td></tr>
+<tr><td><code>showCustom</code></td><td>0x10</td><td></td></tr>
+<tr><td><code>disableHome</code></td><td>0x20</td><td></td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name android:displayOptions
+        */
+        public static final int SherlockActionBar_displayOptions = 7;
+        /**
+          <p>
+          @attr description
+           Specifies the drawable used for item dividers. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:divider
+        */
+        public static final int SherlockActionBar_divider = 5;
+        /**
+          <p>
+          @attr description
+           Specifies a fixed height. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:height
+        */
+        public static final int SherlockActionBar_height = 4;
+        /**
+          <p>
+          @attr description
+           Specifies a layout to use for the "home" section of the action bar. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:homeLayout
+        */
+        public static final int SherlockActionBar_homeLayout = 14;
+        /**
+          <p>
+          @attr description
+           Specifies the drawable used for the application icon. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:icon
+        */
+        public static final int SherlockActionBar_icon = 10;
+        /**
+          <p>
+          @attr description
+           Specifies a style resource to use for an indeterminate progress spinner. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:indeterminateProgressStyle
+        */
+        public static final int SherlockActionBar_indeterminateProgressStyle = 16;
+        /**
+          <p>
+          @attr description
+           Specifies padding that should be applied to the left and right sides of
+             system-provided items in the bar. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:itemPadding
+        */
+        public static final int SherlockActionBar_itemPadding = 18;
+        /**
+          <p>
+          @attr description
+           Specifies the drawable used for the application logo. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:logo
+        */
+        public static final int SherlockActionBar_logo = 11;
+        /**
+          <p>
+          @attr description
+           The type of navigation to use. 
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>normal</code></td><td>0</td><td> Normal static title text </td></tr>
+<tr><td><code>listMode</code></td><td>1</td><td> The action bar will use a selection list for navigation. </td></tr>
+<tr><td><code>tabMode</code></td><td>2</td><td> The action bar will use a series of horizontal tabs for navigation. </td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name android:navigationMode
+        */
+        public static final int SherlockActionBar_navigationMode = 6;
+        /**
+          <p>
+          @attr description
+           Specifies the horizontal padding on either end for an embedded progress bar. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:progressBarPadding
+        */
+        public static final int SherlockActionBar_progressBarPadding = 17;
+        /**
+          <p>
+          @attr description
+           Specifies a style resource to use for an embedded progress bar. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:progressBarStyle
+        */
+        public static final int SherlockActionBar_progressBarStyle = 15;
+        /**
+          <p>
+          @attr description
+           Specifies subtitle text used for navigationMode="normal" 
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:subtitle
+        */
+        public static final int SherlockActionBar_subtitle = 9;
+        /**
+          <p>
+          @attr description
+           Specifies a style to use for subtitle text. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:subtitleTextStyle
+        */
+        public static final int SherlockActionBar_subtitleTextStyle = 1;
+        /**
+          <p>
+          @attr description
+           Specifies title text used for navigationMode="normal" 
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:title
+        */
+        public static final int SherlockActionBar_title = 8;
+        /**
+          <p>
+          @attr description
+           Specifies a style to use for title text. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:titleTextStyle
+        */
+        public static final int SherlockActionBar_titleTextStyle = 0;
+        /** Attributes that can be used with a SherlockActionMenuItemView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SherlockActionMenuItemView_android_minWidth pk.projektant:android_minWidth}</code></td><td></td></tr>
+           </table>
+           @see #SherlockActionMenuItemView_android_minWidth
+         */
+        public static final int[] SherlockActionMenuItemView = {
+            0x0101013f
+        };
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#android_minWidth}
+          attribute's value can be found in the {@link #SherlockActionMenuItemView} array.
+          @attr name android:android_minWidth
+        */
+        public static final int SherlockActionMenuItemView_android_minWidth = 0;
+        /** Attributes that can be used with a SherlockActionMode.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SherlockActionMode_background pk.projektant:background}</code></td><td> Specifies a background for the action mode bar.</td></tr>
+           <tr><td><code>{@link #SherlockActionMode_backgroundSplit pk.projektant:backgroundSplit}</code></td><td> Specifies a background for the split action mode bar.</td></tr>
+           <tr><td><code>{@link #SherlockActionMode_height pk.projektant:height}</code></td><td> Specifies a fixed height for the action mode bar.</td></tr>
+           <tr><td><code>{@link #SherlockActionMode_subtitleTextStyle pk.projektant:subtitleTextStyle}</code></td><td> Specifies a style to use for subtitle text.</td></tr>
+           <tr><td><code>{@link #SherlockActionMode_titleTextStyle pk.projektant:titleTextStyle}</code></td><td> Specifies a style to use for title text.</td></tr>
+           </table>
+           @see #SherlockActionMode_background
+           @see #SherlockActionMode_backgroundSplit
+           @see #SherlockActionMode_height
+           @see #SherlockActionMode_subtitleTextStyle
+           @see #SherlockActionMode_titleTextStyle
+         */
+        public static final int[] SherlockActionMode = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004
+        };
+        /**
+          <p>
+          @attr description
+           Specifies a background for the action mode bar. 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:background
+        */
+        public static final int SherlockActionMode_background = 2;
+        /**
+          <p>
+          @attr description
+           Specifies a background for the split action mode bar. 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:backgroundSplit
+        */
+        public static final int SherlockActionMode_backgroundSplit = 3;
+        /**
+          <p>
+          @attr description
+           Specifies a fixed height for the action mode bar. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:height
+        */
+        public static final int SherlockActionMode_height = 4;
+        /**
+          <p>
+          @attr description
+           Specifies a style to use for subtitle text. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:subtitleTextStyle
+        */
+        public static final int SherlockActionMode_subtitleTextStyle = 1;
+        /**
+          <p>
+          @attr description
+           Specifies a style to use for title text. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:titleTextStyle
+        */
+        public static final int SherlockActionMode_titleTextStyle = 0;
+        /** Attributes that can be used with a SherlockActivityChooserView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SherlockActivityChooserView_android_background pk.projektant:android_background}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockActivityChooserView_expandActivityOverflowButtonDrawable pk.projektant:expandActivityOverflowButtonDrawable}</code></td><td> The drawable to show in the button for expanding the activities overflow popup.</td></tr>
+           <tr><td><code>{@link #SherlockActivityChooserView_initialActivityCount pk.projektant:initialActivityCount}</code></td><td> The maximal number of items initially shown in the activity list.</td></tr>
+           </table>
+           @see #SherlockActivityChooserView_android_background
+           @see #SherlockActivityChooserView_expandActivityOverflowButtonDrawable
+           @see #SherlockActivityChooserView_initialActivityCount
+         */
+        public static final int[] SherlockActivityChooserView = {
+            0x010100d4, 0x7f01005d, 0x7f01005e
+        };
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#android_background}
+          attribute's value can be found in the {@link #SherlockActivityChooserView} array.
+          @attr name android:android_background
+        */
+        public static final int SherlockActivityChooserView_android_background = 0;
+        /**
+          <p>
+          @attr description
+           The drawable to show in the button for expanding the activities overflow popup.
+             <strong>Note:</strong> Clients would like to set this drawable
+             as a clue about the action the chosen activity will perform. For
+             example, if share activity is to be chosen the drawable should
+             give a clue that sharing is to be performed.
+         
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:expandActivityOverflowButtonDrawable
+        */
+        public static final int SherlockActivityChooserView_expandActivityOverflowButtonDrawable = 2;
+        /**
+          <p>
+          @attr description
+           The maximal number of items initially shown in the activity list. 
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:initialActivityCount
+        */
+        public static final int SherlockActivityChooserView_initialActivityCount = 1;
+        /**  Base attributes that are available to all groups. 
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SherlockMenuGroup_android_checkableBehavior pk.projektant:android_checkableBehavior}</code></td><td> Whether the items are capable of displaying a check mark.</td></tr>
+           <tr><td><code>{@link #SherlockMenuGroup_android_enabled pk.projektant:android_enabled}</code></td><td> Whether the items are enabled.</td></tr>
+           <tr><td><code>{@link #SherlockMenuGroup_android_id pk.projektant:android_id}</code></td><td> The ID of the group.</td></tr>
+           <tr><td><code>{@link #SherlockMenuGroup_android_menuCategory pk.projektant:android_menuCategory}</code></td><td> The category applied to all items within this group.</td></tr>
+           <tr><td><code>{@link #SherlockMenuGroup_android_orderInCategory pk.projektant:android_orderInCategory}</code></td><td> The order within the category applied to all items within this group.</td></tr>
+           <tr><td><code>{@link #SherlockMenuGroup_android_visible pk.projektant:android_visible}</code></td><td> Whether the items are shown/visible.</td></tr>
+           </table>
+           @see #SherlockMenuGroup_android_checkableBehavior
+           @see #SherlockMenuGroup_android_enabled
+           @see #SherlockMenuGroup_android_id
+           @see #SherlockMenuGroup_android_menuCategory
+           @see #SherlockMenuGroup_android_orderInCategory
+           @see #SherlockMenuGroup_android_visible
+         */
+        public static final int[] SherlockMenuGroup = {
+            0x0101000e, 0x010100d0, 0x01010194, 0x010101de,
+            0x010101df, 0x010101e0
+        };
+        /**
+          <p>
+          @attr description
+           Whether the items are capable of displaying a check mark. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_checkableBehavior}.
+          @attr name android:android_checkableBehavior
+        */
+        public static final int SherlockMenuGroup_android_checkableBehavior = 5;
+        /**
+          <p>
+          @attr description
+           Whether the items are enabled. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_enabled}.
+          @attr name android:android_enabled
+        */
+        public static final int SherlockMenuGroup_android_enabled = 0;
+        /**
+          <p>
+          @attr description
+           The ID of the group. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_id}.
+          @attr name android:android_id
+        */
+        public static final int SherlockMenuGroup_android_id = 1;
+        /**
+          <p>
+          @attr description
+           The category applied to all items within this group.
+             (This will be or'ed with the orderInCategory attribute.) 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_menuCategory}.
+          @attr name android:android_menuCategory
+        */
+        public static final int SherlockMenuGroup_android_menuCategory = 3;
+        /**
+          <p>
+          @attr description
+           The order within the category applied to all items within this group.
+             (This will be or'ed with the category attribute.) 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_orderInCategory}.
+          @attr name android:android_orderInCategory
+        */
+        public static final int SherlockMenuGroup_android_orderInCategory = 4;
+        /**
+          <p>
+          @attr description
+           Whether the items are shown/visible. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_visible}.
+          @attr name android:android_visible
+        */
+        public static final int SherlockMenuGroup_android_visible = 2;
+        /**  Base attributes that are available to all Item objects. 
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_actionLayout pk.projektant:android_actionLayout}</code></td><td> An optional layout to be used as an action view.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_actionProviderClass pk.projektant:android_actionProviderClass}</code></td><td> The name of an optional ActionProvider class to instantiate an action view
+             and perform operations such as default action for that menu item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_actionViewClass pk.projektant:android_actionViewClass}</code></td><td> The name of an optional View class to instantiate and use as an
+             action view.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_alphabeticShortcut pk.projektant:android_alphabeticShortcut}</code></td><td> The alphabetic shortcut key.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_checkable pk.projektant:android_checkable}</code></td><td> Whether the item is capable of displaying a check mark.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_checked pk.projektant:android_checked}</code></td><td> Whether the item is checked.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_enabled pk.projektant:android_enabled}</code></td><td> Whether the item is enabled.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_icon pk.projektant:android_icon}</code></td><td> The icon associated with this item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_id pk.projektant:android_id}</code></td><td> The ID of the item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_menuCategory pk.projektant:android_menuCategory}</code></td><td> The category applied to the item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_numericShortcut pk.projektant:android_numericShortcut}</code></td><td> The numeric shortcut key.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_onClick pk.projektant:android_onClick}</code></td><td> Name of a method on the Context used to inflate the menu that will be
+             called when the item is clicked.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_orderInCategory pk.projektant:android_orderInCategory}</code></td><td> The order within the category applied to the item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_showAsAction pk.projektant:android_showAsAction}</code></td><td> How this item should display in the Action Bar, if present.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_title pk.projektant:android_title}</code></td><td> The title associated with the item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_titleCondensed pk.projektant:android_titleCondensed}</code></td><td> The condensed title associated with the item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_visible pk.projektant:android_visible}</code></td><td> Whether the item is shown/visible.</td></tr>
+           </table>
+           @see #SherlockMenuItem_android_actionLayout
+           @see #SherlockMenuItem_android_actionProviderClass
+           @see #SherlockMenuItem_android_actionViewClass
+           @see #SherlockMenuItem_android_alphabeticShortcut
+           @see #SherlockMenuItem_android_checkable
+           @see #SherlockMenuItem_android_checked
+           @see #SherlockMenuItem_android_enabled
+           @see #SherlockMenuItem_android_icon
+           @see #SherlockMenuItem_android_id
+           @see #SherlockMenuItem_android_menuCategory
+           @see #SherlockMenuItem_android_numericShortcut
+           @see #SherlockMenuItem_android_onClick
+           @see #SherlockMenuItem_android_orderInCategory
+           @see #SherlockMenuItem_android_showAsAction
+           @see #SherlockMenuItem_android_title
+           @see #SherlockMenuItem_android_titleCondensed
+           @see #SherlockMenuItem_android_visible
+         */
+        public static final int[] SherlockMenuItem = {
+            0x01010002, 0x0101000e, 0x010100d0, 0x01010106,
+            0x01010194, 0x010101de, 0x010101df, 0x010101e1,
+            0x010101e2, 0x010101e3, 0x010101e4, 0x010101e5,
+            0x0101026f, 0x010102d9, 0x010102fb, 0x010102fc,
+            0x01010389
+        };
+        /**
+          <p>
+          @attr description
+           An optional layout to be used as an action view.
+             See {@link android.view.MenuItem#setActionView(android.view.View)}
+             for more info. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_actionLayout}.
+          @attr name android:android_actionLayout
+        */
+        public static final int SherlockMenuItem_android_actionLayout = 14;
+        /**
+          <p>
+          @attr description
+           The name of an optional ActionProvider class to instantiate an action view
+             and perform operations such as default action for that menu item.
+             See {@link android.view.MenuItem#setActionProvider(android.view.ActionProvider)}
+             for more info. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_actionProviderClass}.
+          @attr name android:android_actionProviderClass
+        */
+        public static final int SherlockMenuItem_android_actionProviderClass = 16;
+        /**
+          <p>
+          @attr description
+           The name of an optional View class to instantiate and use as an
+             action view. See {@link android.view.MenuItem#setActionView(android.view.View)}
+             for more info. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_actionViewClass}.
+          @attr name android:android_actionViewClass
+        */
+        public static final int SherlockMenuItem_android_actionViewClass = 15;
+        /**
+          <p>
+          @attr description
+           The alphabetic shortcut key.  This is the shortcut when using a keyboard
+             with alphabetic keys. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_alphabeticShortcut}.
+          @attr name android:android_alphabeticShortcut
+        */
+        public static final int SherlockMenuItem_android_alphabeticShortcut = 9;
+        /**
+          <p>
+          @attr description
+           Whether the item is capable of displaying a check mark. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_checkable}.
+          @attr name android:android_checkable
+        */
+        public static final int SherlockMenuItem_android_checkable = 11;
+        /**
+          <p>
+          @attr description
+           Whether the item is checked.  Note that you must first have enabled checking with
+             the checkable attribute or else the check mark will not appear. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_checked}.
+          @attr name android:android_checked
+        */
+        public static final int SherlockMenuItem_android_checked = 3;
+        /**
+          <p>
+          @attr description
+           Whether the item is enabled. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_enabled}.
+          @attr name android:android_enabled
+        */
+        public static final int SherlockMenuItem_android_enabled = 1;
+        /**
+          <p>
+          @attr description
+           The icon associated with this item.  This icon will not always be shown, so
+             the title should be sufficient in describing this item. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_icon}.
+          @attr name android:android_icon
+        */
+        public static final int SherlockMenuItem_android_icon = 0;
+        /**
+          <p>
+          @attr description
+           The ID of the item. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_id}.
+          @attr name android:android_id
+        */
+        public static final int SherlockMenuItem_android_id = 2;
+        /**
+          <p>
+          @attr description
+           The category applied to the item.
+             (This will be or'ed with the orderInCategory attribute.) 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_menuCategory}.
+          @attr name android:android_menuCategory
+        */
+        public static final int SherlockMenuItem_android_menuCategory = 5;
+        /**
+          <p>
+          @attr description
+           The numeric shortcut key.  This is the shortcut when using a numeric (e.g., 12-key)
+             keyboard. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_numericShortcut}.
+          @attr name android:android_numericShortcut
+        */
+        public static final int SherlockMenuItem_android_numericShortcut = 10;
+        /**
+          <p>
+          @attr description
+           Name of a method on the Context used to inflate the menu that will be
+             called when the item is clicked. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_onClick}.
+          @attr name android:android_onClick
+        */
+        public static final int SherlockMenuItem_android_onClick = 12;
+        /**
+          <p>
+          @attr description
+           The order within the category applied to the item.
+             (This will be or'ed with the category attribute.) 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_orderInCategory}.
+          @attr name android:android_orderInCategory
+        */
+        public static final int SherlockMenuItem_android_orderInCategory = 6;
+        /**
+          <p>
+          @attr description
+           How this item should display in the Action Bar, if present. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_showAsAction}.
+          @attr name android:android_showAsAction
+        */
+        public static final int SherlockMenuItem_android_showAsAction = 13;
+        /**
+          <p>
+          @attr description
+           The title associated with the item. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_title}.
+          @attr name android:android_title
+        */
+        public static final int SherlockMenuItem_android_title = 7;
+        /**
+          <p>
+          @attr description
+           The condensed title associated with the item.  This is used in situations where the
+             normal title may be too long to be displayed. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_titleCondensed}.
+          @attr name android:android_titleCondensed
+        */
+        public static final int SherlockMenuItem_android_titleCondensed = 8;
+        /**
+          <p>
+          @attr description
+           Whether the item is shown/visible. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_visible}.
+          @attr name android:android_visible
+        */
+        public static final int SherlockMenuItem_android_visible = 4;
+        /** Attributes that can be used with a SherlockMenuView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SherlockMenuView_headerBackground pk.projektant:headerBackground}</code></td><td> Default background for the menu header.</td></tr>
+           <tr><td><code>{@link #SherlockMenuView_horizontalDivider pk.projektant:horizontalDivider}</code></td><td> Default horizontal divider between rows of menu items.</td></tr>
+           <tr><td><code>{@link #SherlockMenuView_itemBackground pk.projektant:itemBackground}</code></td><td> Default background for each menu item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuView_itemIconDisabledAlpha pk.projektant:itemIconDisabledAlpha}</code></td><td> Default disabled icon alpha for each menu item that shows an icon.</td></tr>
+           <tr><td><code>{@link #SherlockMenuView_itemTextAppearance pk.projektant:itemTextAppearance}</code></td><td> Default appearance of menu item text.</td></tr>
+           <tr><td><code>{@link #SherlockMenuView_preserveIconSpacing pk.projektant:preserveIconSpacing}</code></td><td> Whether space should be reserved in layout when an icon is missing.</td></tr>
+           <tr><td><code>{@link #SherlockMenuView_verticalDivider pk.projektant:verticalDivider}</code></td><td> Default vertical divider between menu items.</td></tr>
+           <tr><td><code>{@link #SherlockMenuView_windowAnimationStyle pk.projektant:windowAnimationStyle}</code></td><td> Default animations for the menu.</td></tr>
+           </table>
+           @see #SherlockMenuView_headerBackground
+           @see #SherlockMenuView_horizontalDivider
+           @see #SherlockMenuView_itemBackground
+           @see #SherlockMenuView_itemIconDisabledAlpha
+           @see #SherlockMenuView_itemTextAppearance
+           @see #SherlockMenuView_preserveIconSpacing
+           @see #SherlockMenuView_verticalDivider
+           @see #SherlockMenuView_windowAnimationStyle
+         */
+        public static final int[] SherlockMenuView = {
+            0x7f010055, 0x7f010056, 0x7f010057, 0x7f010058,
+            0x7f010059, 0x7f01005a, 0x7f01005b, 0x7f01005c
+        };
+        /**
+          <p>
+          @attr description
+           Default background for the menu header. 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:headerBackground
+        */
+        public static final int SherlockMenuView_headerBackground = 3;
+        /**
+          <p>
+          @attr description
+           Default horizontal divider between rows of menu items. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:horizontalDivider
+        */
+        public static final int SherlockMenuView_horizontalDivider = 1;
+        /**
+          <p>
+          @attr description
+           Default background for each menu item. 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:itemBackground
+        */
+        public static final int SherlockMenuView_itemBackground = 4;
+        /**
+          <p>
+          @attr description
+           Default disabled icon alpha for each menu item that shows an icon. 
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:itemIconDisabledAlpha
+        */
+        public static final int SherlockMenuView_itemIconDisabledAlpha = 6;
+        /**
+          <p>
+          @attr description
+           Default appearance of menu item text. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:itemTextAppearance
+        */
+        public static final int SherlockMenuView_itemTextAppearance = 0;
+        /**
+          <p>
+          @attr description
+           Whether space should be reserved in layout when an icon is missing. 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:preserveIconSpacing
+        */
+        public static final int SherlockMenuView_preserveIconSpacing = 7;
+        /**
+          <p>
+          @attr description
+           Default vertical divider between menu items. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:verticalDivider
+        */
+        public static final int SherlockMenuView_verticalDivider = 2;
+        /**
+          <p>
+          @attr description
+           Default animations for the menu. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:windowAnimationStyle
+        */
+        public static final int SherlockMenuView_windowAnimationStyle = 5;
+        /** Attributes that can be used with a SherlockSearchView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SherlockSearchView_android_imeOptions pk.projektant:android_imeOptions}</code></td><td> The IME options to set on the query text field.</td></tr>
+           <tr><td><code>{@link #SherlockSearchView_android_inputType pk.projektant:android_inputType}</code></td><td> The input type to set on the query text field.</td></tr>
+           <tr><td><code>{@link #SherlockSearchView_android_maxWidth pk.projektant:android_maxWidth}</code></td><td> An optional maximum width of the SearchView.</td></tr>
+           <tr><td><code>{@link #SherlockSearchView_iconifiedByDefault pk.projektant:iconifiedByDefault}</code></td><td> The default state of the SearchView.</td></tr>
+           <tr><td><code>{@link #SherlockSearchView_queryHint pk.projektant:queryHint}</code></td><td> An optional query hint string to be displayed in the empty query field.</td></tr>
+           </table>
+           @see #SherlockSearchView_android_imeOptions
+           @see #SherlockSearchView_android_inputType
+           @see #SherlockSearchView_android_maxWidth
+           @see #SherlockSearchView_iconifiedByDefault
+           @see #SherlockSearchView_queryHint
+         */
+        public static final int[] SherlockSearchView = {
+            0x0101011f, 0x01010220, 0x01010264, 0x7f01005f,
+            0x7f010060
+        };
+        /**
+          <p>
+          @attr description
+           The IME options to set on the query text field. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_imeOptions}.
+          @attr name android:android_imeOptions
+        */
+        public static final int SherlockSearchView_android_imeOptions = 2;
+        /**
+          <p>
+          @attr description
+           The input type to set on the query text field. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_inputType}.
+          @attr name android:android_inputType
+        */
+        public static final int SherlockSearchView_android_inputType = 1;
+        /**
+          <p>
+          @attr description
+           An optional maximum width of the SearchView. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_maxWidth}.
+          @attr name android:android_maxWidth
+        */
+        public static final int SherlockSearchView_android_maxWidth = 0;
+        /**
+          <p>
+          @attr description
+           The default state of the SearchView. If true, it will be iconified when not in
+             use and expanded when clicked. 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:iconifiedByDefault
+        */
+        public static final int SherlockSearchView_iconifiedByDefault = 3;
+        /**
+          <p>
+          @attr description
+           An optional query hint string to be displayed in the empty query field. 
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:queryHint
+        */
+        public static final int SherlockSearchView_queryHint = 4;
+        /** Attributes that can be used with a SherlockSpinner.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SherlockSpinner_android_dropDownHorizontalOffset pk.projektant:android_dropDownHorizontalOffset}</code></td><td> Horizontal offset from the spinner widget for positioning the dropdown
+             in spinnerMode="dropdown".</td></tr>
+           <tr><td><code>{@link #SherlockSpinner_android_dropDownSelector pk.projektant:android_dropDownSelector}</code></td><td> List selector to use for spinnerMode="dropdown" display.</td></tr>
+           <tr><td><code>{@link #SherlockSpinner_android_dropDownVerticalOffset pk.projektant:android_dropDownVerticalOffset}</code></td><td> Vertical offset from the spinner widget for positioning the dropdown in
+             spinnerMode="dropdown".</td></tr>
+           <tr><td><code>{@link #SherlockSpinner_android_dropDownWidth pk.projektant:android_dropDownWidth}</code></td><td> Width of the dropdown in spinnerMode="dropdown".</td></tr>
+           <tr><td><code>{@link #SherlockSpinner_android_gravity pk.projektant:android_gravity}</code></td><td> Gravity setting for positioning the currently selected item.</td></tr>
+           <tr><td><code>{@link #SherlockSpinner_android_popupBackground pk.projektant:android_popupBackground}</code></td><td> Background drawable to use for the dropdown in spinnerMode="dropdown".</td></tr>
+           <tr><td><code>{@link #SherlockSpinner_android_popupPromptView pk.projektant:android_popupPromptView}</code></td><td> Reference to a layout to use for displaying a prompt in the dropdown for
+             spinnerMode="dropdown".</td></tr>
+           <tr><td><code>{@link #SherlockSpinner_android_prompt pk.projektant:android_prompt}</code></td><td> The prompt to display when the spinner's dialog is shown.</td></tr>
+           </table>
+           @see #SherlockSpinner_android_dropDownHorizontalOffset
+           @see #SherlockSpinner_android_dropDownSelector
+           @see #SherlockSpinner_android_dropDownVerticalOffset
+           @see #SherlockSpinner_android_dropDownWidth
+           @see #SherlockSpinner_android_gravity
+           @see #SherlockSpinner_android_popupBackground
+           @see #SherlockSpinner_android_popupPromptView
+           @see #SherlockSpinner_android_prompt
+         */
+        public static final int[] SherlockSpinner = {
+            0x010100af, 0x01010175, 0x01010176, 0x0101017b,
+            0x01010262, 0x010102ac, 0x010102ad, 0x010103fd
+        };
+        /**
+          <p>
+          @attr description
+           Horizontal offset from the spinner widget for positioning the dropdown
+             in spinnerMode="dropdown". 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_dropDownHorizontalOffset}.
+          @attr name android:android_dropDownHorizontalOffset
+        */
+        public static final int SherlockSpinner_android_dropDownHorizontalOffset = 5;
+        /**
+          <p>
+          @attr description
+           List selector to use for spinnerMode="dropdown" display. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_dropDownSelector}.
+          @attr name android:android_dropDownSelector
+        */
+        public static final int SherlockSpinner_android_dropDownSelector = 1;
+        /**
+          <p>
+          @attr description
+           Vertical offset from the spinner widget for positioning the dropdown in
+             spinnerMode="dropdown". 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_dropDownVerticalOffset}.
+          @attr name android:android_dropDownVerticalOffset
+        */
+        public static final int SherlockSpinner_android_dropDownVerticalOffset = 6;
+        /**
+          <p>
+          @attr description
+           Width of the dropdown in spinnerMode="dropdown". 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_dropDownWidth}.
+          @attr name android:android_dropDownWidth
+        */
+        public static final int SherlockSpinner_android_dropDownWidth = 4;
+        /**
+          <p>
+          @attr description
+           Gravity setting for positioning the currently selected item. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_gravity}.
+          @attr name android:android_gravity
+        */
+        public static final int SherlockSpinner_android_gravity = 0;
+        /**
+          <p>
+          @attr description
+           Background drawable to use for the dropdown in spinnerMode="dropdown". 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_popupBackground}.
+          @attr name android:android_popupBackground
+        */
+        public static final int SherlockSpinner_android_popupBackground = 2;
+        /**
+          <p>
+          @attr description
+           Reference to a layout to use for displaying a prompt in the dropdown for
+             spinnerMode="dropdown". This layout must contain a TextView with the id
+             @android:id/text1 to be populated with the prompt text. 
+          <p>This is a private symbol.
+          @attr name android:android_popupPromptView
+        */
+        public static final int SherlockSpinner_android_popupPromptView = 7;
+        /**
+          <p>
+          @attr description
+           The prompt to display when the spinner's dialog is shown. 
+          <p>This corresponds to the global attribute          resource symbol {@link pk.projektant.R.attr#android_prompt}.
+          @attr name android:android_prompt
+        */
+        public static final int SherlockSpinner_android_prompt = 3;
+        /** Attributes that can be used with a SherlockTheme.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SherlockTheme_actionBarDivider pk.projektant:actionBarDivider}</code></td><td> Custom divider drawable to use for elements in the action bar.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionBarItemBackground pk.projektant:actionBarItemBackground}</code></td><td> Custom item state list drawable background for action bar items.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionBarSize pk.projektant:actionBarSize}</code></td><td> Size of the Action Bar, including the contextual
+             bar used to present Action Modes.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionBarSplitStyle pk.projektant:actionBarSplitStyle}</code></td><td> Reference to a style for the split Action Bar.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionBarStyle pk.projektant:actionBarStyle}</code></td><td> Reference to a style for the Action Bar </td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionBarTabBarStyle pk.projektant:actionBarTabBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionBarTabStyle pk.projektant:actionBarTabStyle}</code></td><td> Default style for tabs within an action bar </td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionBarTabTextStyle pk.projektant:actionBarTabTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionBarWidgetTheme pk.projektant:actionBarWidgetTheme}</code></td><td> Reference to a theme that should be used to inflate widgets
+             and layouts destined for the action bar.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionButtonStyle pk.projektant:actionButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionDropDownStyle pk.projektant:actionDropDownStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionMenuTextAppearance pk.projektant:actionMenuTextAppearance}</code></td><td> TextAppearance style that will be applied to text that
+             appears within action menu items.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionMenuTextColor pk.projektant:actionMenuTextColor}</code></td><td> Color for text that appears within action menu items.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionModeBackground pk.projektant:actionModeBackground}</code></td><td> Background drawable to use for action mode UI </td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionModeCloseButtonStyle pk.projektant:actionModeCloseButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionModeCloseDrawable pk.projektant:actionModeCloseDrawable}</code></td><td> Drawable to use for the close action mode button </td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionModePopupWindowStyle pk.projektant:actionModePopupWindowStyle}</code></td><td> PopupWindow style to use for action modes when showing as a window overlay.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionModeShareDrawable pk.projektant:actionModeShareDrawable}</code></td><td> Drawable to use for the Share action button in WebView selection action modes </td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionModeSplitBackground pk.projektant:actionModeSplitBackground}</code></td><td> Background drawable to use for action mode UI in the lower split bar </td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionModeStyle pk.projektant:actionModeStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionOverflowButtonStyle pk.projektant:actionOverflowButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionSpinnerItemStyle pk.projektant:actionSpinnerItemStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_activatedBackgroundIndicator pk.projektant:activatedBackgroundIndicator}</code></td><td> Drawable used as a background for activated items.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_activityChooserViewStyle pk.projektant:activityChooserViewStyle}</code></td><td> Default ActivityChooserView style.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_android_windowIsFloating pk.projektant:android_windowIsFloating}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_buttonStyleSmall pk.projektant:buttonStyleSmall}</code></td><td> Small Button style.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_dividerVertical pk.projektant:dividerVertical}</code></td><td> Drawable to use for generic vertical dividers.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_dropDownListViewStyle pk.projektant:dropDownListViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_dropdownListPreferredItemHeight pk.projektant:dropdownListPreferredItemHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_homeAsUpIndicator pk.projektant:homeAsUpIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_listPopupWindowStyle pk.projektant:listPopupWindowStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_listPreferredItemHeightSmall pk.projektant:listPreferredItemHeightSmall}</code></td><td> A smaller, sleeker list item height.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_listPreferredItemPaddingLeft pk.projektant:listPreferredItemPaddingLeft}</code></td><td> The preferred padding along the left edge of list items.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_listPreferredItemPaddingRight pk.projektant:listPreferredItemPaddingRight}</code></td><td> The preferred padding along the right edge of list items.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_popupMenuStyle pk.projektant:popupMenuStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_searchAutoCompleteTextView pk.projektant:searchAutoCompleteTextView}</code></td><td> SearchView AutoCompleteTextView style </td></tr>
+           <tr><td><code>{@link #SherlockTheme_searchDropdownBackground pk.projektant:searchDropdownBackground}</code></td><td> SearchView dropdown background </td></tr>
+           <tr><td><code>{@link #SherlockTheme_searchResultListItemHeight pk.projektant:searchResultListItemHeight}</code></td><td> The list item height for search results.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_searchViewCloseIcon pk.projektant:searchViewCloseIcon}</code></td><td> SearchView close button icon </td></tr>
+           <tr><td><code>{@link #SherlockTheme_searchViewEditQuery pk.projektant:searchViewEditQuery}</code></td><td> SearchView query refinement icon </td></tr>
+           <tr><td><code>{@link #SherlockTheme_searchViewEditQueryBackground pk.projektant:searchViewEditQueryBackground}</code></td><td> SearchView query refinement icon background </td></tr>
+           <tr><td><code>{@link #SherlockTheme_searchViewGoIcon pk.projektant:searchViewGoIcon}</code></td><td> SearchView Go button icon </td></tr>
+           <tr><td><code>{@link #SherlockTheme_searchViewSearchIcon pk.projektant:searchViewSearchIcon}</code></td><td> SearchView Search icon </td></tr>
+           <tr><td><code>{@link #SherlockTheme_searchViewTextField pk.projektant:searchViewTextField}</code></td><td> SearchView text field background for the left section </td></tr>
+           <tr><td><code>{@link #SherlockTheme_searchViewTextFieldRight pk.projektant:searchViewTextFieldRight}</code></td><td> SearchView text field background for the right section </td></tr>
+           <tr><td><code>{@link #SherlockTheme_searchViewVoiceIcon pk.projektant:searchViewVoiceIcon}</code></td><td> SearchView Voice button icon </td></tr>
+           <tr><td><code>{@link #SherlockTheme_selectableItemBackground pk.projektant:selectableItemBackground}</code></td><td> Background drawable for standalone items that need focus/pressed states.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_spinnerDropDownItemStyle pk.projektant:spinnerDropDownItemStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_spinnerItemStyle pk.projektant:spinnerItemStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_textAppearanceLargePopupMenu pk.projektant:textAppearanceLargePopupMenu}</code></td><td> Text color, typeface, size, and style for the text inside of a popup menu.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_textAppearanceListItemSmall pk.projektant:textAppearanceListItemSmall}</code></td><td> The preferred TextAppearance for the primary text of small list items.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_textAppearanceSearchResultSubtitle pk.projektant:textAppearanceSearchResultSubtitle}</code></td><td> Text color, typeface, size, and style for system search result subtitle.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_textAppearanceSearchResultTitle pk.projektant:textAppearanceSearchResultTitle}</code></td><td> Text color, typeface, size, and style for system search result title.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_textAppearanceSmall pk.projektant:textAppearanceSmall}</code></td><td> Text color, typeface, size, and style for "small" text.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_textAppearanceSmallPopupMenu pk.projektant:textAppearanceSmallPopupMenu}</code></td><td> Text color, typeface, size, and style for small text inside of a popup menu.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_textColorPrimary pk.projektant:textColorPrimary}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_textColorPrimaryDisableOnly pk.projektant:textColorPrimaryDisableOnly}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_textColorPrimaryInverse pk.projektant:textColorPrimaryInverse}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_textColorSearchUrl pk.projektant:textColorSearchUrl}</code></td><td> Text color for urls in search suggestions, used by things like global search and the browser.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_windowActionBar pk.projektant:windowActionBar}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_windowActionBarOverlay pk.projektant:windowActionBarOverlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_windowActionModeOverlay pk.projektant:windowActionModeOverlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_windowContentOverlay pk.projektant:windowContentOverlay}</code></td><td> This Drawable is overlaid over the foreground of the Window's content area, usually
+             to place a shadow below the title.</td></tr>
+           <tr><td><code>{@link #SherlockTheme_windowMinWidthMajor pk.projektant:windowMinWidthMajor}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_windowMinWidthMinor pk.projektant:windowMinWidthMinor}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_windowNoTitle pk.projektant:windowNoTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_windowSplitActionBar pk.projektant:windowSplitActionBar}</code></td><td></td></tr>
+           </table>
+           @see #SherlockTheme_actionBarDivider
+           @see #SherlockTheme_actionBarItemBackground
+           @see #SherlockTheme_actionBarSize
+           @see #SherlockTheme_actionBarSplitStyle
+           @see #SherlockTheme_actionBarStyle
+           @see #SherlockTheme_actionBarTabBarStyle
+           @see #SherlockTheme_actionBarTabStyle
+           @see #SherlockTheme_actionBarTabTextStyle
+           @see #SherlockTheme_actionBarWidgetTheme
+           @see #SherlockTheme_actionButtonStyle
+           @see #SherlockTheme_actionDropDownStyle
+           @see #SherlockTheme_actionMenuTextAppearance
+           @see #SherlockTheme_actionMenuTextColor
+           @see #SherlockTheme_actionModeBackground
+           @see #SherlockTheme_actionModeCloseButtonStyle
+           @see #SherlockTheme_actionModeCloseDrawable
+           @see #SherlockTheme_actionModePopupWindowStyle
+           @see #SherlockTheme_actionModeShareDrawable
+           @see #SherlockTheme_actionModeSplitBackground
+           @see #SherlockTheme_actionModeStyle
+           @see #SherlockTheme_actionOverflowButtonStyle
+           @see #SherlockTheme_actionSpinnerItemStyle
+           @see #SherlockTheme_activatedBackgroundIndicator
+           @see #SherlockTheme_activityChooserViewStyle
+           @see #SherlockTheme_android_windowIsFloating
+           @see #SherlockTheme_buttonStyleSmall
+           @see #SherlockTheme_dividerVertical
+           @see #SherlockTheme_dropDownListViewStyle
+           @see #SherlockTheme_dropdownListPreferredItemHeight
+           @see #SherlockTheme_homeAsUpIndicator
+           @see #SherlockTheme_listPopupWindowStyle
+           @see #SherlockTheme_listPreferredItemHeightSmall
+           @see #SherlockTheme_listPreferredItemPaddingLeft
+           @see #SherlockTheme_listPreferredItemPaddingRight
+           @see #SherlockTheme_popupMenuStyle
+           @see #SherlockTheme_searchAutoCompleteTextView
+           @see #SherlockTheme_searchDropdownBackground
+           @see #SherlockTheme_searchResultListItemHeight
+           @see #SherlockTheme_searchViewCloseIcon
+           @see #SherlockTheme_searchViewEditQuery
+           @see #SherlockTheme_searchViewEditQueryBackground
+           @see #SherlockTheme_searchViewGoIcon
+           @see #SherlockTheme_searchViewSearchIcon
+           @see #SherlockTheme_searchViewTextField
+           @see #SherlockTheme_searchViewTextFieldRight
+           @see #SherlockTheme_searchViewVoiceIcon
+           @see #SherlockTheme_selectableItemBackground
+           @see #SherlockTheme_spinnerDropDownItemStyle
+           @see #SherlockTheme_spinnerItemStyle
+           @see #SherlockTheme_textAppearanceLargePopupMenu
+           @see #SherlockTheme_textAppearanceListItemSmall
+           @see #SherlockTheme_textAppearanceSearchResultSubtitle
+           @see #SherlockTheme_textAppearanceSearchResultTitle
+           @see #SherlockTheme_textAppearanceSmall
+           @see #SherlockTheme_textAppearanceSmallPopupMenu
+           @see #SherlockTheme_textColorPrimary
+           @see #SherlockTheme_textColorPrimaryDisableOnly
+           @see #SherlockTheme_textColorPrimaryInverse
+           @see #SherlockTheme_textColorSearchUrl
+           @see #SherlockTheme_windowActionBar
+           @see #SherlockTheme_windowActionBarOverlay
+           @see #SherlockTheme_windowActionModeOverlay
+           @see #SherlockTheme_windowContentOverlay
+           @see #SherlockTheme_windowMinWidthMajor
+           @see #SherlockTheme_windowMinWidthMinor
+           @see #SherlockTheme_windowNoTitle
+           @see #SherlockTheme_windowSplitActionBar
+         */
+        public static final int[] SherlockTheme = {
+            0x01010057, 0x7f010006, 0x7f010007, 0x7f010008,
+            0x7f010009, 0x7f01000a, 0x7f01000b, 0x7f01000c,
+            0x7f01000d, 0x7f01000e, 0x7f01000f, 0x7f010010,
+            0x7f010011, 0x7f010012, 0x7f010013, 0x7f010014,
+            0x7f010015, 0x7f010016, 0x7f010017, 0x7f010018,
+            0x7f010019, 0x7f01001a, 0x7f01001b, 0x7f01001c,
+            0x7f01001d, 0x7f01001e, 0x7f01001f, 0x7f010020,
+            0x7f010021, 0x7f010022, 0x7f010023, 0x7f010024,
+            0x7f010025, 0x7f010026, 0x7f010027, 0x7f010028,
+            0x7f010029, 0x7f01002a, 0x7f01002b, 0x7f01002c,
+            0x7f01002d, 0x7f01002e, 0x7f01002f, 0x7f010030,
+            0x7f010031, 0x7f010032, 0x7f010033, 0x7f010034,
+            0x7f010035, 0x7f010036, 0x7f010037, 0x7f010038,
+            0x7f010039, 0x7f01003a, 0x7f01003b, 0x7f01003c,
+            0x7f01003d, 0x7f01003e, 0x7f01003f, 0x7f010040,
+            0x7f010041, 0x7f010042, 0x7f010043, 0x7f010044,
+            0x7f010045, 0x7f010046, 0x7f010047
+        };
+        /**
+          <p>
+          @attr description
+           Custom divider drawable to use for elements in the action bar. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:actionBarDivider
+        */
+        public static final int SherlockTheme_actionBarDivider = 9;
+        /**
+          <p>
+          @attr description
+           Custom item state list drawable background for action bar items. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:actionBarItemBackground
+        */
+        public static final int SherlockTheme_actionBarItemBackground = 10;
+        /**
+          <p>
+          @attr description
+           Size of the Action Bar, including the contextual
+             bar used to present Action Modes. 
+
+
+          <p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+<p>May be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>wrap_content</code></td><td>0</td><td></td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name android:actionBarSize
+        */
+        public static final int SherlockTheme_actionBarSize = 8;
+        /**
+          <p>
+          @attr description
+           Reference to a style for the split Action Bar. This style
+             controls the split component that holds the menu/action
+             buttons. actionBarStyle is still used for the primary
+             bar. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:actionBarSplitStyle
+        */
+        public static final int SherlockTheme_actionBarSplitStyle = 6;
+        /**
+          <p>
+          @attr description
+           Reference to a style for the Action Bar 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:actionBarStyle
+        */
+        public static final int SherlockTheme_actionBarStyle = 5;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#actionBarTabBarStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionBarTabBarStyle
+        */
+        public static final int SherlockTheme_actionBarTabBarStyle = 2;
+        /**
+          <p>
+          @attr description
+           Default style for tabs within an action bar 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:actionBarTabStyle
+        */
+        public static final int SherlockTheme_actionBarTabStyle = 1;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#actionBarTabTextStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionBarTabTextStyle
+        */
+        public static final int SherlockTheme_actionBarTabTextStyle = 3;
+        /**
+          <p>
+          @attr description
+           Reference to a theme that should be used to inflate widgets
+             and layouts destined for the action bar. Most of the time
+             this will be a reference to the current theme, but when
+             the action bar has a significantly different contrast
+             profile than the rest of the activity the difference
+             can become important. If this is set to @null the current
+             theme will be used.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:actionBarWidgetTheme
+        */
+        public static final int SherlockTheme_actionBarWidgetTheme = 7;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#actionButtonStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionButtonStyle
+        */
+        public static final int SherlockTheme_actionButtonStyle = 53;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#actionDropDownStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionDropDownStyle
+        */
+        public static final int SherlockTheme_actionDropDownStyle = 52;
+        /**
+          <p>
+          @attr description
+           TextAppearance style that will be applied to text that
+             appears within action menu items. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:actionMenuTextAppearance
+        */
+        public static final int SherlockTheme_actionMenuTextAppearance = 11;
+        /**
+          <p>
+          @attr description
+           Color for text that appears within action menu items. 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:actionMenuTextColor
+        */
+        public static final int SherlockTheme_actionMenuTextColor = 12;
+        /**
+          <p>
+          @attr description
+           Background drawable to use for action mode UI 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:actionModeBackground
+        */
+        public static final int SherlockTheme_actionModeBackground = 15;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#actionModeCloseButtonStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionModeCloseButtonStyle
+        */
+        public static final int SherlockTheme_actionModeCloseButtonStyle = 14;
+        /**
+          <p>
+          @attr description
+           Drawable to use for the close action mode button 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:actionModeCloseDrawable
+        */
+        public static final int SherlockTheme_actionModeCloseDrawable = 17;
+        /**
+          <p>
+          @attr description
+           PopupWindow style to use for action modes when showing as a window overlay. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:actionModePopupWindowStyle
+        */
+        public static final int SherlockTheme_actionModePopupWindowStyle = 19;
+        /**
+          <p>
+          @attr description
+           Drawable to use for the Share action button in WebView selection action modes 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:actionModeShareDrawable
+        */
+        public static final int SherlockTheme_actionModeShareDrawable = 18;
+        /**
+          <p>
+          @attr description
+           Background drawable to use for action mode UI in the lower split bar 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:actionModeSplitBackground
+        */
+        public static final int SherlockTheme_actionModeSplitBackground = 16;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#actionModeStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionModeStyle
+        */
+        public static final int SherlockTheme_actionModeStyle = 13;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#actionOverflowButtonStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionOverflowButtonStyle
+        */
+        public static final int SherlockTheme_actionOverflowButtonStyle = 4;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#actionSpinnerItemStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionSpinnerItemStyle
+        */
+        public static final int SherlockTheme_actionSpinnerItemStyle = 58;
+        /**
+          <p>
+          @attr description
+           Drawable used as a background for activated items. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:activatedBackgroundIndicator
+        */
+        public static final int SherlockTheme_activatedBackgroundIndicator = 66;
+        /**
+          <p>
+          @attr description
+           Default ActivityChooserView style. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:activityChooserViewStyle
+        */
+        public static final int SherlockTheme_activityChooserViewStyle = 65;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#android_windowIsFloating}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+          @attr name android:android_windowIsFloating
+        */
+        public static final int SherlockTheme_android_windowIsFloating = 0;
+        /**
+          <p>
+          @attr description
+           Small Button style. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:buttonStyleSmall
+        */
+        public static final int SherlockTheme_buttonStyleSmall = 20;
+        /**
+          <p>
+          @attr description
+           Drawable to use for generic vertical dividers. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:dividerVertical
+        */
+        public static final int SherlockTheme_dividerVertical = 51;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#dropDownListViewStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:dropDownListViewStyle
+        */
+        public static final int SherlockTheme_dropDownListViewStyle = 55;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#dropdownListPreferredItemHeight}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:dropdownListPreferredItemHeight
+        */
+        public static final int SherlockTheme_dropdownListPreferredItemHeight = 57;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#homeAsUpIndicator}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:homeAsUpIndicator
+        */
+        public static final int SherlockTheme_homeAsUpIndicator = 54;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#listPopupWindowStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:listPopupWindowStyle
+        */
+        public static final int SherlockTheme_listPopupWindowStyle = 64;
+        /**
+          <p>
+          @attr description
+           A smaller, sleeker list item height. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:listPreferredItemHeightSmall
+        */
+        public static final int SherlockTheme_listPreferredItemHeightSmall = 45;
+        /**
+          <p>
+          @attr description
+           The preferred padding along the left edge of list items. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:listPreferredItemPaddingLeft
+        */
+        public static final int SherlockTheme_listPreferredItemPaddingLeft = 46;
+        /**
+          <p>
+          @attr description
+           The preferred padding along the right edge of list items. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:listPreferredItemPaddingRight
+        */
+        public static final int SherlockTheme_listPreferredItemPaddingRight = 47;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#popupMenuStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:popupMenuStyle
+        */
+        public static final int SherlockTheme_popupMenuStyle = 56;
+        /**
+          <p>
+          @attr description
+           SearchView AutoCompleteTextView style 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:searchAutoCompleteTextView
+        */
+        public static final int SherlockTheme_searchAutoCompleteTextView = 31;
+        /**
+          <p>
+          @attr description
+           SearchView dropdown background 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:searchDropdownBackground
+        */
+        public static final int SherlockTheme_searchDropdownBackground = 32;
+        /**
+          <p>
+          @attr description
+           The list item height for search results. @hide 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:searchResultListItemHeight
+        */
+        public static final int SherlockTheme_searchResultListItemHeight = 42;
+        /**
+          <p>
+          @attr description
+           SearchView close button icon 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:searchViewCloseIcon
+        */
+        public static final int SherlockTheme_searchViewCloseIcon = 33;
+        /**
+          <p>
+          @attr description
+           SearchView query refinement icon 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:searchViewEditQuery
+        */
+        public static final int SherlockTheme_searchViewEditQuery = 37;
+        /**
+          <p>
+          @attr description
+           SearchView query refinement icon background 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:searchViewEditQueryBackground
+        */
+        public static final int SherlockTheme_searchViewEditQueryBackground = 38;
+        /**
+          <p>
+          @attr description
+           SearchView Go button icon 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:searchViewGoIcon
+        */
+        public static final int SherlockTheme_searchViewGoIcon = 34;
+        /**
+          <p>
+          @attr description
+           SearchView Search icon 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:searchViewSearchIcon
+        */
+        public static final int SherlockTheme_searchViewSearchIcon = 35;
+        /**
+          <p>
+          @attr description
+           SearchView text field background for the left section 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:searchViewTextField
+        */
+        public static final int SherlockTheme_searchViewTextField = 39;
+        /**
+          <p>
+          @attr description
+           SearchView text field background for the right section 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:searchViewTextFieldRight
+        */
+        public static final int SherlockTheme_searchViewTextFieldRight = 40;
+        /**
+          <p>
+          @attr description
+           SearchView Voice button icon 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:searchViewVoiceIcon
+        */
+        public static final int SherlockTheme_searchViewVoiceIcon = 36;
+        /**
+          <p>
+          @attr description
+           Background drawable for standalone items that need focus/pressed states. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:selectableItemBackground
+        */
+        public static final int SherlockTheme_selectableItemBackground = 21;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#spinnerDropDownItemStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:spinnerDropDownItemStyle
+        */
+        public static final int SherlockTheme_spinnerDropDownItemStyle = 30;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#spinnerItemStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:spinnerItemStyle
+        */
+        public static final int SherlockTheme_spinnerItemStyle = 29;
+        /**
+          <p>
+          @attr description
+           Text color, typeface, size, and style for the text inside of a popup menu. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:textAppearanceLargePopupMenu
+        */
+        public static final int SherlockTheme_textAppearanceLargePopupMenu = 23;
+        /**
+          <p>
+          @attr description
+           The preferred TextAppearance for the primary text of small list items. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:textAppearanceListItemSmall
+        */
+        public static final int SherlockTheme_textAppearanceListItemSmall = 48;
+        /**
+          <p>
+          @attr description
+           Text color, typeface, size, and style for system search result subtitle. Defaults to primary inverse text color. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:textAppearanceSearchResultSubtitle
+        */
+        public static final int SherlockTheme_textAppearanceSearchResultSubtitle = 44;
+        /**
+          <p>
+          @attr description
+           Text color, typeface, size, and style for system search result title. Defaults to primary inverse text color. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:textAppearanceSearchResultTitle
+        */
+        public static final int SherlockTheme_textAppearanceSearchResultTitle = 43;
+        /**
+          <p>
+          @attr description
+           Text color, typeface, size, and style for "small" text. Defaults to secondary text color. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:textAppearanceSmall
+        */
+        public static final int SherlockTheme_textAppearanceSmall = 25;
+        /**
+          <p>
+          @attr description
+           Text color, typeface, size, and style for small text inside of a popup menu. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:textAppearanceSmallPopupMenu
+        */
+        public static final int SherlockTheme_textAppearanceSmallPopupMenu = 24;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#textColorPrimary}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:textColorPrimary
+        */
+        public static final int SherlockTheme_textColorPrimary = 26;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#textColorPrimaryDisableOnly}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:textColorPrimaryDisableOnly
+        */
+        public static final int SherlockTheme_textColorPrimaryDisableOnly = 27;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#textColorPrimaryInverse}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:textColorPrimaryInverse
+        */
+        public static final int SherlockTheme_textColorPrimaryInverse = 28;
+        /**
+          <p>
+          @attr description
+           Text color for urls in search suggestions, used by things like global search and the browser. @hide 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:textColorSearchUrl
+        */
+        public static final int SherlockTheme_textColorSearchUrl = 41;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#windowActionBar}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:windowActionBar
+        */
+        public static final int SherlockTheme_windowActionBar = 60;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#windowActionBarOverlay}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:windowActionBarOverlay
+        */
+        public static final int SherlockTheme_windowActionBarOverlay = 61;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#windowActionModeOverlay}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:windowActionModeOverlay
+        */
+        public static final int SherlockTheme_windowActionModeOverlay = 62;
+        /**
+          <p>
+          @attr description
+           This Drawable is overlaid over the foreground of the Window's content area, usually
+             to place a shadow below the title.  
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:windowContentOverlay
+        */
+        public static final int SherlockTheme_windowContentOverlay = 22;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#windowMinWidthMajor}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:windowMinWidthMajor
+        */
+        public static final int SherlockTheme_windowMinWidthMajor = 49;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#windowMinWidthMinor}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:windowMinWidthMinor
+        */
+        public static final int SherlockTheme_windowMinWidthMinor = 50;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#windowNoTitle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:windowNoTitle
+        */
+        public static final int SherlockTheme_windowNoTitle = 59;
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#windowSplitActionBar}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:windowSplitActionBar
+        */
+        public static final int SherlockTheme_windowSplitActionBar = 63;
+        /** Attributes that can be used with a SherlockView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SherlockView_android_focusable pk.projektant:android_focusable}</code></td><td></td></tr>
+           </table>
+           @see #SherlockView_android_focusable
+         */
+        public static final int[] SherlockView = {
+            0x010100da
+        };
+        /**
+          <p>This symbol is the offset where the {@link pk.projektant.R.attr#android_focusable}
+          attribute's value can be found in the {@link #SherlockView} array.
+          @attr name android:android_focusable
+        */
+        public static final int SherlockView_android_focusable = 0;
+    };
 }
