@@ -11,7 +11,7 @@
     <string name="login_go">Zaloguj</string>
     <string name="login_register">Rejestracja</string>
     <string name="data_file">data.txt</string>
-    <string name="title_activity_view__list">Widok Projektu</string>
+    <string name="title_activity_view__list">Projektant</string>
     <string name="title_activity_activity_register">Rejestracja</string>
     <string name="title_activity_activity_projects">Lista Projektów</string>
 

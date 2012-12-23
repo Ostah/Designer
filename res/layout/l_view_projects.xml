@@ -12,7 +12,11 @@
         android:id="@+id/projects_list"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-         android:layout_weight="30" >
+        android:layout_weight="30" 
+        android:divider="#b5b5b5"
+		android:dividerHeight="1dp"
+		android:listSelector="@drawable/list_selector"
+         >
     </ListView>
     
      <RelativeLayout
@@ -28,8 +32,27 @@
              android:layout_alignParentTop="true"
              android:layout_centerHorizontal="true"
              android:layout_marginTop="16dp"
-             android:text="Project Title"
+             android:text="."
              android:textAppearance="?android:attr/textAppearanceLarge" />
+
+         <TextView
+             android:id="@+id/projects_date"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_below="@+id/projects_title"
+             android:layout_centerHorizontal="true"
+             android:layout_marginTop="8dp"
+             android:text="."
+             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+         <TextView
+             android:id="@+id/projects_cost"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_below="@+id/projects_date"
+             android:layout_centerHorizontal="true"
+             android:text="."
+             android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </RelativeLayout>
     

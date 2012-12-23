@@ -73,8 +73,10 @@ public class MapManager {
 		return new Integer((int) ((p - mOffsetY) / mScale));
 	}
 
-	MapManager(FrameLayout mapArea, Context context, Activity a) {
-		sFv = new ArrayList<FurnitureView>();
+	MapManager(FrameLayout mapArea, Context context, Activity a,ArrayList<FurnitureView> l) {
+		sFv = new ArrayList<FurnitureView>(l.size());
+		for(int i=0;i<l.size();i++) sFv.add(l.get(i).clone());
+
 		act = a;
 		this.mMapArea = mapArea;
 		scaleGestureDetector = new ScaleGestureDetector(context,

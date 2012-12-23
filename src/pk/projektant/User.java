@@ -1,5 +1,7 @@
 package pk.projektant;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -19,6 +21,9 @@ public final class User {
     private static Boolean remember;
     
     public static String dragType="";
+    
+    ArrayList<Project> mProjects;
+    Project mActiveProject;
     
     static SharedPreferences pref ;
     static Editor editor ;

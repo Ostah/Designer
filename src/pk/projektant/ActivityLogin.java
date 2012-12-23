@@ -123,7 +123,8 @@ public class ActivityLogin extends Activity {
     
     public void loginSucces()
     {
-    	 Intent prefIntent = new Intent(this,ActivityDesigner.class);
+    	//Intent prefIntent = new Intent(this,ActivityDesigner.class);
+    	Intent prefIntent = new Intent(this,ActivityProjects.class);
          this.startActivity(prefIntent);
     }
     public void goRegister()

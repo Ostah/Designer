@@ -56,7 +56,7 @@ public class ActivityDesigner extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ctx = this;
-        setContentView(R.layout.l_view_list);
+        setContentView(R.layout.l_view_designer);
       
         searchText = (TextView) findViewById(R.id.search_text);
         furnitureList = Tokenizer.sFurnitures;
@@ -76,8 +76,9 @@ public class ActivityDesigner extends SherlockActivity {
 //            }
 //        });
         
+        
         mapArea = (FrameLayout)findViewById(R.id.FrameLaytoDraw);     
-        mapManager = new MapManager(mapArea, ctx,this);
+        mapManager = new MapManager(mapArea, ctx,this,User.get(ctx).mActiveProject.mFurnitures);
         searchText.addTextChangedListener(new TextWatcher() {
  
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {

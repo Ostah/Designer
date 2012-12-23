@@ -1,5 +1,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <item android:id="@+id/menu_new"
+        android:title="Nowy"
+        android:icon="@drawable/icon_new"
+        android:orderInCategory="60"
+        android:showAsAction="always"/>
+    
+      <item android:id="@+id/menu_edit"
+        android:title="Edit"
+        android:icon="@drawable/icon_edit"
+        android:orderInCategory="80"
+        android:showAsAction="always"/>
+      
+       <item android:id="@+id/menu_erase"
+        android:title="Erase"
+        android:icon="@drawable/icon_clear"
+        android:orderInCategory="90"
+        android:showAsAction="always"/>
+    
+    
     <item
         android:id="@+id/menu_settings"
         android:orderInCategory="100"

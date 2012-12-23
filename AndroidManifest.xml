@@ -17,11 +17,10 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="pk.projektant.ActivityLogin"
-            android:label="@string/title_activity_view__login"
+            android:label="@string/app_name"
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,9 +29,7 @@
             android:label="@string/title_activity_view__list"
             android:screenOrientation="landscape" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+              
             </intent-filter>
         </activity>
         <activity
@@ -44,6 +41,7 @@
                 android:value="ActivityLogin" />
         </activity>
         <activity
+            android:screenOrientation="landscape"
             android:name="pk.projektant.ActivityProjects"
             android:label="@string/title_activity_activity_projects" >
         </activity>

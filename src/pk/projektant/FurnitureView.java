@@ -117,7 +117,10 @@ public class FurnitureView {
 		this.rect = new Rect(f.rect);
 		this.reference = f.reference;	
 	}
-
+	
+	public FurnitureView clone(){
+		return new FurnitureView(this);
+	}
 	protected void draw(Canvas canvas, Paint paint, Paint paint2){
 
 	        canvas.drawRect(rectInScale(), paint);
