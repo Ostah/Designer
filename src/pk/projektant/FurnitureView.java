@@ -86,13 +86,13 @@ public class FurnitureView {
 		return new Rect(left,top,left+rect.height(),top+rect.width());
 	}
 	
-	public Rect rectInScale(){
+	public Rect rectInScale(DrawManager d){
 			Rect scaled = new Rect(rect);
-			scaled.top*=MapManager.mScale;
-			scaled.bottom*=MapManager.mScale;
-			scaled.left*=MapManager.mScale;
-			scaled.right*=MapManager.mScale;
-			scaled.offset(MapManager.mOffsetX, MapManager.mOffsetY);
+			scaled.top*=d.mScale;
+			scaled.bottom*=d.mScale;
+			scaled.left*=d.mScale;
+			scaled.right*=d.mScale;
+			scaled.offset(d.mOffsetX, d.mOffsetY);
 			return scaled;
 	}
 	public int getWidth(){
@@ -121,14 +121,14 @@ public class FurnitureView {
 	public FurnitureView clone(){
 		return new FurnitureView(this);
 	}
-	protected void draw(Canvas canvas, Paint paint, Paint paint2){
+	protected void draw(Canvas canvas, Paint paint, Paint paint2, DrawManager d){
 
-	        canvas.drawRect(rectInScale(), paint);
+	        canvas.drawRect(rectInScale(d), paint);
 	
-	        canvas.drawCircle(rectInScale().left, rectInScale().top, 2, paint2);
-	        canvas.drawCircle(rectInScale().left, rectInScale().bottom,2, paint2);
-	        canvas.drawCircle(rectInScale().right, rectInScale().top, 2, paint2);
-	        canvas.drawCircle(rectInScale().right, rectInScale().bottom, 2, paint2);
+	        canvas.drawCircle(rectInScale(d).left, rectInScale(d).top, 2, paint2);
+	        canvas.drawCircle(rectInScale(d).left, rectInScale(d).bottom,2, paint2);
+	        canvas.drawCircle(rectInScale(d).right, rectInScale(d).top, 2, paint2);
+	        canvas.drawCircle(rectInScale(d).right, rectInScale(d).bottom, 2, paint2);
 	}
 	
 	protected void move(float x, float y, Boolean rescale){
@@ -149,11 +149,11 @@ public class FurnitureView {
 		Rect toReturn = new Rect(rect);		
 		if(transfigured)
 		{
-			toReturn.top*=MapManager.mScale;
-			toReturn.bottom*=MapManager.mScale;
-			toReturn.left*=MapManager.mScale;
-			toReturn.right*=MapManager.mScale;
-			toReturn.offset(MapManager.mOffsetX, MapManager.mOffsetY);	
+			toReturn.top*=MapManager.drawManager.mScale;
+			toReturn.bottom*=MapManager.drawManager.mScale;
+			toReturn.left*=MapManager.drawManager.mScale;
+			toReturn.right*=MapManager.drawManager.mScale;
+			toReturn.offset(MapManager.drawManager.mOffsetX, MapManager.drawManager.mOffsetY);	
 		}
 		return toReturn;
 	}

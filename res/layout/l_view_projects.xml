@@ -18,41 +18,56 @@
 		android:listSelector="@drawable/list_selector"
          >
     </ListView>
-    
-     <RelativeLayout
+
+    <RelativeLayout
         android:id="@+id/projects_details"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="70" >
 
-         <TextView
-             android:id="@+id/projects_title"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignParentTop="true"
-             android:layout_centerHorizontal="true"
-             android:layout_marginTop="16dp"
-             android:text="."
-             android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/projects_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="."
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-         <TextView
-             android:id="@+id/projects_date"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_below="@+id/projects_title"
-             android:layout_centerHorizontal="true"
-             android:layout_marginTop="8dp"
-             android:text="."
-             android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/projects_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projects_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="."
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-         <TextView
-             android:id="@+id/projects_cost"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_below="@+id/projects_date"
-             android:layout_centerHorizontal="true"
-             android:text="."
-             android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:id="@+id/projects_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projects_date"
+            android:layout_centerHorizontal="true"
+            android:text="."
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <FrameLayout
+            android:id="@+id/preview_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/projects_cost"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp" >
+
+        </FrameLayout>
 
     </RelativeLayout>
     

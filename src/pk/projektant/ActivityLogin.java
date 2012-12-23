@@ -139,7 +139,7 @@ public class ActivityLogin extends Activity {
     	try 
     	{
 			JSONObject jObject = new JSONObject(data);
-			User.get(ctx).set(jObject.getString("id"), jObject.getString("name"), jObject.getString("surname"), jObject.getString("password"), jObject.getString("registrationDate"), jObject.getString("email"), jObject.getString("role"),remember.isChecked());
+			User.get(ctx).set(jObject.getString("id"), jObject.getString("name"), jObject.getString("surname"), jObject.getString("password"), Long.valueOf(jObject.getString("registrationDate")), jObject.getString("email"), jObject.getString("role"),remember.isChecked());
 			User.save();
     	} 
     	catch (JSONException e) 

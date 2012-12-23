@@ -1,6 +1,9 @@
 package pk.projektant;
 
+
+
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,18 +32,23 @@ public class ActivityProjects extends SherlockActivity {
 	ListView mListProjects;
 	TextView mTitle, mCost, mDate;
 	Project mActiveProject=null;
+	FrameLayout mPreviewLayout;
+	DrawManager mPreviewDraw; 
 	Context ctx;
 	ProjectsListAdapter myAdapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.l_view_projects);
-		getProjects();
+		
+		mPreviewLayout = (FrameLayout) findViewById(R.id.preview_layout);
 		mListProjects = (ListView) findViewById(R.id.projects_list);
 		mTitle = (TextView) findViewById(R.id.projects_title);
 		mCost = (TextView) findViewById(R.id.projects_cost);
 		mDate = (TextView) findViewById(R.id.projects_date);
 		ctx = this;
+		if(User.get(this).mProjects==null) User.get(this).mProjects = new  ArrayList<Project>();
+		getProjects();
 		myAdapter = new ProjectsListAdapter(this, User.get(this).mProjects);
 		mListProjects.setAdapter(myAdapter);
 		mListProjects.setOnItemClickListener(new OnItemClickListener() { 
@@ -48,14 +57,20 @@ public class ActivityProjects extends SherlockActivity {
 	        		listClicked(pos);
 	        }
 	    });
-		
+		 mPreviewDraw = new DrawManager(ctx, new  ArrayList<FurnitureView>(),1.0f);
+		 mPreviewLayout.addView(mPreviewDraw);
+
 	}
 
 	private void listClicked(int pos){
 		mActiveProject =User.get(this).mProjects.get(pos); 
 		mTitle.setText(User.get(this).mProjects.get(pos).mName);
-		mDate.setText(User.get(this).mProjects.get(pos).mDate);
+		Date d = new Date(User.get(this).mProjects.get(pos).mDate);
+		mDate.setText(d.toLocaleString());
 		mCost.setText(String.valueOf(User.get(this).mProjects.get(pos).getCost())+" z³");
+		mPreviewDraw.changeFurnitures(User.get(this).mProjects.get(pos).mFurnitures);
+		mPreviewDraw.scaleTo(0.2f);
+
 	}
 	
 	 public boolean onOptionsItemSelected(MenuItem item){
@@ -132,7 +147,7 @@ public class ActivityProjects extends SherlockActivity {
 		public void onClick(DialogInterface dialog, int whichButton) {
 		  String value = input.getText().toString();    		
     		  if(!value.isEmpty()){	    			  
-    			  Project p = new Project(value,"20-10-2031");
+    			  Project p = new Project(value,System.currentTimeMillis());
     			  User.get(ctx).mProjects.add(p);
     			  User.get(ctx).mActiveProject=p;
     			 // Intent prefIntent = new Intent(ctx,ActivityDesigner.class);
@@ -156,24 +171,24 @@ public class ActivityProjects extends SherlockActivity {
 	}
 	
 	private void getProjects(){
-		User.get(this).mProjects = new ArrayList<Project>();
+		User.get(this).mProjects.clear();
 		ArrayList<FurnitureView> furnit = new ArrayList<FurnitureView>();
 		
 		furnit.add(new FurnitureView(this,100,100,Tokenizer.sFurnitures.get(0)));
-		Project p = new Project("Projekt1","20-12-2012",new ArrayList<FurnitureView>(furnit));
+		Project p = new Project("Projekt1",System.currentTimeMillis(),new ArrayList<FurnitureView>(furnit));
 		User.get(this).mProjects.add(p);
 		
 		furnit.clear();
 		furnit.add(new FurnitureView(this,100,100,Tokenizer.sFurnitures.get(0)));
 		furnit.add(new FurnitureView(this,300,300,Tokenizer.sFurnitures.get(5)));
-		 p = new Project("Projekt2","20-12-2012",new ArrayList<FurnitureView>(furnit));
+		 p = new Project("Projekt2",System.currentTimeMillis(),new ArrayList<FurnitureView>(furnit));
 		 User.get(this).mProjects.add(p);
 		 
 		 furnit.clear();
 		furnit.add(new FurnitureView(this,100,100,Tokenizer.sFurnitures.get(0)));
 		furnit.add(new FurnitureView(this,300,300,Tokenizer.sFurnitures.get(5)));
 		furnit.add(new FurnitureView(this,150,300,Tokenizer.sFurnitures.get(7)));
-		 p = new Project("Projekt3","20-12-2012",new ArrayList<FurnitureView>(furnit));
+		 p = new Project("Projekt3",System.currentTimeMillis(),new ArrayList<FurnitureView>(furnit));
 		 User.get(this).mProjects.add(p);
 		
 		

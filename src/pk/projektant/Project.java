@@ -5,17 +5,17 @@ import java.util.ArrayList;
 public class Project {
 	String mName;
 	String mId;
-	String mDate;
+	long mDate;
 	ArrayList<FurnitureView> mFurnitures;
 	
-	Project(String name, String date, ArrayList<FurnitureView> f){
+	Project(String name, long date, ArrayList<FurnitureView> f){
 		mName=name;
 		mDate=date;
 		mFurnitures=f;
 		
 	}
 	
-	Project(String name, String date){
+	Project(String name, long date){
 		mName=name;
 		mDate=date;
 		mFurnitures=new ArrayList<FurnitureView>() ;

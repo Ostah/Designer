@@ -34,7 +34,7 @@ public class MapManager {
 
 	public ArrayList<FurnitureView> sFv;
 	static private Context ctx;
-	private DrawManager drawManager;
+	public static DrawManager drawManager;
 	private Activity act;
 	private float yInit = 0.0f;
 	private float xInit = 0.0f;
@@ -45,17 +45,16 @@ public class MapManager {
 	private float xDown = 0.0f;
 	private float yDown = 0.0f;
 	ScaleGestureDetector scaleGestureDetector;
-	public static float mScale = 1.0f;
+	
 	public static int mOffsetXBefore = 0;
 	public static int mOffsetYBefore = 0;
-
-	public static int mOffsetX = 0;
-	public static int mOffsetY = 0;
+	
+	
 
 	public static int onScreenX = 0;
 	public static int onScreenY = 0;
-	public static int width = 0;
-	public static int heigth = 0;
+	public static int width = 600;
+	public static int heigth = 300;
 
 	// dwuklik---------------------
 	private long tapStart = 0;
@@ -66,11 +65,11 @@ public class MapManager {
 	// ----------------------------
 
 	public static int tPX(int p) {
-		return new Integer((int) ((p - mOffsetX) / mScale));
+		return new Integer((int) ((p - drawManager.mOffsetX) / drawManager.mScale));
 	}
 
 	public static int tPY(int p) {
-		return new Integer((int) ((p - mOffsetY) / mScale));
+		return new Integer((int) ((p - drawManager.mOffsetY) / drawManager.mScale));
 	}
 
 	MapManager(FrameLayout mapArea, Context context, Activity a,ArrayList<FurnitureView> l) {
@@ -81,7 +80,7 @@ public class MapManager {
 		this.mMapArea = mapArea;
 		scaleGestureDetector = new ScaleGestureDetector(context,
 				new simpleOnScaleGestureListener());
-		drawManager = new DrawManager(context, sFv);
+		drawManager = new DrawManager(context, sFv,1.0f);
 		mapArea.addView(drawManager);
 		mInfoText = (TextView) act.findViewById(R.id.info_text);
 		invalidate();
@@ -103,8 +102,8 @@ public class MapManager {
 					tapStart = System.currentTimeMillis();
 					tapCount++;
 					invalidate();
-					mOffsetXBefore = mOffsetX;
-					mOffsetYBefore = mOffsetY;
+					mOffsetXBefore = drawManager.mOffsetX;
+					mOffsetYBefore = drawManager.mOffsetY;
 					xInit = event.getX();
 					yInit = event.getY();
 				
@@ -156,8 +155,8 @@ public class MapManager {
 				// ---------------------------------------------------------------------------------------
 
 				if (event.getAction() == MotionEvent.ACTION_MOVE) {
-					mOffsetX = mOffsetXBefore - (int) ((xInit - event.getX()));
-					mOffsetY = mOffsetYBefore - (int) ((yInit - event.getY()));
+					drawManager.mOffsetX = mOffsetXBefore - (int) ((xInit - event.getX()));
+					drawManager.mOffsetY = mOffsetYBefore - (int) ((yInit - event.getY()));
 					invalidate();
 				}
 
@@ -206,14 +205,14 @@ public class MapManager {
 
 	public void invalidate() {
 		drawManager.invalidate();
-		mInfoText.setText("X: " + String.valueOf(mOffsetX) + " Y: "
-				+ String.valueOf(mOffsetY));
+		mInfoText.setText("X: " + String.valueOf(drawManager.mOffsetX) + " Y: "
+				+ String.valueOf(drawManager.mOffsetY));
 	}
 
 	public void centerView() {
-		mScale = 1.0f;
-		mOffsetX = 0;
-		mOffsetY = 0;
+		drawManager.mScale = 1.0f;
+		drawManager.mOffsetX = 0;
+		drawManager.mOffsetY = 0;
 		invalidate();
 
 	}
@@ -393,13 +392,13 @@ public class MapManager {
 			if (mStartScale * factor < 0.2 || mStartScale * factor > 5)
 				return false;
 
-			float scaleChange = mScale;
+			float scaleChange = drawManager.mScale;
 
-			mScale = mStartScale * factor;
-			scaleChange = mScale - scaleChange;
+			drawManager.mScale = mStartScale * factor;
+			scaleChange = drawManager.mScale - scaleChange;
 
-			mOffsetX -= (int) ((int) (mMapArea.getWidth() * 0.5) * scaleChange);
-			mOffsetY -= (int) ((int) (mMapArea.getHeight() * 0.5) * scaleChange);
+			drawManager.mOffsetX -= (int) ((int) (mMapArea.getWidth() * 0.5) * scaleChange);
+			drawManager.mOffsetY -= (int) ((int) (mMapArea.getHeight() * 0.5) * scaleChange);
 			invalidate();
 
 			return false;
@@ -407,7 +406,7 @@ public class MapManager {
 
 		@Override
 		public boolean onScaleBegin(ScaleGestureDetector detector) {
-			mStartScale = mScale;
+			mStartScale = drawManager.mScale;
 			isScaling = true;
 			return true;
 		}

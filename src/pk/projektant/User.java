@@ -1,5 +1,6 @@
 package pk.projektant;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import android.content.Context;
@@ -15,7 +16,7 @@ public final class User {
     private static String name;
     private static String surname;
     private static String password;
-    private static String registrationDate;
+    private static long registrationDate;
     private static String email;
     private static String role;
     private static Boolean remember;
@@ -47,14 +48,14 @@ public final class User {
         return instance;
     }
  
-    public void set(String id, String name, String surname, String password, String registration, String email, String role, Boolean remember){
+    public void set(String id, String name, String surname, String password, long registration, String email, String role, Boolean remember){
     	User.id=id;
     	User.name=name;
     	User.surname=surname;
     	User.password=password;
     	User.registrationDate=registration;
     	User.email=email;
-    	User.role=registration;
+    	User.role=role;
     	User.remember = remember;
     	save();
     }
@@ -66,7 +67,7 @@ public final class User {
     	name="";
     	surname="";
     	password="";
-    	registrationDate="";
+    	registrationDate=0;
     	email="";
     	role="";
     	remember = false;
@@ -84,7 +85,7 @@ public final class User {
     	editor.putString("password", password);
     	editor.putString("email", email);
     	editor.putString("role", role);
-    	editor.putString("registrationDate", registrationDate);
+    	editor.putLong("registrationDate", registrationDate);
     	editor.putBoolean("remember", remember);
     	editor.commit();
     }
@@ -96,7 +97,7 @@ public final class User {
     	password=pref.getString("password", "");
     	email=pref.getString("email", "");
     	role=pref.getString("role", "");
-    	registrationDate=pref.getString("registrationDate", "");
+    	registrationDate=pref.getLong("registrationDate", 0);
     	remember =pref.getBoolean("remember", false);
     }
     static public Boolean isUserSet(){
@@ -110,7 +111,7 @@ public final class User {
     	name="";
     	surname="";
     	password="";
-    	registrationDate="";
+    	registrationDate=0;
     	email="";
     	role="";
     	remember = false;
@@ -150,11 +151,11 @@ public final class User {
 		this.password = password;
 	}
 
-	public String getRegistrationDate() {
+	public long getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(String registrationDate) {
+	public void setRegistrationDate(long registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 

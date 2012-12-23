@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.widget.FrameLayout;
 import android.view.View;
 
 public class DrawManager extends View{
@@ -18,13 +19,17 @@ public class DrawManager extends View{
 	private Paint draw2 = new Paint(Paint.ANTI_ALIAS_FLAG);
 	private Paint[]	FurnituresPaints = new Paint[8];
 	
+	public  float mScale = 1.0f;
+	public  int mOffsetX = 0;
+	public  int mOffsetY = 0;
+	
 	private  ArrayList<FurnitureView> sFv;
 	SharedPreferences pref ;
 	
-	public DrawManager(Context context, ArrayList<FurnitureView> furnitures) {	
+	public DrawManager(Context context, ArrayList<FurnitureView> furnitures, float scale) {	
 		super(context);
 		
-		
+		mScale = scale;
 		sFv = furnitures;
 		ctx = context;
 		pref = context.getSharedPreferences("options", 0);
@@ -55,44 +60,67 @@ public class DrawManager extends View{
 		if(pref.getBoolean("showGrid", true)) drawGrid(canvas);
 		
 		   for(int i=0; i<sFv.size();i++){
-			   if		(sFv.get(i).isShadow) 		sFv.get(i).draw(canvas, d_shadow, draw2);
-			   else if	(sFv.get(i).isMoved)		sFv.get(i).draw(canvas, d_active, draw2);
-			   else if	(sFv.get(i).reference==null)sFv.get(i).draw(canvas, draw2, draw2);
+			   if		(sFv.get(i).isShadow) 		sFv.get(i).draw(canvas, d_shadow, draw2,this);
+			   else if	(sFv.get(i).isMoved)		sFv.get(i).draw(canvas, d_active, draw2,this);
+			   else if	(sFv.get(i).reference==null)sFv.get(i).draw(canvas, draw2, draw2,this);
 			   else 				{
 				   int col = sFv.get(i).reference.color;
-				   sFv.get(i).draw(canvas, FurnituresPaints[col], draw2);
+				   sFv.get(i).draw(canvas, FurnituresPaints[col], draw2,this);
 			   }
 				 
 		   }
+	}
+	public void scaleTo(float newScale){
+		int myWidth=((View)this.getParent()).getWidth();
+		int myHeigth=((View)this.getParent()).getHeight();
+		
+		float scaleChange = mScale - newScale;
+
+		mScale = newScale;
+		
+
+		mOffsetX += (int) ((int) (myWidth * 0.5) * scaleChange);
+		mOffsetY += (int) ((int) (myHeigth * 0.5) * scaleChange);
+		invalidate();
+
+	}
+	public void changeFurnitures( ArrayList<FurnitureView> furniture)
+	{
+		sFv = furniture;
+		invalidate();
 	}
 	protected void drawGrid(Canvas canvas)
 	{
 		
 		int gridSize=10;
 		
-		if(MapManager.mScale<0.3) gridSize = 30;
-		else if(MapManager.mScale<0.6) gridSize = 20;
-		else if(MapManager.mScale>3) gridSize = 5;
+		
+		int myWidth=((View)this.getParent()).getWidth();
+		int myHeigth=((View)this.getParent()).getHeight();
+		
+		if(mScale<0.3) gridSize = 30;
+		else if(mScale<0.6) gridSize = 20;
+		else if(mScale>3) gridSize = 5;
 		for(int i=0;true;i++)
 		{	
-			if(0+gridSize*MapManager.mScale*i+MapManager.mOffsetX>MapManager.width) break;
-			canvas.drawLine(0+gridSize*MapManager.mScale*i+MapManager.mOffsetX, 0, 0+gridSize*MapManager.mScale*i+MapManager.mOffsetX,MapManager.heigth, d_grid[i%2]);
+			if(0+gridSize*mScale*i+mOffsetX>myWidth) break;
+			canvas.drawLine(0+gridSize*mScale*i+mOffsetX, 0, 0+gridSize*mScale*i+mOffsetX,myHeigth, d_grid[i%2]);
 		}	
 		for(int i=1;true;i++)
 		{	
-			if(0-gridSize*MapManager.mScale*i+MapManager.mOffsetX<0) break;
-			canvas.drawLine(0-gridSize*MapManager.mScale*i+MapManager.mOffsetX, 0, 0-gridSize*MapManager.mScale*i+MapManager.mOffsetX,MapManager.heigth, d_grid[i%2]);
+			if(0-gridSize*mScale*i+mOffsetX<0) break;
+			canvas.drawLine(0-gridSize*mScale*i+mOffsetX, 0, 0-gridSize*mScale*i+mOffsetX,myHeigth, d_grid[i%2]);
 		}	
 		
 		for(int i=0;true;i++)
 		{	
-			if(0+gridSize*MapManager.mScale*i+MapManager.mOffsetY>MapManager.heigth) break;
-			canvas.drawLine( 0,0+gridSize*MapManager.mScale*i+MapManager.mOffsetY,MapManager.width, 0+gridSize*MapManager.mScale*i+MapManager.mOffsetY, d_grid[i%2]);
+			if(0+gridSize*mScale*i+mOffsetY>myHeigth) break;
+			canvas.drawLine( 0,0+gridSize*mScale*i+mOffsetY,myWidth, 0+gridSize*mScale*i+mOffsetY, d_grid[i%2]);
 		}	
 		for(int i=1;true;i++)
 		{	
-			if(0-gridSize*MapManager.mScale*i+MapManager.mOffsetY<0) break;
-			canvas.drawLine( 0,0-gridSize*MapManager.mScale*i+MapManager.mOffsetY,MapManager.width, 0-gridSize*MapManager.mScale*i+MapManager.mOffsetY, d_grid[i%2]);
+			if(0-gridSize*mScale*i+mOffsetY<0) break;
+			canvas.drawLine( 0,0-gridSize*mScale*i+mOffsetY,myWidth, 0-gridSize*mScale*i+mOffsetY, d_grid[i%2]);
 		}
 	}
 	
