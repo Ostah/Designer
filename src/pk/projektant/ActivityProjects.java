@@ -71,6 +71,11 @@ public class ActivityProjects extends SherlockActivity {
 	    		if(mActiveProject!=null) editProject();
 	    		else Toast.makeText(ctx, "Nie wybrano projektu do edycji", Toast.LENGTH_SHORT).show();
 	    		break;
+	    		
+	    	case R.id.menu_refresh:
+	    		getProjects();
+	    		myAdapter.notifyDataSetChanged();
+	    		break;
 	    	
 	    }
 			return false;

@@ -16,6 +16,12 @@
         android:icon="@drawable/icon_clear"
         android:orderInCategory="80"
         android:showAsAction="always"/>
+     
+       <item android:id="@+id/menu_save"
+        android:title="Zapisz"
+        android:icon="@drawable/icon_save"
+        android:orderInCategory="80"
+        android:showAsAction="always"/>
     
      <item android:id="@+id/menu_center_view"
         android:title="Wyśrodkuj"

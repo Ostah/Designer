@@ -32,7 +32,7 @@ public class MapManager {
 	private TextView mInfoText;
 	private FurnitureView mFurnitureActive;
 
-	private ArrayList<FurnitureView> sFv;
+	public ArrayList<FurnitureView> sFv;
 	static private Context ctx;
 	private DrawManager drawManager;
 	private Activity act;

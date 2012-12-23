@@ -29,6 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -206,6 +207,12 @@ public class ActivityDesigner extends SherlockActivity {
     	 case R.id.menu_show_grid :
     		 changeGrid();
     		  break;
+    		  
+    	 case R.id.menu_save :
+    		 User.get(ctx).mActiveProject.mFurnitures = mapManager.sFv;
+    		 Toast.makeText(ctx, "Projekt Zapisany", Toast.LENGTH_LONG).show();
+    		 break;
+    		  
     		  
     	}
    

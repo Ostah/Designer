@@ -17,7 +17,12 @@
         android:icon="@drawable/icon_clear"
         android:orderInCategory="90"
         android:showAsAction="always"/>
-    
+     
+       <item android:id="@+id/menu_refresh"
+        android:title="Odswiez"
+        android:icon="@drawable/icon_refresh"
+        android:orderInCategory="80"
+        android:showAsAction="always"/>
     
     <item
         android:id="@+id/menu_settings"
