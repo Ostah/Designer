@@ -222,7 +222,7 @@ public class ActivityDesigner extends SherlockActivity {
     	 ClipData data = ClipData.newPlainText("type", "list");
     	 User.get(ctx).dragType="new";
          shadowBuilder = new View.DragShadowBuilder();
-         v.startDrag(data,shadowBuilder , furnitureList.get(position), 0);
+         v.startDrag(data,shadowBuilder , aa.data.get(position), 0);
          return true;
     }};
      

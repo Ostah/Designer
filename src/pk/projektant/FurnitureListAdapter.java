@@ -22,7 +22,7 @@ public class FurnitureListAdapter extends ArrayAdapter{
 	private int resource;
 	private Context context;
 	private LayoutInflater inflater;
-	private List<Furniture> data;
+	public List<Furniture> data;
 	private List<Furniture> original;
 	private List<Furniture> filtered;
 	public Boolean notifyChanged=false;

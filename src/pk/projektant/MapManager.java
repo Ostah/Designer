@@ -166,7 +166,7 @@ public class MapManager {
 
 		mapArea.setOnLongClickListener(new View.OnLongClickListener() {
 			public boolean onLongClick(View view) {
-
+				if(isScaling) return false;
 				if (isWallDrawning) // sciana
 				{
 					Vibrator vibe = (Vibrator) act

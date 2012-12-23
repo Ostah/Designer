@@ -25,23 +25,27 @@ class MyDragNewListener implements OnDragListener {
 	  public boolean onDrag(View v, DragEvent event) {
 	    switch (event.getAction()) {
 	    case DragEvent.ACTION_DRAG_STARTED:
-	    	Log.d("drag", "started");
-	    	if(User.dragType == "new")
+	    	if(valid)
 	    	{
-	    		activeFurniture = new FurnitureView(ctx,-200,-200, (Furniture) event.getLocalState());
-		    	mapManager.addFurniture(activeFurniture);
+	    		Log.d("drag", "started");
+		    	if(User.dragType == "new")
+		    	{
+		    		activeFurniture = new FurnitureView(ctx,-200,-200, (Furniture) event.getLocalState());
+			    	mapManager.addFurniture(activeFurniture);
+		    	}
+		    	else if(User.dragType == "wall")
+		    	{
+		    		
+		    		int aaa = mapManager.mMapArea.getTop() ;
+		    		activeFurniture = new FurnitureView(ctx,event.getX()- mapManager.onScreenX,event.getY()-mapManager.onScreenY);
+		    		mapManager.addFurniture(activeFurniture);
+		    	}
+		    	else
+		    	{
+		    		activeFurniture =  (FurnitureView) event.getLocalState();
+		    	}	
 	    	}
-	    	else if(User.dragType == "wall")
-	    	{
-	    		
-	    		int aaa = mapManager.mMapArea.getTop() ;
-	    		activeFurniture = new FurnitureView(ctx,event.getX()- mapManager.onScreenX,event.getY()-mapManager.onScreenY);
-	    		mapManager.addFurniture(activeFurniture);
-	    	}
-	    	else
-	    	{
-	    		activeFurniture =  (FurnitureView) event.getLocalState();
-	    	}
+	    	
 	    	
 	      break;
 	    case DragEvent.ACTION_DRAG_ENTERED: 
