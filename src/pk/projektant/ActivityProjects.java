@@ -7,6 +7,7 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,9 +17,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,9 +36,11 @@ public class ActivityProjects extends SherlockActivity {
 	TextView mTitle, mCost, mDate;
 	Project mActiveProject=null;
 	FrameLayout mPreviewLayout;
+	Boolean first_time;
 	DrawManager mPreviewDraw; 
 	Context ctx;
 	ProjectsListAdapter myAdapter;
+	int mLastPos=0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,7 +64,17 @@ public class ActivityProjects extends SherlockActivity {
 	    });
 		 mPreviewDraw = new DrawManager(ctx, new  ArrayList<FurnitureView>(),1.0f);
 		 mPreviewLayout.addView(mPreviewDraw);
+		  first_time=true;
+	}
 
+	@Override
+	protected void onResume() {
+		if(mPreviewDraw!=null&&!first_time){
+			listClicked(mLastPos);
+		}
+		first_time=false;
+		// TODO Auto-generated method stub
+		super.onResume();
 	}
 
 	private void listClicked(int pos){
@@ -70,6 +85,7 @@ public class ActivityProjects extends SherlockActivity {
 		mCost.setText(String.valueOf(User.get(this).mProjects.get(pos).getCost())+" z³");
 		mPreviewDraw.changeFurnitures(User.get(this).mProjects.get(pos).mFurnitures);
 		mPreviewDraw.scaleTo(0.2f);
+		mLastPos=pos;
 
 	}
 	
@@ -119,6 +135,7 @@ public class ActivityProjects extends SherlockActivity {
 		        mTitle.setText(".");
 	    		mDate.setText(".");
 	    		mCost.setText(".");
+	    		mPreviewDraw.clear();
 	    		 Toast.makeText(ctx, "Usuniêto Projekt", Toast.LENGTH_SHORT).show();
 		        dialog.dismiss();
 		        
@@ -128,19 +145,26 @@ public class ActivityProjects extends SherlockActivity {
 
 	    builder.setNegativeButton("NIE", new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int which) {
-	            dialog.dismiss();
+	           // dialog.dismiss();
 	        }
 	    });
+	 
+	   
 
 	    AlertDialog  alert = builder.create();
+	    
 	    alert.show();
+	 
 	}
 	
+	
+
 	public void newProject() {
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
 		alert.setTitle("Nowy Projekt");
 		alert.setMessage("Podaj Nazwê Projektu");
 		final EditText input = new EditText(this);
+	
 		alert.setView(input);
 
 		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {

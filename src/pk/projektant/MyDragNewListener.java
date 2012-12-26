@@ -33,11 +33,11 @@ class MyDragNewListener implements OnDragListener {
 		    		activeFurniture = new FurnitureView(ctx,-200,-200, (Furniture) event.getLocalState());
 			    	mapManager.addFurniture(activeFurniture);
 		    	}
-		    	else if(User.dragType == "wall")
+		    	else if(User.dragType == "custom")
 		    	{
 		    		
 		    		int aaa = mapManager.mMapArea.getTop() ;
-		    		activeFurniture = new FurnitureView(ctx,event.getX()- mapManager.onScreenX,event.getY()-mapManager.onScreenY);
+		    		activeFurniture = new FurnitureView(ctx,mapManager.tPX((int) (event.getX()- mapManager.onScreenX)),mapManager.tPY((int) (event.getY()-mapManager.onScreenY)));
 		    		mapManager.addFurniture(activeFurniture);
 		    	}
 		    	else
@@ -58,7 +58,7 @@ class MyDragNewListener implements OnDragListener {
 	      break;
 	    case DragEvent.ACTION_DROP:
 	    	Log.d("drag", "drop");
-	    	mapManager.drop();
+	    	mapManager.drop(activeFurniture);
 	      break;
 	    case DragEvent.ACTION_DRAG_LOCATION:	
 	    	Log.d("drag", "location");

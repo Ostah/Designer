@@ -44,7 +44,7 @@ public class DrawManager extends View{
 		d_grid[1].setColor(0x10000000);
 		
 		for(int i=0;i<8;i++) FurnituresPaints[i]= new Paint(Paint.ANTI_ALIAS_FLAG);
-		FurnituresPaints[0].setColor(0x00000000);
+		FurnituresPaints[0].setColor(0xFF000000);
 		FurnituresPaints[1].setColor(0xFF33B5E5);
 		FurnituresPaints[2].setColor(0xFFAA66CC);
 		FurnituresPaints[3].setColor(0xFF99CC00);
@@ -60,9 +60,15 @@ public class DrawManager extends View{
 		if(pref.getBoolean("showGrid", true)) drawGrid(canvas);
 		
 		   for(int i=0; i<sFv.size();i++){
-			   if		(sFv.get(i).isShadow) 		sFv.get(i).draw(canvas, d_shadow, draw2,this);
-			   else if	(sFv.get(i).isMoved)		sFv.get(i).draw(canvas, d_active, draw2,this);
-			   else if	(sFv.get(i).reference==null)sFv.get(i).draw(canvas, draw2, draw2,this);
+			   if		(sFv.get(i).isShadow){
+				   sFv.get(i).draw(canvas, d_shadow, draw2,this);
+			   }
+			   else if	(sFv.get(i).isMoved){
+				   sFv.get(i).draw(canvas, d_active, draw2,this);
+			   }
+			   else if	(sFv.get(i).reference==null){
+				   sFv.get(i).draw(canvas, draw2, draw2,this);
+			   }
 			   else 				{
 				   int col = sFv.get(i).reference.color;
 				   sFv.get(i).draw(canvas, FurnituresPaints[col], draw2,this);
@@ -88,6 +94,13 @@ public class DrawManager extends View{
 	{
 		sFv = furniture;
 		invalidate();
+	}
+	
+	public void clear()
+	{
+		sFv= new ArrayList<FurnitureView>();
+		invalidate();
+		
 	}
 	protected void drawGrid(Canvas canvas)
 	{

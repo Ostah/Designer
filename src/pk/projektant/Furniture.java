@@ -8,16 +8,16 @@ public class Furniture {
 
 	public
 		
-	String 	mId;
-	String 	mName;
-	String 	mDescription;
-	String 	mCathegory;
-	String 	mRoom;
-	String 	mImageLink;
-	float	mPrice;
-	float 	mX;
-	float 	mY;
-	float	mZ;	
+	String 	mId="";
+	String 	mName="";
+	String 	mDescription="Mebel Stworzony Przez U¿ytkownika";
+	String 	mCathegory="";
+	String 	mRoom="";
+	String 	mImageLink="";
+	float	mPrice=0;
+	float 	mX=0;
+	float 	mY=0;
+	float	mZ=0;	
 	int color=0;
 	Furniture(String id, String name, String description, String cathegory, String room, String image, float price, float x, float y, float z)
 	{
@@ -39,6 +39,15 @@ public class Furniture {
 	 	else if(cathegory.equalsIgnoreCase("Sofy")) color = 6;
 	 	else if(cathegory.equalsIgnoreCase("Krzes³a")) color = 7;
 	 	
+	}
+	
+	Furniture(String name, float cost, int x, int y)
+	{
+		mName = name;
+		mPrice = cost;
+		mX=x;
+		mY=y;
+		
 	}
 	@Override
 	public String toString(){

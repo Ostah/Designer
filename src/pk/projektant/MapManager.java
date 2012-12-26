@@ -2,6 +2,8 @@ package pk.projektant;
 
 import java.util.ArrayList;
 
+
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -20,8 +22,11 @@ import android.view.View;
 import android.view.View.DragShadowBuilder;
 import android.view.View.OnTouchListener;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,12 +37,19 @@ public class MapManager {
 	private TextView mInfoText;
 	private FurnitureView mFurnitureActive;
 
+	private EditText mNewCost, mNewWidth, mNewHeight,mNewName;
+	private Button mNewOk;
+	private Dialog mDialog;
+
+	
 	public ArrayList<FurnitureView> sFv;
 	static private Context ctx;
 	public static DrawManager drawManager;
 	private Activity act;
 	private float yInit = 0.0f;
 	private float xInit = 0.0f;
+	private float yAct = 0.0f;
+	private float xAct = 0.0f;
 
 	private Boolean isScaling = false;
 	public Boolean isWallDrawning = false;
@@ -106,7 +118,8 @@ public class MapManager {
 					mOffsetYBefore = drawManager.mOffsetY;
 					xInit = event.getX();
 					yInit = event.getY();
-				
+					xAct= event.getX();
+					yAct=event.getY();
 				}
 
 				// DWUKLIK
@@ -157,6 +170,8 @@ public class MapManager {
 				if (event.getAction() == MotionEvent.ACTION_MOVE) {
 					drawManager.mOffsetX = mOffsetXBefore - (int) ((xInit - event.getX()));
 					drawManager.mOffsetY = mOffsetYBefore - (int) ((yInit - event.getY()));
+					xAct= event.getX();
+					yAct=event.getY();
 					invalidate();
 				}
 
@@ -167,13 +182,14 @@ public class MapManager {
 
 		mapArea.setOnLongClickListener(new View.OnLongClickListener() {
 			public boolean onLongClick(View view) {
-				if(isScaling) return false;
+				int diff = (int) (Math.abs(xAct-xInit) + Math.abs(yAct-yInit));
+				if(isScaling||diff>30) return false;
 				if (isWallDrawning) // sciana
 				{
 					Vibrator vibe = (Vibrator) act
 							.getSystemService(Activity.VIBRATOR_SERVICE);
 					vibe.vibrate(100);
-					User.dragType = "wall";
+					User.dragType = "custom";
 					ClipData data = ClipData.newPlainText("type", "map");
 					DragShadowBuilder shadowBuilder = new View.DragShadowBuilder();
 					view.startDrag(data, shadowBuilder, null, 0);
@@ -294,14 +310,14 @@ public class MapManager {
 		mMapArea.invalidate();
 
 		Boolean valid = true;
-		if (isWallDrawning && User.dragType == "wall") {
+		if (isWallDrawning && User.dragType == "custom") {
 			valid = isRectangleValid(f, f.getResizedRect(x, y));
 		} else {
 			valid = isMoveValid(f, x, y);
 		}
 		if (mFurnitureShadow == null) {
 			if (valid) {
-				if (isWallDrawning && User.dragType == "wall")
+				if (isWallDrawning && User.dragType == "custom")
 					f.resize(x, y);
 				else
 					f.move(x, y, true);
@@ -314,7 +330,7 @@ public class MapManager {
 		} else {
 			if (!valid) {
 
-				if (isWallDrawning && User.dragType == "wall")
+				if (isWallDrawning && User.dragType == "custom")
 					mFurnitureShadow.resize(x, y);
 				else
 					mFurnitureShadow.move(x, y, true);
@@ -326,7 +342,7 @@ public class MapManager {
 				invalidate();
 				mFurnitureShadow = null;
 
-				if (isWallDrawning && User.dragType == "wall")
+				if (isWallDrawning && User.dragType == "custom")
 					f.resize(x, y);
 				else
 					f.move(x, y, true);
@@ -343,7 +359,7 @@ public class MapManager {
 	}
 
 	public void removeView(FurnitureView f) {
-		drop();
+		drop(f);
 		sFv.remove(f);
 		invalidate();
 	}
@@ -363,16 +379,69 @@ public class MapManager {
 		return true;
 	}
 
-	public void drop() {
+	public void drop(FurnitureView f) {
+		
+		
 		if (mFurnitureShadow != null) {
 			sFv.remove(mFurnitureShadow);
 			mFurnitureShadow = null;
 
 		}
-		if (mFurnitureActive != null) {
+		
+		if(User.dragType == "custom"){
+			mDialog = new Dialog(ctx);
+			mDialog.setContentView(R.layout.l_view_dialog);
+			mDialog.setTitle("Mebel Niestandardowy");
+			mDialog.setCanceledOnTouchOutside(false);
+			mDialog.setCancelable(false);
+			
+			mNewCost = (EditText)mDialog.findViewById(R.id.new_cost);
+			mNewWidth = (EditText)mDialog.findViewById(R.id.new_width);
+			mNewHeight = (EditText)mDialog.findViewById(R.id.new_heigth);
+			mNewOk = (Button)mDialog.findViewById(R.id.new_ok);
+			mNewName= (EditText)mDialog.findViewById(R.id.new_name);
+			mFurnitureActive = f;
+		
+			mNewWidth.setText(String.valueOf(f.getWidth()));
+			mNewHeight.setText(String.valueOf(f.getHeigth()));
+			mDialog.show();
+			
+			mNewOk.setOnClickListener(new View.OnClickListener() {		
+		    	   public void onClick(View arg0) {
+		    		  
+		    		  	if(mNewWidth.getText().length()==0 || mNewHeight.getText().length()==0 || mNewName.getText().length()==0  || mNewCost.getText().length()==0  ){
+		    		  		Toast.makeText(ctx, "Pozostawiono Puste Pola", Toast.LENGTH_SHORT).show();
+		    		  		return;
+		    		  	}
+		    		  	int width = Integer.valueOf(mNewWidth.getText().toString());
+		    		  	int height = Integer.valueOf(mNewHeight.getText().toString());
+		    		  	int cost = Integer.valueOf(mNewCost.getText().toString());
+		    		  	if(width<1 || height<1){
+		    		  		Toast.makeText(ctx, "Rozmiar nie mo¿e byæ mniejszy od 1", Toast.LENGTH_SHORT).show();
+		    		  		return;
+		    		  	}
+		    		  	Rect tmp = mFurnitureActive.getRect(false);
+		    		  	tmp.right = tmp.left+width;
+		    		  	tmp.bottom = tmp.top+height;
+		    		  	if(!isRectangleValid(mFurnitureActive, tmp)){
+		    		  		Toast.makeText(ctx, "Nieprawid³owy rozmiar (kolizja z innym meblem)", Toast.LENGTH_LONG).show();
+		    		  		return;
+		    		  	}
+		    		  	mFurnitureActive.setRect(tmp);
+		    		  	mFurnitureActive.reference = new Furniture(mNewName.getText().toString(),Float.valueOf(cost),width,height);
+		    			Toast.makeText(ctx, "ok", Toast.LENGTH_LONG).show();
+		    			mFurnitureActive.isMoved = false;
+		    			mFurnitureActive = null;
+		    			mDialog.dismiss();
+		    			invalidate();
+		    	   }
+		    	});
+		}
+		else if (mFurnitureActive != null) {
 			mFurnitureActive.isMoved = false;
 			mFurnitureActive = null;
 		}
+		
 		invalidate();
 	}
 

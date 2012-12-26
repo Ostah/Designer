@@ -157,7 +157,9 @@ public class FurnitureView {
 		}
 		return toReturn;
 	}
-	
+	public void setRect(Rect r){
+		rect = r;
+	}
 	public Rect getResizedRect(float x, float y)
 	{
 		Rect a = new Rect(rect);
