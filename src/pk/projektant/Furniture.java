@@ -28,8 +28,8 @@ public class Furniture {
 		mRoom = room;
 		mImageLink = image;
 		mPrice = price;
-		mX = 1.5f*x;
-		mY = 1.5f*y;
+		mX = x;
+		mY = y;
 		mZ = z;
 	 	if(cathegory.equalsIgnoreCase("Ló¿ka")) color = 1;
 	 	else if(cathegory.equalsIgnoreCase("Szafy")) color = 2;

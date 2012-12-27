@@ -19,6 +19,7 @@ public class FurnitureView {
 	public Boolean isRotated=false;
 	public int mStartX=0;
 	public int mStartY=0;
+	public Boolean isWall=false;
 	
 	public FurnitureView(Context context, float x, float y, float dx, float dy, int color){
 		
@@ -56,26 +57,9 @@ public class FurnitureView {
 		rect = getRotatedRect();
 	}
 	
-	public void resize(float x, float y)
+	public void resize(float x, float y, Boolean isWall)
 	{
-		Rect a = rect;
-		if(x>=mStartX){
-			a.left=mStartX;
-			a.right=(int) x;
-		}
-		else if(x<mStartX){
-			a.right=mStartX;
-			a.left=(int) x;
-		}
-		
-		if(y>=mStartY){
-			a.top=mStartY;
-			a.bottom=(int) y;
-		}
-		else if(y<mStartY){
-			a.bottom=mStartY;
-			a.top=(int) y;
-		}
+		rect = getResizedRect(x,y,isWall);
 	}
 	
 	public Rect getRotatedRect()
@@ -116,6 +100,7 @@ public class FurnitureView {
 		this.mStartY = new Integer(f.mStartY);
 		this.rect = new Rect(f.rect);
 		this.reference = f.reference;	
+		this.isWall= new Boolean(f.isWall);
 	}
 	
 	public FurnitureView clone(){
@@ -125,10 +110,13 @@ public class FurnitureView {
 
 	        canvas.drawRect(rectInScale(d), paint);
 	
-	        canvas.drawCircle(rectInScale(d).left, rectInScale(d).top, 2, paint2);
-	        canvas.drawCircle(rectInScale(d).left, rectInScale(d).bottom,2, paint2);
-	        canvas.drawCircle(rectInScale(d).right, rectInScale(d).top, 2, paint2);
-	        canvas.drawCircle(rectInScale(d).right, rectInScale(d).bottom, 2, paint2);
+	        if(!isWall){
+	        	 canvas.drawCircle(rectInScale(d).left, rectInScale(d).top, 2*d.mScale, paint2);
+	  	        canvas.drawCircle(rectInScale(d).left, rectInScale(d).bottom,2*d.mScale, paint2);
+	  	        canvas.drawCircle(rectInScale(d).right, rectInScale(d).top, 2*d.mScale, paint2);
+	  	        canvas.drawCircle(rectInScale(d).right, rectInScale(d).bottom, 2*d.mScale, paint2);
+	        }
+	      
 	}
 	
 	protected void move(float x, float y, Boolean rescale){
@@ -160,7 +148,7 @@ public class FurnitureView {
 	public void setRect(Rect r){
 		rect = r;
 	}
-	public Rect getResizedRect(float x, float y)
+	public Rect getResizedRect(float x, float y,Boolean isWall)
 	{
 		Rect a = new Rect(rect);
 		if(x>=mStartX){
@@ -179,6 +167,24 @@ public class FurnitureView {
 		else if(y<mStartY){
 			a.bottom=mStartY;
 			a.top=(int) y;
+		}
+		if(isWall){
+			if(a.width()>a.height()){
+				if(y>=mStartY){
+					a.bottom=a.top+5;
+				}
+				else{
+					a.top=a.bottom-5;
+				}
+			}
+			else{
+				if(x>=mStartX){
+					a.right=a.left+5;
+				}
+				else{
+					a.left=a.right-5;
+				}
+			}
 		}
 		return a;
 	}

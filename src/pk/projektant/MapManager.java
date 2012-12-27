@@ -37,8 +37,8 @@ public class MapManager {
 	private TextView mInfoText;
 	private FurnitureView mFurnitureActive;
 
-	private EditText mNewCost, mNewWidth, mNewHeight,mNewName;
-	private Button mNewOk;
+	private EditText mNewCost, mNewWidth, mNewHeight,mNewName,mWallWidth;
+	private Button mNewOk,mWallOk;
 	private Dialog mDialog;
 
 	
@@ -52,6 +52,7 @@ public class MapManager {
 	private float xAct = 0.0f;
 
 	private Boolean isScaling = false;
+	public Boolean isCustomDrawning = false;
 	public Boolean isWallDrawning = false;
 
 	private float xDown = 0.0f;
@@ -111,6 +112,15 @@ public class MapManager {
 				}
 
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					Log.d("click", "down");
+					
+					long time = System.currentTimeMillis() - tapStart;
+					Log.d("click", "Time: "+String.valueOf(time));
+					if(time>1500){
+					
+						tapCount=0;
+					}
+					
 					tapStart = System.currentTimeMillis();
 					tapCount++;
 					invalidate();
@@ -125,18 +135,22 @@ public class MapManager {
 				// DWUKLIK
 				// --------------------------------------------------------------------
 				if (event.getAction() == MotionEvent.ACTION_UP) {
-			
+					
 					long time = System.currentTimeMillis() - tapStart;
 					tapDuration = tapDuration + time;
+					Log.d("click", "up "+String.valueOf(time)+" count:"+String.valueOf(tapCount));
 					if (tapCount == 2) {
 					
-						if (time <= 90) {
+						if (time <= 130) {
+							Log.d("click", "double!");
 							tapFurniture = findFurniture((int) xInit,
 									(int) yInit);
 							if (tapFurniture != null){
-								final CharSequence[] items = { "Informacje",
-										"Obróæ", "Usuñ" };
-
+								Log.d("click", "double in!");
+							 CharSequence[] items = {
+										"Obróæ", "Usuñ" , "Informacje"};
+									
+								if(tapFurniture.isWall) items = new CharSequence[] {"Obróæ", "Usuñ" };
 								AlertDialog.Builder builder = new AlertDialog.Builder(
 										ctx);
 								builder.setTitle("Wybierz opcjê");
@@ -145,11 +159,11 @@ public class MapManager {
 											public void onClick(
 													DialogInterface dialog,
 													int item) {
-												if (item == 0) {
+												if (item == 3) {
 													showProperties(tapFurniture.reference);
-												} else if (item == 1) {
+												} else if (item == 0) {
 													rotate(tapFurniture);
-												} else if (item == 2) {
+												} else if (item ==1) {
 													sFv.remove(tapFurniture);
 													invalidate();
 												}
@@ -160,10 +174,11 @@ public class MapManager {
 								alert.show();
 							}
 						}
-						tapCount = 0;
+						
 						tapDuration = 0;
 						return false;
 					}
+					if(tapCount>1) tapCount=0;
 				}
 				// ---------------------------------------------------------------------------------------
 
@@ -184,20 +199,23 @@ public class MapManager {
 			public boolean onLongClick(View view) {
 				int diff = (int) (Math.abs(xAct-xInit) + Math.abs(yAct-yInit));
 				if(isScaling||diff>30) return false;
-				if (isWallDrawning) // sciana
+				FurnitureView f = findFurniture((int) xInit, (int) yInit);
+				if (isCustomDrawning||isWallDrawning&&f==null) // mebel customowy
 				{
 					Vibrator vibe = (Vibrator) act
 							.getSystemService(Activity.VIBRATOR_SERVICE);
 					vibe.vibrate(100);
-					User.dragType = "custom";
+					if(isCustomDrawning) User.dragType = "custom";
+					else User.dragType = "wall";
 					ClipData data = ClipData.newPlainText("type", "map");
 					DragShadowBuilder shadowBuilder = new View.DragShadowBuilder();
 					view.startDrag(data, shadowBuilder, null, 0);
 
-				} else // niesciana
+				} 
+				else // niesciana
 				{
 					// znajdz prostok¹t
-					FurnitureView f = findFurniture((int) xInit, (int) yInit);
+					
 					if (f == null)
 						Log.d("CLICK", "null");
 					else {
@@ -271,7 +289,7 @@ public class MapManager {
 
 	private FurnitureView findFurniture(int x, int y) {
 		for (int i = 0; i < sFv.size(); i++) {
-			if (pInRect(sFv.get(i).getRect(true), x, y))
+			if (pInRect(sFv.get(i).getRect(true), x, y,sFv.get(i).isWall))
 				return sFv.get(i);
 		}
 		return null;
@@ -286,8 +304,9 @@ public class MapManager {
 		}
 	}
 
-	static public Boolean pInRect(Rect r, int x, int y) {
-		if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) {
+	static public Boolean pInRect(Rect r, int x, int y, Boolean wall) {
+		int n = wall ? 5 : 0;
+		if (x >= r.left-n && x <= r.right+n && y >= r.top-n && y <= r.bottom+n) {
 			return true;
 		}
 		return false;
@@ -310,15 +329,23 @@ public class MapManager {
 		mMapArea.invalidate();
 
 		Boolean valid = true;
-		if (isWallDrawning && User.dragType == "custom") {
-			valid = isRectangleValid(f, f.getResizedRect(x, y));
-		} else {
+		if ((isCustomDrawning && User.dragType == "custom")) {
+			valid = isRectangleValid(f, f.getResizedRect(x, y,false));
+		}
+		else if(isWallDrawning && User.dragType == "wall"){
+			valid = isRectangleValid(f, f.getResizedRect(x, y,true));
+		}
+		else {
+			x-= 0.5*f.getWidth();
+			y-=0.5*f.getHeigth();
 			valid = isMoveValid(f, x, y);
 		}
 		if (mFurnitureShadow == null) {
 			if (valid) {
-				if (isWallDrawning && User.dragType == "custom")
-					f.resize(x, y);
+				if (isCustomDrawning && User.dragType == "custom")
+					f.resize(x, y,false);
+				else if (isWallDrawning && User.dragType == "wall")
+					f.resize(x, y,true);
 				else
 					f.move(x, y, true);
 				invalidate();
@@ -330,8 +357,10 @@ public class MapManager {
 		} else {
 			if (!valid) {
 
-				if (isWallDrawning && User.dragType == "custom")
-					mFurnitureShadow.resize(x, y);
+				if (isCustomDrawning && User.dragType == "custom")
+					mFurnitureShadow.resize(x, y,false);
+				else if (isWallDrawning && User.dragType == "wall")
+					mFurnitureShadow.resize(x, y,true);
 				else
 					mFurnitureShadow.move(x, y, true);
 				invalidate();
@@ -342,8 +371,10 @@ public class MapManager {
 				invalidate();
 				mFurnitureShadow = null;
 
-				if (isWallDrawning && User.dragType == "custom")
-					f.resize(x, y);
+				if (isCustomDrawning && User.dragType == "custom")
+					f.resize(x, y,false);
+				else if (isWallDrawning && User.dragType == "wall")
+					f.resize(x, y,true);
 				else
 					f.move(x, y, true);
 
@@ -379,6 +410,114 @@ public class MapManager {
 		return true;
 	}
 
+	public void dialogCustom(FurnitureView f) {
+		mDialog = new Dialog(ctx);
+		mDialog.setContentView(R.layout.l_view_dialog);
+		mDialog.setTitle("Mebel Niestandardowy");
+		mDialog.setCanceledOnTouchOutside(false);
+		mDialog.setCancelable(false);
+		
+		mNewCost = (EditText)mDialog.findViewById(R.id.new_cost);
+		mNewWidth = (EditText)mDialog.findViewById(R.id.new_width);
+		mNewHeight = (EditText)mDialog.findViewById(R.id.new_heigth);
+		mNewOk = (Button)mDialog.findViewById(R.id.new_ok);
+		mNewName= (EditText)mDialog.findViewById(R.id.new_name);
+		mFurnitureActive = f;
+	
+		mNewWidth.setText(String.valueOf(f.getWidth()));
+		mNewHeight.setText(String.valueOf(f.getHeigth()));
+		mDialog.show();
+		
+		mNewOk.setOnClickListener(new View.OnClickListener() {		
+	    	   public void onClick(View arg0) {
+	    		  
+	    		  	if(mNewWidth.getText().length()==0 || mNewHeight.getText().length()==0 || mNewName.getText().length()==0  || mNewCost.getText().length()==0  ){
+	    		  		Toast.makeText(ctx, "Pozostawiono Puste Pola", Toast.LENGTH_SHORT).show();
+	    		  		return;
+	    		  	}
+	    		  	int width = Integer.valueOf(mNewWidth.getText().toString());
+	    		  	int height = Integer.valueOf(mNewHeight.getText().toString());
+	    		  	int cost = Integer.valueOf(mNewCost.getText().toString());
+	    		  	if(width<1 || height<1){
+	    		  		Toast.makeText(ctx, "Rozmiar nie mo¿e byæ mniejszy od 1", Toast.LENGTH_SHORT).show();
+	    		  		return;
+	    		  	}
+	    		  	Rect tmp = mFurnitureActive.getRect(false);
+	    		  	tmp.right = tmp.left+width;
+	    		  	tmp.bottom = tmp.top+height;
+	    		  	if(!isRectangleValid(mFurnitureActive, tmp)){
+	    		  		Toast.makeText(ctx, "Nieprawid³owy rozmiar (kolizja z innym meblem)", Toast.LENGTH_LONG).show();
+	    		  		return;
+	    		  	}
+	    		  	mFurnitureActive.setRect(tmp);
+	    		  	mFurnitureActive.reference = new Furniture(mNewName.getText().toString(),Float.valueOf(cost),width,height);
+	    			Toast.makeText(ctx, "ok", Toast.LENGTH_LONG).show();
+	    			mFurnitureActive.isMoved = false;
+	    			mFurnitureActive = null;
+	    			mDialog.dismiss();
+	    			invalidate();
+	    	   }
+	    	});
+	}
+	
+	public void dialogWall(FurnitureView f) {
+		mDialog = new Dialog(ctx);
+		mDialog.setContentView(R.layout.l_view_wall);
+		mDialog.setTitle("Nowa Œciana");
+		mDialog.setCanceledOnTouchOutside(false);
+		mDialog.setCancelable(false);
+		
+		mWallWidth = (EditText)mDialog.findViewById(R.id.wall_length);	
+		mWallOk = (Button)mDialog.findViewById(R.id.new_wall_ok);
+		
+		mFurnitureActive = f;
+		Boolean horizontal = false;
+		if(f.getWidth()>f.getHeigth())horizontal =true; 
+		if(horizontal){
+			mWallWidth.setText(String.valueOf(f.getWidth()));	
+		}
+		else{
+			mWallWidth.setText(String.valueOf(f.getHeigth()));	
+		}
+		
+	
+		mDialog.show();
+		
+		mWallOk.setOnClickListener(new View.OnClickListener() {		
+	    	   public void onClick(View arg0) {
+	    		  
+	    		  	if(mWallWidth.getText().length()==0  ){
+	    		  		Toast.makeText(ctx, "Nie wpisano d³ugoœci", Toast.LENGTH_SHORT).show();
+	    		  		return;
+	    		  	}
+	    		  	int width = Integer.valueOf(mWallWidth.getText().toString());
+	    		  	
+	    		  	if(width<1){
+	    		  		Toast.makeText(ctx, "Dlugoœæ nie mo¿e byæ mniejsza od 1", Toast.LENGTH_SHORT).show();
+	    		  		return;
+	    		  	}
+	    		  	
+	    		  	Boolean horizontal = false;
+	    			if(mFurnitureActive.getWidth()>mFurnitureActive.getHeigth())horizontal =true; 
+	    			
+	    		  	Rect tmp = mFurnitureActive.getRect(false);
+	    		  	if(horizontal) tmp.right = tmp.left+width;
+	    		  	else tmp.bottom = tmp.top+width;
+	    		  	if(!isRectangleValid(mFurnitureActive, tmp)){
+	    		  		Toast.makeText(ctx, "Nieprawid³owy rozmiar (kolizja z innym meblem)", Toast.LENGTH_LONG).show();
+	    		  		return;
+	    		  	}
+	    		  	mFurnitureActive.setRect(tmp);
+	    		  	mFurnitureActive.reference = null;
+	    		  	mFurnitureActive.isWall=true;
+	    			mFurnitureActive.isMoved = false;
+	    			mFurnitureActive = null;
+	    			mDialog.dismiss();
+	    			invalidate();
+	    	   }
+	    	});
+	}
+	
 	public void drop(FurnitureView f) {
 		
 		
@@ -389,54 +528,11 @@ public class MapManager {
 		}
 		
 		if(User.dragType == "custom"){
-			mDialog = new Dialog(ctx);
-			mDialog.setContentView(R.layout.l_view_dialog);
-			mDialog.setTitle("Mebel Niestandardowy");
-			mDialog.setCanceledOnTouchOutside(false);
-			mDialog.setCancelable(false);
-			
-			mNewCost = (EditText)mDialog.findViewById(R.id.new_cost);
-			mNewWidth = (EditText)mDialog.findViewById(R.id.new_width);
-			mNewHeight = (EditText)mDialog.findViewById(R.id.new_heigth);
-			mNewOk = (Button)mDialog.findViewById(R.id.new_ok);
-			mNewName= (EditText)mDialog.findViewById(R.id.new_name);
-			mFurnitureActive = f;
-		
-			mNewWidth.setText(String.valueOf(f.getWidth()));
-			mNewHeight.setText(String.valueOf(f.getHeigth()));
-			mDialog.show();
-			
-			mNewOk.setOnClickListener(new View.OnClickListener() {		
-		    	   public void onClick(View arg0) {
-		    		  
-		    		  	if(mNewWidth.getText().length()==0 || mNewHeight.getText().length()==0 || mNewName.getText().length()==0  || mNewCost.getText().length()==0  ){
-		    		  		Toast.makeText(ctx, "Pozostawiono Puste Pola", Toast.LENGTH_SHORT).show();
-		    		  		return;
-		    		  	}
-		    		  	int width = Integer.valueOf(mNewWidth.getText().toString());
-		    		  	int height = Integer.valueOf(mNewHeight.getText().toString());
-		    		  	int cost = Integer.valueOf(mNewCost.getText().toString());
-		    		  	if(width<1 || height<1){
-		    		  		Toast.makeText(ctx, "Rozmiar nie mo¿e byæ mniejszy od 1", Toast.LENGTH_SHORT).show();
-		    		  		return;
-		    		  	}
-		    		  	Rect tmp = mFurnitureActive.getRect(false);
-		    		  	tmp.right = tmp.left+width;
-		    		  	tmp.bottom = tmp.top+height;
-		    		  	if(!isRectangleValid(mFurnitureActive, tmp)){
-		    		  		Toast.makeText(ctx, "Nieprawid³owy rozmiar (kolizja z innym meblem)", Toast.LENGTH_LONG).show();
-		    		  		return;
-		    		  	}
-		    		  	mFurnitureActive.setRect(tmp);
-		    		  	mFurnitureActive.reference = new Furniture(mNewName.getText().toString(),Float.valueOf(cost),width,height);
-		    			Toast.makeText(ctx, "ok", Toast.LENGTH_LONG).show();
-		    			mFurnitureActive.isMoved = false;
-		    			mFurnitureActive = null;
-		    			mDialog.dismiss();
-		    			invalidate();
-		    	   }
-		    	});
+			dialogCustom(f);
 		}
+		if(User.dragType == "wall"){
+			dialogWall(f);
+		}	
 		else if (mFurnitureActive != null) {
 			mFurnitureActive.isMoved = false;
 			mFurnitureActive = null;

@@ -5,7 +5,13 @@
         android:showAsAction="never" />
     
     
-    <item android:id="@+id/menu_wall"
+    <item android:id="@+id/menu_custom"
+        android:title="Mebel"
+        android:icon="@drawable/icon_custom"
+        android:orderInCategory="80"
+        android:showAsAction="always"/>
+     
+     <item android:id="@+id/menu_wall"
         android:title="Sciana"
         android:icon="@drawable/icon_wall"
         android:orderInCategory="80"

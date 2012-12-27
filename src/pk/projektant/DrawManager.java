@@ -111,7 +111,8 @@ public class DrawManager extends View{
 		int myWidth=((View)this.getParent()).getWidth();
 		int myHeigth=((View)this.getParent()).getHeight();
 		
-		if(mScale<0.3) gridSize = 30;
+		if(mScale<=0.2) gridSize = 60;
+		else if(mScale<0.3) gridSize = 30;
 		else if(mScale<0.6) gridSize = 20;
 		else if(mScale>3) gridSize = 5;
 		for(int i=0;true;i++)

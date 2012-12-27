@@ -43,6 +43,8 @@ public class ActivityDesigner extends SherlockActivity {
 	private Context ctx;
 	private  DragShadowBuilder shadowBuilder;
 	private MapManager mapManager;
+	private MenuItem menu_custom=null;
+	private MenuItem menu_wall=null;
 	List<Furniture> furnitureList; 
 	ArrayList<FurnitureView> sFurnitures;
 	 FurnitureListAdapter aa ;
@@ -198,8 +200,20 @@ public class ActivityDesigner extends SherlockActivity {
     		clearArea();
     		break;
     		
+    	case R.id.menu_custom:
+    		mapManager.isCustomDrawning = ! mapManager.isCustomDrawning;
+    		mapManager.isWallDrawning = false;
+    		menu_custom=item;
+    		if(menu_wall!= null ) menu_wall.setIcon(R.drawable.icon_wall);
+    		if(	mapManager.isCustomDrawning) 	item.setIcon(R.drawable.icon_custom_active);
+    		else							item.setIcon(R.drawable.icon_custom);		
+    		break;
+    		
     	case R.id.menu_wall:
     		mapManager.isWallDrawning = ! mapManager.isWallDrawning;
+    		mapManager.isCustomDrawning = false;
+    		menu_wall=item;
+    		if(menu_custom!= null ) menu_custom.setIcon(R.drawable.icon_custom);
     		if(	mapManager.isWallDrawning) 	item.setIcon(R.drawable.icon_wall_active);
     		else							item.setIcon(R.drawable.icon_wall);		
     		break;
