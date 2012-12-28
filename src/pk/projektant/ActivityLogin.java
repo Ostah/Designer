@@ -81,6 +81,7 @@ public class ActivityLogin extends Activity {
        
      
 	if(User.isUserSet()){
+		String mail = User.get(ctx).getName();
     	   if(User.get(ctx).getRemember())
     	   {
     		   isRemembered = true;
@@ -139,8 +140,7 @@ public class ActivityLogin extends Activity {
     	try 
     	{
 			JSONObject jObject = new JSONObject(data);
-			User.get(ctx).set(jObject.getString("id"), jObject.getString("name"), jObject.getString("surname"), jObject.getString("password"), Long.valueOf(jObject.getString("registrationDate")), jObject.getString("email"), jObject.getString("role"),remember.isChecked());
-			User.save();
+			User.get(ctx).set(jObject.getString("id"), jObject.getString("name"), jObject.getString("surname"), jObject.getString("password"), jObject.getString("registrationDate"), jObject.getString("email"), jObject.getString("role"),remember.isChecked());
     	} 
     	catch (JSONException e) 
     	{
@@ -173,8 +173,10 @@ public class ActivityLogin extends Activity {
             }
             else
             {
-                nameValuePairs.add(new BasicNameValuePair("username", txt_username.getText().toString()));
-                nameValuePairs.add(new BasicNameValuePair("password", AeSimpleSHA1.SHA1( txt_password.getText().toString())));	
+            	     nameValuePairs.add(new BasicNameValuePair("username","ja@piotrpaul.pl"));
+             //   nameValuePairs.add(new BasicNameValuePair("username", txt_username.getText().toString()));
+             // nameValuePairs.add(new BasicNameValuePair("password", AeSimpleSHA1.SHA1( txt_password.getText().toString())));	
+                nameValuePairs.add(new BasicNameValuePair("password", "dd1a4bddd89315868df7009f38b2cd582b1d7a65"));		
             }
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
@@ -195,11 +197,7 @@ public class ActivityLogin extends Activity {
         catch (IOException e) {
         	connectionError = true;
         	 Log.d("IOException", e.getLocalizedMessage());
-        } catch (NoSuchAlgorithmException e) {
-        	connectionError = true;
-       	 Log.d("SHA1 Error", e.getLocalizedMessage());
-			e.printStackTrace();
-		}
+        } 
         return null;
     }
   

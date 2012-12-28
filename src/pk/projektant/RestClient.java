@@ -12,11 +12,15 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 
 public class RestClient {
@@ -32,7 +36,7 @@ public class RestClient {
 	private String response;
 
 	public enum RequestMethod {
-		GET, POST
+		GET, POST, DELETE, PUT
 	}
 
 	public String getResponse() {
@@ -80,7 +84,7 @@ public class RestClient {
 			}
 
 			HttpGet request = new HttpGet(url + combinedParams);
-
+		
 			// add headers
 			for (NameValuePair h : headers) {
 				request.addHeader(h.getName(), h.getValue());
@@ -91,6 +95,37 @@ public class RestClient {
 		}
 		case POST: {
 			HttpPost request = new HttpPost(url);
+
+			// add headers
+			for (NameValuePair h : headers) {
+				request.addHeader(h.getName(), h.getValue());
+			}
+
+			if (!params.isEmpty()) {
+				request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+			}
+
+			executeRequest(request, url);
+			break;
+		}
+		case DELETE: {
+			HttpDelete request = new HttpDelete(url);
+
+			// add headers
+			for (NameValuePair h : headers) {
+				request.addHeader(h.getName(), h.getValue());
+			}
+
+			if (!params.isEmpty()) {
+				BasicHttpParams a = new BasicHttpParams();
+			}
+
+			executeRequest(request, url);
+			break;
+		}
+		
+		case PUT: {
+			HttpPut request = new HttpPut(url);
 
 			// add headers
 			for (NameValuePair h : headers) {

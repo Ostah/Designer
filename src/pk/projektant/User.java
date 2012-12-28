@@ -16,10 +16,10 @@ public final class User {
     private static String name;
     private static String surname;
     private static String password;
-    private static long registrationDate;
+    private static String registrationDate;
     private static String email;
     private static String role;
-    private static Boolean remember;
+    private static Boolean remember=false;
     
     public static String dragType="";
     
@@ -48,7 +48,7 @@ public final class User {
         return instance;
     }
  
-    public void set(String id, String name, String surname, String password, long registration, String email, String role, Boolean remember){
+    public void set(String id, String name, String surname, String password, String registration, String email, String role, Boolean remember){
     	User.id=id;
     	User.name=name;
     	User.surname=surname;
@@ -67,7 +67,7 @@ public final class User {
     	name="";
     	surname="";
     	password="";
-    	registrationDate=0;
+    	registrationDate="";
     	email="";
     	role="";
     	remember = false;
@@ -85,7 +85,7 @@ public final class User {
     	editor.putString("password", password);
     	editor.putString("email", email);
     	editor.putString("role", role);
-    	editor.putLong("registrationDate", registrationDate);
+    	editor.putString("registrationDate", registrationDate);
     	editor.putBoolean("remember", remember);
     	editor.commit();
     }
@@ -97,11 +97,11 @@ public final class User {
     	password=pref.getString("password", "");
     	email=pref.getString("email", "");
     	role=pref.getString("role", "");
-    	registrationDate=pref.getLong("registrationDate", 0);
+    	registrationDate=pref.getString("registrationDate", "");
     	remember =pref.getBoolean("remember", false);
     }
     static public Boolean isUserSet(){
-    	return(email != null && email!="null" && email != "" );
+    	return(email != null && !email.equalsIgnoreCase("null") && email != "" );
     }
     // ¿eby unikn¹æ automatycznego tworzenia domyœlnego, publicznego, bezargumentowego konstruktora
     private User() {
@@ -111,7 +111,7 @@ public final class User {
     	name="";
     	surname="";
     	password="";
-    	registrationDate=0;
+    	registrationDate="";
     	email="";
     	role="";
     	remember = false;
@@ -151,11 +151,11 @@ public final class User {
 		this.password = password;
 	}
 
-	public long getRegistrationDate() {
+	public String getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(long registrationDate) {
+	public void setRegistrationDate(String registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 

@@ -530,7 +530,7 @@ public class MapManager {
 		if(User.dragType == "custom"){
 			dialogCustom(f);
 		}
-		if(User.dragType == "wall"){
+		else if(User.dragType == "wall"){
 			dialogWall(f);
 		}	
 		else if (mFurnitureActive != null) {

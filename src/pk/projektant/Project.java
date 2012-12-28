@@ -4,20 +4,33 @@ import java.util.ArrayList;
 
 public class Project {
 	String mName;
-	String mId;
-	long mDate;
+	String mDescription="";
+	int mId=0;
+	long mDateCreation=0;
+	long mDateUpdate=0;
+	
 	ArrayList<FurnitureView> mFurnitures;
 	
 	Project(String name, long date, ArrayList<FurnitureView> f){
 		mName=name;
-		mDate=date;
+		mDateCreation=date;
+		mFurnitures=f;
+		
+	}
+	
+	Project(int id,String name, String description, long dateCreation, long dateUpdate, ArrayList<FurnitureView> f){
+		mId=id;
+		mName=name;
+		mDescription=description;
+		mDateCreation=dateCreation;
+		mDateUpdate=dateUpdate;
 		mFurnitures=f;
 		
 	}
 	
 	Project(String name, long date){
 		mName=name;
-		mDate=date;
+		mDateCreation=date;
 		mFurnitures=new ArrayList<FurnitureView>() ;
 		
 	}
