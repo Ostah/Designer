@@ -20,6 +20,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 
@@ -143,11 +144,14 @@ public class RestClient {
 	}
 
 	private void executeRequest(HttpUriRequest request, String url) {
-		HttpClient client = new DefaultHttpClient();
+		 final HttpParams httpParams = new BasicHttpParams();
+		    HttpConnectionParams.setConnectionTimeout(httpParams, 20000);
+		HttpClient client = new DefaultHttpClient(httpParams);
 
 		HttpResponse httpResponse;
 
 		try {
+	
 			httpResponse = client.execute(request);
 			responseCode = httpResponse.getStatusLine().getStatusCode();
 			message = httpResponse.getStatusLine().getReasonPhrase();

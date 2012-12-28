@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import pk.projektant.RestClient.RequestMethod;
 
+import android.view.MotionEvent;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -34,16 +35,21 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnTouchListener;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -64,15 +70,19 @@ public class ActivityProjects extends SherlockActivity {
 	FrameLayout mPreviewLayout;
 	Boolean first_time;
 	DrawManager mPreviewDraw; 
+	Project mCreatedProject=null;
 	Context ctx;
 	ProjectsListAdapter myAdapter;
 	int mLastPos=0;
-	Boolean mConnectionError=false;
+	Boolean mConnectionError=false, mDeleted=false;
+	Dialog mDialog;
+	EditText mDialogName, mDialogDescription;
+	Button mDialogOK, mDialogCancel;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.l_view_projects);
-		
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 		mPreviewLayout = (FrameLayout) findViewById(R.id.preview_layout);
 		mListProjects = (ListView) findViewById(R.id.projects_list);
 		mTitle = (TextView) findViewById(R.id.projects_title);
@@ -147,6 +157,27 @@ public class ActivityProjects extends SherlockActivity {
 		return true;
 	}
 	
+	public void eraseProjectDB(){
+		mDeleted=false;
+		if(mActiveProject==null) return;
+		if(mActiveProject.mId<=0) return;
+		
+		RestClient connection = new RestClient("http://designercms.herokuapp.com/project/"+ String.valueOf(mActiveProject.mId));
+		try {
+			connection.Execute(RequestMethod.DELETE);	 	
+        	String response = connection.getResponse();
+        	if(response.contains("Deleted")){
+        		mDeleted=true;
+	        }
+    
+		} catch (Exception e) {
+			mConnectionError=true;
+			e.printStackTrace();
+			
+		}
+		
+	}
+	
 	public void editProject() {
 		 User.get(ctx).mActiveProject=mActiveProject;
 		 Intent prefIntent = new Intent(ctx,ActivityDesigner.class);
@@ -159,13 +190,8 @@ public class ActivityProjects extends SherlockActivity {
 
 	    builder.setPositiveButton("TAK", new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int which) {
-		        User.get(ctx).mProjects.remove(mActiveProject);
-		        myAdapter.notifyDataSetChanged();
-		        mTitle.setText(".");
-	    		mDate.setText(".");
-	    		mCost.setText(".");
-	    		mPreviewDraw.clear();
-	    		 Toast.makeText(ctx, "Usuniêto Projekt", Toast.LENGTH_SHORT).show();
+	        	ThreadDeleteProject task= new ThreadDeleteProject();
+	 		   	task.execute();	 
 		        dialog.dismiss();
 		        
 	        }
@@ -178,54 +204,102 @@ public class ActivityProjects extends SherlockActivity {
 	        }
 	    });
 	 
-	   
-
-	    AlertDialog  alert = builder.create();
-	    
+	    AlertDialog  alert = builder.create();  
 	    alert.show();
 	 
 	}
+
+	protected void hideKeyboard(View view) {
+		InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		in.hideSoftInputFromWindow(view.getWindowToken(),
+				InputMethodManager.HIDE_NOT_ALWAYS);
+	}
+	public void dialogCreate() {
+		mDialog = new Dialog(ctx);
+		mDialog.setContentView(R.layout.l_view_new_project);
+		mDialog.setTitle("Nowy Projekt");
+		mDialog.setCanceledOnTouchOutside(false);
+		mDialog.setCancelable(false);
+		
+		LinearLayout l = (LinearLayout) mDialog.findViewById(R.id.new_project_layoutroot);
+		l.setOnTouchListener(new OnTouchListener()
+		{
+    	    public boolean onTouch(View view, MotionEvent ev)
+    	    {
+    	        hideKeyboard(view);
+    	        return false;
+    	    }
+    	});
+		mDialogName = (EditText) mDialog.findViewById(R.id.new_project_name);
+		mDialogDescription= (EditText) mDialog.findViewById(R.id.new_project_description);		 
+		mDialogOK = (Button) mDialog.findViewById(R.id.new_project_ok);
+		mDialogCancel = (Button) mDialog.findViewById(R.id.new_project_cancel);
+		
+		mDialogOK.setOnClickListener(new View.OnClickListener() {		
+	    	   public void onClick(View arg0) {
+	    		  String value = mDialogName.getText().toString();    		
+	     		  if(!value.isEmpty()){	    			  
+	     			  Project p = new Project(value,System.currentTimeMillis());
+	     			  p.mDescription= mDialogDescription.getText().toString();
+	     			  User.get(ctx).mProjects.add(p);
+	     			  User.get(ctx).mActiveProject=p;
+	     			  mCreatedProject=p;
+	  	              myAdapter.notifyDataSetChanged();
+	  	              ThreadNewProject task = new ThreadNewProject();
+	  	              task.execute();	 
+	  	              mDialog.dismiss();
+	     		  }
+	     		  else{
+	     			  Toast.makeText(ctx, "Nazwa projektu nie mo¿e byæ pusta", Toast.LENGTH_LONG).show();
+	     		  }
+	   
+	    	   }
+	    });
+		
+		mDialogCancel.setOnClickListener(new View.OnClickListener() {		
+	    	   public void onClick(View arg0) {
+	    		   mDialog.dismiss();
+	    	   }
+	    });
+		
+		mDialog.show();
+	}
+
 	
 	
-
-	public void newProject() {
-		AlertDialog.Builder alert = new AlertDialog.Builder(this);
-		alert.setTitle("Nowy Projekt");
-		alert.setMessage("Podaj Nazwê Projektu");
-		final EditText input = new EditText(this);
-	
-		alert.setView(input);
-
-		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		public void onClick(DialogInterface dialog, int whichButton) {
-		  String value = input.getText().toString();    		
-    		  if(!value.isEmpty()){	    			  
-    			  Project p = new Project(value,System.currentTimeMillis());
-    			  User.get(ctx).mProjects.add(p);
-    			  User.get(ctx).mActiveProject=p;
-    			 // Intent prefIntent = new Intent(ctx,ActivityDesigner.class);
- 	              //ctx.startActivity(prefIntent);
- 	              myAdapter.notifyDataSetChanged();
- 	             Toast.makeText(ctx, "Utworzono nowy projekt", Toast.LENGTH_LONG).show();
-    		  }
-    		  else{
-    			  Toast.makeText(ctx, "Nazwa projektu nie mo¿e byæ pusta", Toast.LENGTH_LONG).show();
-    		  }
-		  }
-		});
-
-		alert.setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
-		  public void onClick(DialogInterface dialog, int whichButton) {
-		  }
-		});
-
-		alert.show();
+	private void uploadNewProject(){
+		JSONProjectSimple proj = new JSONProjectSimple(mCreatedProject);
+		mConnectionError=false;
+		RestClient connection = new RestClient("http://designercms.herokuapp.com/project/");
+		connection.AddParam("username", User.get(ctx).getEmail());
+		connection.AddParam("password", User.get(ctx).getPassword());
+		connection.AddParam("title", proj.mTitle);
+		connection.AddParam("desc", proj.mDescription);
+		connection.AddParam("walls", proj.mWalls);
+		connection.AddParam("furniture", proj.mFurnitures);
+		
+		try {
+			connection.Execute(RequestMethod.POST);	 	
+        	String response = connection.getResponse();
+        	if(response == "WrongCredentionals"){
+	        	Toast.makeText(ctx, "Z³e dane u¿ytkownika", Toast.LENGTH_LONG).show();
+	   
+	        }
+    
+		} catch (Exception e) {
+			mConnectionError=true;
+			e.printStackTrace();
+			
+		}
 		
 	}
 	
 	private void updateList(){
 		ThreadGetProjects task = new ThreadGetProjects();
-		   task.execute();	 
+		task.execute();	 
+	}
+	public void newProject() {
+		dialogCreate();
 	}
 	private void getProjects(){
 		mConnectionError=false;
@@ -250,17 +324,6 @@ public class ActivityProjects extends SherlockActivity {
 		furnit.add(new FurnitureView(this,150,300,Tokenizer.sFurnitures.get(7)));
 		 p = new Project("Projekt3",System.currentTimeMillis(),new ArrayList<FurnitureView>(furnit));
 		 User.get(this).mProjects.add(p);
-		 
-		
-		
-		
-	}
-	private String[] getStringArray(ArrayList<Project> a){
-		String[] toReturn = new String[a.size()];
-		for(int i=0 ;i<a.size();i++){
-			toReturn[i]=a.get(i).mName;
-		}
-		return toReturn;
 		
 	}
 	
@@ -269,7 +332,6 @@ public class ActivityProjects extends SherlockActivity {
 		connection.AddParam("username", User.get(ctx).getEmail());
 		connection.AddParam("password", User.get(ctx).getPassword());
 
-		
 		try {
 			connection.Execute(RequestMethod.GET);	 	
         	String response = connection.getResponse();
@@ -349,6 +411,75 @@ public class ActivityProjects extends SherlockActivity {
 				}
 				else{
 					Toast.makeText(ctx,"Lista Projektów zaktualizowana", Toast.LENGTH_SHORT).show();	
+				}
+				
+	    	}
+			
+		}
+	  
+	  private class ThreadNewProject extends AsyncTask<Void, Void, Void> {
+			private ProgressDialog Dialog;
+
+			protected void onPreExecute() {
+				Dialog = new ProgressDialog(ctx);
+				Dialog.setMessage("Zapisywanie Projektu");
+				Dialog.setCanceledOnTouchOutside(false);
+				Dialog.setCancelable(false);
+				Dialog.show();
+			}
+
+			protected Void doInBackground(Void... arg0) {
+				uploadNewProject();
+				return null;
+			}
+
+			protected void onPostExecute(Void unused) {
+				myAdapter.notifyDataSetChanged();
+				Dialog.dismiss();	
+				if(mConnectionError)
+				{
+					Toast.makeText(ctx,"B³¹d Po³¹czenia, Projekt nie zostal wyslany", Toast.LENGTH_SHORT).show();	
+				}
+				
+	    	}
+			
+		}
+	  
+	  private class ThreadDeleteProject extends AsyncTask<Void, Void, Void> {
+			private ProgressDialog Dialog;
+
+			protected void onPreExecute() {
+				Dialog = new ProgressDialog(ctx);
+				Dialog.setMessage("Usuwanie");
+				Dialog.setCanceledOnTouchOutside(false);
+				Dialog.setCancelable(false);
+				Dialog.show();
+			}
+
+			protected Void doInBackground(Void... arg0) {
+				eraseProjectDB();
+				return null;
+			}
+
+			protected void onPostExecute(Void unused) {
+				myAdapter.notifyDataSetChanged();
+				Dialog.dismiss();	
+				
+				if(mConnectionError)
+				{
+					Toast.makeText(ctx,"B³¹d Po³¹czenia, Projekt nie zostal usuniêty", Toast.LENGTH_SHORT).show();	
+				}
+				else if(!mDeleted){
+					Toast.makeText(ctx,"Projekt nie móg³ zostaæ usuniêty", Toast.LENGTH_SHORT).show();	
+				}
+				else {
+					 User.get(ctx).mProjects.remove(mActiveProject);
+				     myAdapter.notifyDataSetChanged();
+				     mTitle.setText(".");
+				     mDate.setText(".");
+				     mCost.setText(".");
+				     mPreviewDraw.clear();
+				     Toast.makeText(ctx, "Usuniêto Projekt", Toast.LENGTH_SHORT).show();
 				}
 				
 	    	}

@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.MotionEvent;
 import android.view.View.DragShadowBuilder;
 import android.view.View.OnTouchListener;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -60,7 +61,7 @@ public class ActivityDesigner extends SherlockActivity {
         super.onCreate(savedInstanceState);
         ctx = this;
         setContentView(R.layout.l_view_designer);
-      
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         searchText = (TextView) findViewById(R.id.search_text);
         furnitureList = Tokenizer.sFurnitures;
         LinearLayout temporat = ( LinearLayout ) findViewById( R.id.LinearLayout2);
@@ -68,16 +69,7 @@ public class ActivityDesigner extends SherlockActivity {
         listViewCity = ( ListView ) findViewById( R.id.listFurnitures);
          aa =  new FurnitureListAdapter(ctx, R.layout.l_view_list_element, furnitureList );
         listViewCity.setAdapter(aa ); 
-        
-//        LinearLayout rootLay = (LinearLayout)findViewById(R.id.LinearLayout2); 
-//        rootLay.setOnTouchListener(new OnTouchListener()
-//        {
-//            public boolean onTouch(View view, MotionEvent ev)
-//            {
-//                hideKeyboard(view);
-//                return false;
-//            }
-//        });
+
         
         
         mapArea = (FrameLayout)findViewById(R.id.FrameLaytoDraw);     
@@ -248,4 +240,6 @@ public class ActivityDesigner extends SherlockActivity {
          return true;
     }};
      
+    
+    
 }
