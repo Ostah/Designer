@@ -2,11 +2,9 @@ package pk.projektant;
 
 import android.content.Context;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.DragEvent;
 import android.view.View;
 import android.view.View.OnDragListener;
-import android.widget.TextView;
 
 class MyDragNewListener implements OnDragListener {
 	  static FurnitureView activeFurniture;
@@ -36,9 +34,7 @@ class MyDragNewListener implements OnDragListener {
 		    	}
 		    	else if(User.dragType == "custom"||User.dragType == "wall")
 		    	{
-		    		
-		    		int aaa = mapManager.mMapArea.getTop() ;
-		    		activeFurniture = new FurnitureView(mapManager.tPX((int) (event.getX()- mapManager.onScreenX)),mapManager.tPY((int) (event.getY()-mapManager.onScreenY)));
+		    		activeFurniture = new FurnitureView(MapManager.tPX((int) (event.getX()- MapManager.onScreenX)),MapManager.tPY((int) (event.getY()-MapManager.onScreenY)));
 		    		mapManager.addFurniture(activeFurniture);
 		    		if(User.dragType == "wall"){
 		    			activeFurniture.isWall=true;

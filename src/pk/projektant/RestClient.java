@@ -54,8 +54,8 @@ public class RestClient {
 
 	public RestClient(String url) {
 		this.url = url;
-		params = new ArrayList();
-		headers = new ArrayList();
+		params = new ArrayList<NameValuePair>();
+		headers = new ArrayList<NameValuePair>();
 	}
 
 	public void AddParam(String name, String value) {
@@ -115,10 +115,6 @@ public class RestClient {
 			// add headers
 			for (NameValuePair h : headers) {
 				request.addHeader(h.getName(), h.getValue());
-			}
-
-			if (!params.isEmpty()) {
-				BasicHttpParams a = new BasicHttpParams();
 			}
 
 			executeRequest(request, url);

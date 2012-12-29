@@ -31,6 +31,7 @@ public class Project {
 	Project(String name, long date){
 		mName=name;
 		mDateCreation=date;
+		mDateUpdate=date;
 		mFurnitures=new ArrayList<FurnitureView>() ;
 		
 	}

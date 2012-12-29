@@ -2,8 +2,6 @@ package pk.projektant;
 
 import java.util.ArrayList;
 
-
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -26,7 +24,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,11 +38,12 @@ public class MapManager {
 	private Button mNewOk,mWallOk;
 	private Dialog mDialog;
 
+
 	
 	public ArrayList<FurnitureView> sFv;
 	static private Context ctx;
 	public static DrawManager drawManager;
-	private Activity act;
+	private ActivityDesigner act;
 	private float yInit = 0.0f;
 	private float xInit = 0.0f;
 	private float yAct = 0.0f;
@@ -55,8 +53,6 @@ public class MapManager {
 	public Boolean isCustomDrawning = false;
 	public Boolean isWallDrawning = false;
 
-	private float xDown = 0.0f;
-	private float yDown = 0.0f;
 	ScaleGestureDetector scaleGestureDetector;
 	
 	public static int mOffsetXBefore = 0;
@@ -78,14 +74,14 @@ public class MapManager {
 	// ----------------------------
 
 	public static int tPX(int p) {
-		return new Integer((int) ((p - drawManager.mOffsetX) / drawManager.mScale));
+		return Integer.valueOf((int) ((p - drawManager.mOffsetX) / drawManager.mScale));
 	}
 
 	public static int tPY(int p) {
-		return new Integer((int) ((p - drawManager.mOffsetY) / drawManager.mScale));
+		return Integer.valueOf((int) ((p - drawManager.mOffsetY) / drawManager.mScale));
 	}
 
-	MapManager(FrameLayout mapArea, Context context, Activity a,ArrayList<FurnitureView> l) {
+	MapManager(FrameLayout mapArea, Context context, ActivityDesigner a,ArrayList<FurnitureView> l) {
 		sFv = new ArrayList<FurnitureView>(l.size());
 		for(int i=0;i<l.size();i++) sFv.add(l.get(i).clone());
 
@@ -255,7 +251,7 @@ public class MapManager {
 
 		Dialog dialog = new Dialog(ctx);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.setContentView(R.layout.l_view_properties);
+		dialog.setContentView(R.layout.l_view_dialog_properties);
 
 		TextView text = (TextView) dialog.findViewById(R.id.properties_text);
 		text.setMovementMethod(new ScrollingMovementMethod());
@@ -412,7 +408,7 @@ public class MapManager {
 
 	public void dialogCustom(FurnitureView f) {
 		mDialog = new Dialog(ctx);
-		mDialog.setContentView(R.layout.l_view_dialog);
+		mDialog.setContentView(R.layout.l_view_dialog_furniture);
 		mDialog.setTitle("Mebel Niestandardowy");
 		mDialog.setCanceledOnTouchOutside(false);
 		mDialog.setCancelable(false);
@@ -462,7 +458,7 @@ public class MapManager {
 	
 	public void dialogWall(FurnitureView f) {
 		mDialog = new Dialog(ctx);
-		mDialog.setContentView(R.layout.l_view_wall);
+		mDialog.setContentView(R.layout.l_view_dialog_wall);
 		mDialog.setTitle("Nowa Œciana");
 		mDialog.setCanceledOnTouchOutside(false);
 		mDialog.setCancelable(false);
@@ -512,6 +508,7 @@ public class MapManager {
 	    		  	mFurnitureActive.isWall=true;
 	    			mFurnitureActive.isMoved = false;
 	    			mFurnitureActive = null;
+	    			act.hideKeyboard((View)mWallOk);
 	    			mDialog.dismiss();
 	    			invalidate();
 	    	   }

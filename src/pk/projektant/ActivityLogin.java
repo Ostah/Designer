@@ -59,7 +59,7 @@ public class ActivityLogin extends Activity {
     	
     	ctx = this;
        super.onCreate(savedInstanceState);
-       setContentView(R.layout.l_view_login); 
+       setContentView(R.layout.l_activity_login); 
        Tokenizer.open(getResources().openRawResource(R.raw.data));
        btn = (Button) findViewById(R.id.login_button_go);
        register = (Button) findViewById(R.id.login_button_register);
@@ -81,7 +81,6 @@ public class ActivityLogin extends Activity {
        
      
 	if(User.isUserSet()){
-		String mail = User.get(ctx).getName();
     	   if(User.get(ctx).getRemember())
     	   {
     		   isRemembered = true;

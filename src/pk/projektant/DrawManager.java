@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.widget.FrameLayout;
 import android.view.View;
 
 public class DrawManager extends View{

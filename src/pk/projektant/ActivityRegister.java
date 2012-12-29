@@ -31,7 +31,7 @@ public class ActivityRegister extends Activity {
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.l_view_register);
+		setContentView(R.layout.l_activity_register);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		name = (TextView) findViewById(R.id.register_name);

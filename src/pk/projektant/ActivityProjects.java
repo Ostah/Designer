@@ -2,56 +2,31 @@ package pk.projektant;
 
 
 
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.ParseException;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import pk.projektant.RestClient.RequestMethod;
-
-import android.view.MotionEvent;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,7 +34,6 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 
 public class ActivityProjects extends SherlockActivity {
 
@@ -81,7 +55,7 @@ public class ActivityProjects extends SherlockActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.l_view_projects);
+		setContentView(R.layout.l_activity_projects);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 		mPreviewLayout = (FrameLayout) findViewById(R.id.preview_layout);
 		mListProjects = (ListView) findViewById(R.id.projects_list);
@@ -93,7 +67,7 @@ public class ActivityProjects extends SherlockActivity {
 		myAdapter = new ProjectsListAdapter(this, User.get(this).mProjects);
 		mListProjects.setAdapter(myAdapter);
 		mListProjects.setOnItemClickListener(new OnItemClickListener() { 
-	        public void onItemClick(AdapterView arg0, View arg1, int pos,
+	        public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
 	            long arg3) {
 	        		listClicked(pos);
 	        }
@@ -116,6 +90,7 @@ public class ActivityProjects extends SherlockActivity {
 		super.onResume();
 	}
 
+	@SuppressWarnings("deprecation")
 	private void listClicked(int pos){
 		mActiveProject =User.get(this).mProjects.get(pos); 
 		mTitle.setText(User.get(this).mProjects.get(pos).mName);
@@ -148,7 +123,7 @@ public class ActivityProjects extends SherlockActivity {
 	    		break;
 	    	case R.id.menu_logout :
 	    		Log.d("options", "logout");
-	    		User.get(ctx).clear();
+	    		User.clear();
 	    		Intent prefIntent = new Intent(this,ActivityLogin.class);
 	            this.startActivity(prefIntent);
 	    	
@@ -221,7 +196,7 @@ public class ActivityProjects extends SherlockActivity {
 	}
 	public void dialogCreate() {
 		mDialog = new Dialog(ctx);
-		mDialog.setContentView(R.layout.l_view_new_project);
+		mDialog.setContentView(R.layout.l_view_dialog_project);
 		mDialog.setTitle("Nowy Projekt");
 		mDialog.setCanceledOnTouchOutside(false);
 		mDialog.setCancelable(false);
@@ -322,53 +297,34 @@ public class ActivityProjects extends SherlockActivity {
 	private void getProjects(){
 		mConnectionError=false;
 		User.get(this).mProjects.clear();
-		getProjectsList();  
-		
-//		ArrayList<FurnitureView> furnit = new ArrayList<FurnitureView>();
-//		
-//		furnit.add(new FurnitureView(100,100,Tokenizer.sFurnitures.get(0)));
-//		Project p = new Project("Projekt1",System.currentTimeMillis(),new ArrayList<FurnitureView>(furnit));
-//		User.get(this).mProjects.add(p);
-//		
-//		furnit.clear();
-//		furnit.add(new FurnitureView(100,100,Tokenizer.sFurnitures.get(0)));
-//		furnit.add(new FurnitureView(300,300,Tokenizer.sFurnitures.get(5)));
-//		 p = new Project("Projekt2",System.currentTimeMillis(),new ArrayList<FurnitureView>(furnit));
-//		 User.get(this).mProjects.add(p);
-//		 
-//		 furnit.clear();
-//		furnit.add(new FurnitureView(100,100,Tokenizer.sFurnitures.get(0)));
-//		furnit.add(new FurnitureView(300,300,Tokenizer.sFurnitures.get(5)));
-//		furnit.add(new FurnitureView(150,300,Tokenizer.sFurnitures.get(7)));
-//		 p = new Project("Projekt3",System.currentTimeMillis(),new ArrayList<FurnitureView>(furnit));
-//		 User.get(this).mProjects.add(p);
-		
+		getProjectsList();  	
 	}
 	
-	private Project getOneProject(int id) {
-		RestClient connection = new RestClient("http://designercms.herokuapp.com/project/"+ String.valueOf(id));
-		connection.AddParam("username", User.get(ctx).getEmail());
-		connection.AddParam("password", User.get(ctx).getPassword());
-
-		try {
-			connection.Execute(RequestMethod.GET);	 	
-        	String response = connection.getResponse();
-        	if(response == "WrongCredentionals"){
-	        	Toast.makeText(ctx, "Z쿮 dane u퓓tkownika", Toast.LENGTH_LONG).show();
-	        	return null;
-	        }
-        	
-        	JsonReader reader = new JsonReader(new StringReader(response));
-        	 Gson myGson = new Gson();
-        	 JSONProjectSimple proj  = myGson.fromJson(response,JSONProjectSimple.class) ;
-        	 return proj.toProject();
-		} catch (Exception e) {
-			mConnectionError=true;
-			e.printStackTrace();
-			
-		}
-		return null;
-	}
+	
+//	funkcja ze starego API
+//	private Project getOneProject(int id) {
+//		RestClient connection = new RestClient("http://designercms.herokuapp.com/project/"+ String.valueOf(id));
+//		connection.AddParam("username", User.get(ctx).getEmail());
+//		connection.AddParam("password", User.get(ctx).getPassword());
+//
+//		try {
+//			connection.Execute(RequestMethod.GET);	 	
+//        	String response = connection.getResponse();
+//        	if(response == "WrongCredentionals"){
+//	        	Toast.makeText(ctx, "Z쿮 dane u퓓tkownika", Toast.LENGTH_LONG).show();
+//	        	return null;
+//	        }
+//        	
+//        	 Gson myGson = new Gson();
+//        	 JSONProjectSimple proj  = myGson.fromJson(response,JSONProjectSimple.class) ;
+//        	 return proj.toProject();
+//		} catch (Exception e) {
+//			mConnectionError=true;
+//			e.printStackTrace();
+//			
+//		}
+//		return null;
+//	}
 	
 	private void getProjectsList(){
 	        RestClient connection = new RestClient("http://designercms.herokuapp.com/project/");
@@ -383,16 +339,11 @@ public class ActivityProjects extends SherlockActivity {
 		        	Toast.makeText(ctx, "Z쿮 dane u퓓tkownika", Toast.LENGTH_LONG).show();
 		        	return;
 		        }
-		       
-	        	//JSONArray jObject = null;
-				//jObject = new JSONArray(response);		
-				 
+		 		 
 				Gson myGson = new Gson();
 				JSONProjectSimple[] furnitures = myGson.fromJson(response, JSONProjectSimple[].class);
 				
-				for(int i=0;i<furnitures.length;i++){
-					//Gson myGson = new Gson();
-					//JSONProjectSimple pSimple  = myGson.fromJson(jObject.getJSONObject(i).toString(),JSONProjectSimple.class) ;		
+				for(int i=0;i<furnitures.length;i++){		
 					 User.get(this).mProjects.add(furnitures[i].toProject());
 				}
 	      

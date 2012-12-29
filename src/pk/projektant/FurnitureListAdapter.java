@@ -5,19 +5,16 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.provider.SyncStateContract.Constants;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.LayoutInflater.Filter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class FurnitureListAdapter extends ArrayAdapter{
+public class FurnitureListAdapter extends ArrayAdapter<Furniture>{
 	
 	private int resource;
 	private Context context;
@@ -77,7 +74,7 @@ public class FurnitureListAdapter extends ArrayAdapter{
 		return data.size();
 	}
 
-	public Object getItem(int arg0) {
+	public Furniture getItem(int arg0) {
 		// TODO Auto-generated method stub
 		return data.get(arg0);
 	}

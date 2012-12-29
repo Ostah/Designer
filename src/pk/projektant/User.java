@@ -1,6 +1,5 @@
 package pk.projektant;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import android.content.Context;
@@ -124,7 +123,7 @@ public final class User {
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		User.id = id;
 	}
 
 	public String getName() {
@@ -132,7 +131,7 @@ public final class User {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		User.name = name;
 	}
 
 	public String getSurname() {
@@ -140,7 +139,7 @@ public final class User {
 	}
 
 	public void setSurname(String surname) {
-		this.surname = surname;
+		User.surname = surname;
 	}
 
 	public String getPassword() {
@@ -148,7 +147,7 @@ public final class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		User.password = password;
 	}
 
 	public String getRegistrationDate() {
@@ -156,7 +155,7 @@ public final class User {
 	}
 
 	public void setRegistrationDate(String registrationDate) {
-		this.registrationDate = registrationDate;
+		User.registrationDate = registrationDate;
 	}
 
 	public String getEmail() {
@@ -172,7 +171,7 @@ public final class User {
 	}
 
 	public void setRole(String role) {
-		this.role = role;
+		User.role = role;
 	}
 
 	public Boolean getRemember() {
@@ -180,7 +179,7 @@ public final class User {
 	}
 
 	public void setRemember(Boolean remember) {
-		this.remember = remember;
+		User.remember = remember;
 	}
     
     

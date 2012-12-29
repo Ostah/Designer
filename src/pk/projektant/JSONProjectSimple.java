@@ -1,8 +1,5 @@
 package pk.projektant;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
@@ -57,8 +54,9 @@ public class JSONProjectSimple {
 	JSONProjectSimple(Project p){
 		mTitle = p.mName;
 		mDescription = p.mDescription;
-		mDate1 = "0"; //TODO
-		mDate2= "0";	//TODO
+		
+		mDate1 = String.valueOf(p.mDateCreation);
+		mDate2=  String.valueOf(p.mDateUpdate);
 		mId = p.mId;
 		mWalls = wallsJSONFromFurnitures(p.mFurnitures);
 		mFurnitures = furnituresJSONFromFurnitures(p.mFurnitures);

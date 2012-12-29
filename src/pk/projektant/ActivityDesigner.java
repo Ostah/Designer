@@ -1,11 +1,9 @@
 package pk.projektant;
 
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import pk.projektant.RestClient.RequestMethod;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ClipData;
@@ -23,9 +21,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.MotionEvent;
 import android.view.View.DragShadowBuilder;
-import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -40,8 +36,6 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 
 public class ActivityDesigner extends SherlockActivity {
 	
@@ -68,7 +62,7 @@ public class ActivityDesigner extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ctx = this;
-        setContentView(R.layout.l_view_designer);
+        setContentView(R.layout.l_activity_designer);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         searchText = (TextView) findViewById(R.id.search_text);
         furnitureList = Tokenizer.sFurnitures;
@@ -115,7 +109,7 @@ public class ActivityDesigner extends SherlockActivity {
         
       
     }
-    protected void hideKeyboard(View view)
+    public void hideKeyboard(View view)
     {
         InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -195,8 +189,6 @@ public class ActivityDesigner extends SherlockActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
     	
     	getSupportMenuInflater().inflate(R.menu.l_view_list, menu);
-    	int a = listViewCity.getWidth();
-    	
     	TypedValue tv = new TypedValue();
 		ctx.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true);
 		MapManager.onScreenY = getResources().getDimensionPixelSize(tv.resourceId);
@@ -255,6 +247,7 @@ public class ActivityDesigner extends SherlockActivity {
     		  break;
     		  
     	 case R.id.menu_save :
+    		 User.get(ctx).mActiveProject.mDateUpdate=System.currentTimeMillis();
     		 User.get(ctx).mActiveProject.mFurnitures = mapManager.sFv;
     		 ThreadUpdateProject task= new ThreadUpdateProject();
 	 		  task.execute();	 
@@ -275,7 +268,7 @@ public class ActivityDesigner extends SherlockActivity {
     	 Vibrator vibe = ( Vibrator ) getSystemService( VIBRATOR_SERVICE );
          vibe.vibrate( 100 );
     	 ClipData data = ClipData.newPlainText("type", "list");
-    	 User.get(ctx).dragType="new";
+		 User.dragType="new";
          shadowBuilder = new View.DragShadowBuilder();
          v.startDrag(data,shadowBuilder , aa.data.get(position), 0);
          return true;
