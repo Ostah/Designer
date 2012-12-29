@@ -12,8 +12,7 @@ public class FurnitureView {
 
 	
 	private Rect rect;
-	public Furniture reference;
-	static private Context ctx;
+	public Furniture reference=null;
 	public Boolean isShadow=false;
 	public Boolean isMoved=false;
 	public Boolean isRotated=false;
@@ -21,21 +20,36 @@ public class FurnitureView {
 	public int mStartY=0;
 	public Boolean isWall=false;
 	
-	public FurnitureView(Context context, float x, float y, float dx, float dy, int color){
-		
-		ctx = context;  
+	public FurnitureView(float x, float y, float dx, float dy, int color){
         rect = new Rect((int)x,(int)y,(int)(x+dx),(int)(y+dy));
         reference = null;
     }
 	
-	public FurnitureView(Context context,float x, float y, Furniture reference){
-        ctx = context;  
+	public FurnitureView(float x, float y, Furniture reference){
         	this.reference = reference;
             rect = new Rect((int)x,(int)y,(int)(x+this.reference.mX),(int)(y+this.reference.mY));                
     }
 	
-	public FurnitureView(Context context,float x, float y){
-		ctx = context; 
+	public FurnitureView(JSONWall w){
+    	isWall = true;
+    	rect = new Rect(w.getX1(),w.getY1(),w.getX2(),w.getY2());
+	}
+	
+	public FurnitureView(JSONFurniture w){
+    	rect = new Rect(w.getX(),w.getY(),w.getX()+w.getWidth(),w.getY()+w.getHeight());
+    	if(!w.getId().isEmpty()){
+    		for(int i=0;i<Tokenizer.sFurnitures.size();i++){
+    			if(Tokenizer.sFurnitures.get(i).mId.equalsIgnoreCase(w.getId()))
+    			{
+    				reference = Tokenizer.sFurnitures.get(i);
+    				break;
+    			}
+
+    		}
+    	}
+	}
+	
+	public FurnitureView(float x, float y){
 		reference=null;
 		mStartX=(int)x;
 		mStartY=(int)y;
@@ -86,9 +100,8 @@ public class FurnitureView {
 		return rect.bottom-rect.top;
 	}
 	
-	public FurnitureView(Context context, float x, float y, float dx, float dy){
+	public FurnitureView( float x, float y, float dx, float dy){
 
-        ctx = context;  
         rect = new Rect((int)x,(int)y,(int)(x+dx),(int)(y+dy));
         reference = null;
     }

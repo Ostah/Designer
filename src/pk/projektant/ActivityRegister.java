@@ -4,9 +4,13 @@ package pk.projektant;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,7 +53,7 @@ public class ActivityRegister extends Activity {
 		// Poprawnoœæ danych
 		if(!isDataFromFormValid()) return;
 		
-		RestClient client = new RestClient("http://designercms.herokuapp.com/rejestracja");
+		RestClient client = new RestClient("http://designercms.herokuapp.com/user/");
 		client.AddParam("name", name.getText().toString());
 		client.AddParam("surname", surname.getText().toString());
 		client.AddParam("email", email.getText().toString());
@@ -70,6 +74,33 @@ public class ActivityRegister extends Activity {
 		    e.printStackTrace();
 		}
 		String response = client.getResponse();
+		if(response.contains("NotAllRequiredFields"))
+		{
+			
+		}
+		else if(response.contains("EmailAlreadyTaken")){
+			Toast.makeText(this, "Podany email jest ju¿ zajêty", Toast.LENGTH_LONG).show();
+		}
+		else{
+			JSONObject jObject;
+			try {
+				jObject = new JSONObject(response);
+			 
+			if(jObject.optString("email")!=null&&jObject.optString("email")!=""){
+				User.get(ctx).set(jObject.getString("id"), jObject.getString("name"), jObject.getString("surname"), jObject.getString("password"), jObject.getString("registrationDate"), jObject.getString("email"), jObject.getString("role"),false);	
+				if(User.isUserSet())
+				{
+					Toast.makeText(this, "Rejestracja Udana", Toast.LENGTH_LONG).show();
+					Intent prefIntent = new Intent(this,ActivityProjects.class);
+			         this.startActivity(prefIntent);
+				}
+			}
+			}catch (JSONException e) {
+				Toast.makeText(this, "Serwer zwróci³ niepoprawne dane", Toast.LENGTH_LONG).show();
+				return;
+			}
+
+		}
 		Log.d("response", response);
 	}
 	

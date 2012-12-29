@@ -1,9 +1,13 @@
 package pk.projektant;
 
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import pk.projektant.RestClient.RequestMethod;
+
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.Editable;
@@ -35,6 +40,8 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 
 public class ActivityDesigner extends SherlockActivity {
 	
@@ -46,6 +53,7 @@ public class ActivityDesigner extends SherlockActivity {
 	private MapManager mapManager;
 	private MenuItem menu_custom=null;
 	private MenuItem menu_wall=null;
+	Boolean mConnectionError=false;
 	List<Furniture> furnitureList; 
 	ArrayList<FurnitureView> sFurnitures;
 	 FurnitureListAdapter aa ;
@@ -151,6 +159,38 @@ public class ActivityDesigner extends SherlockActivity {
 	    alert.show();
     }
     
+    
+    private class ThreadUpdateProject extends AsyncTask<Void, Void, Void> {
+		private ProgressDialog Dialog;
+
+		protected void onPreExecute() {
+			Dialog = new ProgressDialog(ctx);
+			Dialog.setMessage("Zapisywanie Zmian");
+			Dialog.setCanceledOnTouchOutside(false);
+			Dialog.setCancelable(false);
+			Dialog.show();
+		}
+
+		protected Void doInBackground(Void... arg0) {
+			updateProjectDB();
+			return null;
+		}
+
+		protected void onPostExecute(Void unused) {
+			Dialog.dismiss();	
+			
+			if(mConnectionError)
+			{
+				Toast.makeText(ctx,"B³¹d Po³¹czenia, Projekt nie zosta³ zapisany", Toast.LENGTH_SHORT).show();	
+			}
+			else{
+				Toast.makeText(ctx,"Zapisano", Toast.LENGTH_SHORT).show();	
+			}
+
+			
+    	}
+	}
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	
@@ -216,7 +256,8 @@ public class ActivityDesigner extends SherlockActivity {
     		  
     	 case R.id.menu_save :
     		 User.get(ctx).mActiveProject.mFurnitures = mapManager.sFv;
-    		 Toast.makeText(ctx, "Projekt Zapisany", Toast.LENGTH_LONG).show();
+    		 ThreadUpdateProject task= new ThreadUpdateProject();
+	 		  task.execute();	 
     		 break;
     		  
     		  
@@ -240,6 +281,34 @@ public class ActivityDesigner extends SherlockActivity {
          return true;
     }};
      
+    void updateProjectDB(){
+    	RestClient connection = new RestClient("http://designercms.herokuapp.com/project/"+ String.valueOf(User.get(ctx).mActiveProject.mId));
+		connection.AddParam("username", User.get(ctx).getEmail());
+		connection.AddParam("password", User.get(ctx).getPassword());
+		
+		JSONProjectSimple proj = new JSONProjectSimple(User.get(ctx).mActiveProject);
+		connection.AddParam("title", proj.mTitle);
+		connection.AddParam("desc", proj.mDescription);
+		connection.AddParam("walls", proj.mWalls);
+		connection.AddParam("furniture",  proj.mFurnitures);
+		
+		try {
+			connection.Execute(RequestMethod.PUT);	 	
+        	String response = connection.getResponse();
+        	
+     
+        	if(!response.contains("ProjectUpdated")){
+        		mConnectionError=true;
+        	}
+        	
+        	
+		} catch (Exception e) {
+			mConnectionError=true;
+			e.printStackTrace();
+			
+		}
+    }
     
+   
     
 }

@@ -135,7 +135,7 @@ public class ActivityLogin extends Activity {
     }
     
     public void parseUserJSON(String data){
-    	if(data=="") return;
+    	if(data==""|| data.contains("WrongCredentionals"))return;
     	
     	try 
     	{
@@ -173,10 +173,10 @@ public class ActivityLogin extends Activity {
             }
             else
             {
-            	     nameValuePairs.add(new BasicNameValuePair("username","ja@piotrpaul.pl"));
-             //   nameValuePairs.add(new BasicNameValuePair("username", txt_username.getText().toString()));
-             // nameValuePairs.add(new BasicNameValuePair("password", AeSimpleSHA1.SHA1( txt_password.getText().toString())));	
-                nameValuePairs.add(new BasicNameValuePair("password", "dd1a4bddd89315868df7009f38b2cd582b1d7a65"));		
+            	 //    nameValuePairs.add(new BasicNameValuePair("username","ja@piotrpaul.pl"));
+                nameValuePairs.add(new BasicNameValuePair("username", txt_username.getText().toString()));
+              nameValuePairs.add(new BasicNameValuePair("password", AeSimpleSHA1.SHA1( txt_password.getText().toString())));	
+              //  nameValuePairs.add(new BasicNameValuePair("password", "d033e22ae348aeb5660fc2140aec35850c4da997"));		
             }
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
@@ -197,7 +197,11 @@ public class ActivityLogin extends Activity {
         catch (IOException e) {
         	connectionError = true;
         	 Log.d("IOException", e.getLocalizedMessage());
-        } 
+        } catch (NoSuchAlgorithmException e) {
+        	connectionError = true;
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
         return null;
     }
   
@@ -225,7 +229,7 @@ public class ActivityLogin extends Activity {
 			{
 				Toast.makeText(ctx,"B³¹d Po³¹czenia", Toast.LENGTH_SHORT).show();
 			}
-			else if(User.get(ctx).getEmail()=="null")
+			else if(User.get(ctx).getEmail()=="null"|| userData.contains("WrongCredentionals"))
 			{
 				Toast.makeText(ctx,"Z³a nazwa u¿ytkownika lub has³o", Toast.LENGTH_SHORT).show();	
 			}

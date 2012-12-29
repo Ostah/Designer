@@ -139,13 +139,18 @@ public class ActivityProjects extends SherlockActivity {
 	    		break;
 	    	case R.id.menu_edit:
 	    		if(mActiveProject!=null) editProject();
-	    		else Toast.makeText(ctx, "Nie wybrano projektu do edycji", Toast.LENGTH_SHORT).show();
+	    		else Toast.makeText(ctx, "Nie wyw kbrano projektu do edycji", Toast.LENGTH_SHORT).show();
 	    		break;
 	    		
 	    	case R.id.menu_refresh:
 	    		updateList();
 	    		myAdapter.notifyDataSetChanged();
 	    		break;
+	    	case R.id.menu_logout :
+	    		Log.d("options", "logout");
+	    		User.get(ctx).clear();
+	    		Intent prefIntent = new Intent(this,ActivityLogin.class);
+	            this.startActivity(prefIntent);
 	    	
 	    }
 			return false;
@@ -285,6 +290,19 @@ public class ActivityProjects extends SherlockActivity {
 	        	Toast.makeText(ctx, "Z³e dane u¿ytkownika", Toast.LENGTH_LONG).show();
 	   
 	        }
+        	else{
+        		if(response.contains("ID")){
+        			String nr = response.substring(3,response.length()-1);		
+        			try{
+        				int pid = Integer.parseInt(nr);
+        					mCreatedProject.mId=pid;
+        			}
+        			catch(Exception e){
+        				mCreatedProject.mId=0;
+        			}	
+        			Log.d("sr", nr);
+        		}
+        	}
     
 		} catch (Exception e) {
 			mConnectionError=true;
@@ -306,24 +324,24 @@ public class ActivityProjects extends SherlockActivity {
 		User.get(this).mProjects.clear();
 		getProjectsList();  
 		
-		ArrayList<FurnitureView> furnit = new ArrayList<FurnitureView>();
-		
-		furnit.add(new FurnitureView(this,100,100,Tokenizer.sFurnitures.get(0)));
-		Project p = new Project("Projekt1",System.currentTimeMillis(),new ArrayList<FurnitureView>(furnit));
-		User.get(this).mProjects.add(p);
-		
-		furnit.clear();
-		furnit.add(new FurnitureView(this,100,100,Tokenizer.sFurnitures.get(0)));
-		furnit.add(new FurnitureView(this,300,300,Tokenizer.sFurnitures.get(5)));
-		 p = new Project("Projekt2",System.currentTimeMillis(),new ArrayList<FurnitureView>(furnit));
-		 User.get(this).mProjects.add(p);
-		 
-		 furnit.clear();
-		furnit.add(new FurnitureView(this,100,100,Tokenizer.sFurnitures.get(0)));
-		furnit.add(new FurnitureView(this,300,300,Tokenizer.sFurnitures.get(5)));
-		furnit.add(new FurnitureView(this,150,300,Tokenizer.sFurnitures.get(7)));
-		 p = new Project("Projekt3",System.currentTimeMillis(),new ArrayList<FurnitureView>(furnit));
-		 User.get(this).mProjects.add(p);
+//		ArrayList<FurnitureView> furnit = new ArrayList<FurnitureView>();
+//		
+//		furnit.add(new FurnitureView(100,100,Tokenizer.sFurnitures.get(0)));
+//		Project p = new Project("Projekt1",System.currentTimeMillis(),new ArrayList<FurnitureView>(furnit));
+//		User.get(this).mProjects.add(p);
+//		
+//		furnit.clear();
+//		furnit.add(new FurnitureView(100,100,Tokenizer.sFurnitures.get(0)));
+//		furnit.add(new FurnitureView(300,300,Tokenizer.sFurnitures.get(5)));
+//		 p = new Project("Projekt2",System.currentTimeMillis(),new ArrayList<FurnitureView>(furnit));
+//		 User.get(this).mProjects.add(p);
+//		 
+//		 furnit.clear();
+//		furnit.add(new FurnitureView(100,100,Tokenizer.sFurnitures.get(0)));
+//		furnit.add(new FurnitureView(300,300,Tokenizer.sFurnitures.get(5)));
+//		furnit.add(new FurnitureView(150,300,Tokenizer.sFurnitures.get(7)));
+//		 p = new Project("Projekt3",System.currentTimeMillis(),new ArrayList<FurnitureView>(furnit));
+//		 User.get(this).mProjects.add(p);
 		
 	}
 	
@@ -366,14 +384,16 @@ public class ActivityProjects extends SherlockActivity {
 		        	return;
 		        }
 		       
-	        	JSONArray jObject = null;
-				jObject = new JSONArray(response);		
-					
-				for(int i=0;i<jObject.length();i++){
-					int id = -1;
-					id = jObject.getJSONObject(i).getInt("id");	
-					Project proj = getOneProject(id);
-					if(proj!=null) User.get(this).mProjects.add(proj);
+	        	//JSONArray jObject = null;
+				//jObject = new JSONArray(response);		
+				 
+				Gson myGson = new Gson();
+				JSONProjectSimple[] furnitures = myGson.fromJson(response, JSONProjectSimple[].class);
+				
+				for(int i=0;i<furnitures.length;i++){
+					//Gson myGson = new Gson();
+					//JSONProjectSimple pSimple  = myGson.fromJson(jObject.getJSONObject(i).toString(),JSONProjectSimple.class) ;		
+					 User.get(this).mProjects.add(furnitures[i].toProject());
 				}
 	      
 	        }catch (Exception e) {

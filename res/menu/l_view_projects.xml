@@ -18,6 +18,11 @@
         android:orderInCategory="90"
         android:showAsAction="always"/>
      
+       <item android:id="@+id/menu_logout"
+        android:title="Wyloguj"
+        android:orderInCategory="100"
+        android:showAsAction="never"/>
+       
        <item android:id="@+id/menu_refresh"
         android:title="Odswiez"
         android:icon="@drawable/icon_refresh"
