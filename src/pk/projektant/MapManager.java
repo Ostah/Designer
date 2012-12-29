@@ -316,20 +316,17 @@ public class MapManager {
 	}
 
 	public void moveFurniture(FurnitureView f, float x, float y) {
-		// x-=f.getWidth()*mScale*0.5f;
-		// y-=f.getHeigth()*mScale*0.5f;
 
+
+		// konwersja wspó³rzednych (skala i offset)
 		x = tPX((int) x);
 		y = tPY((int) y);
 
 		mMapArea.invalidate();
 
 		Boolean valid = true;
-		if ((isCustomDrawning && User.dragType == "custom")) {
-			valid = isRectangleValid(f, f.getResizedRect(x, y,false));
-		}
-		else if(isWallDrawning && User.dragType == "wall"){
-			valid = isRectangleValid(f, f.getResizedRect(x, y,true));
+		if (isCustomDrawning|| isWallDrawning) {	
+			valid = isRectangleValid(f, f.getResizedRect(x, y,User.dragType == "wall"));
 		}
 		else {
 			x-= 0.5*f.getWidth();
@@ -338,14 +335,14 @@ public class MapManager {
 		}
 		if (mFurnitureShadow == null) {
 			if (valid) {
-				if (isCustomDrawning && User.dragType == "custom")
-					f.resize(x, y,false);
-				else if (isWallDrawning && User.dragType == "wall")
-					f.resize(x, y,true);
-				else
-					f.move(x, y, true);
+				if (isCustomDrawning || isWallDrawning )	f.resize(x, y,User.dragType == "wall");
+				else										f.move(x, y, true);
 				invalidate();
 			} else {
+				
+				if (isCustomDrawning || isWallDrawning ) makeTouchResize(f, (int)x,(int) y, User.dragType == "wall");
+				else	makeTouchMove(f,(int)x,(int)y);
+			
 				Log.d("INVALID!", "INVALID!");
 				mFurnitureShadow = f.getShadow();
 				sFv.add(mFurnitureShadow);
@@ -353,32 +350,79 @@ public class MapManager {
 		} else {
 			if (!valid) {
 
-				if (isCustomDrawning && User.dragType == "custom")
-					mFurnitureShadow.resize(x, y,false);
-				else if (isWallDrawning && User.dragType == "wall")
-					mFurnitureShadow.resize(x, y,true);
-				else
+				if (isCustomDrawning || isWallDrawning ){
+				 makeTouchResize(f, (int)x,(int) y, User.dragType == "wall");
+					mFurnitureShadow.resize(x, y,User.dragType == "wall");				
+				}
+				else {
+					makeTouchMove(f,(int)x,(int)y);
 					mFurnitureShadow.move(x, y, true);
+				}
+				
 				invalidate();
-			} else {
+			} 
+			else {
 				Log.d("VALID!", "VALID!");
 				invalidate();
 				sFv.remove(mFurnitureShadow);
 				invalidate();
 				mFurnitureShadow = null;
 
-				if (isCustomDrawning && User.dragType == "custom")
-					f.resize(x, y,false);
-				else if (isWallDrawning && User.dragType == "wall")
-					f.resize(x, y,true);
-				else
-					f.move(x, y, true);
+				if (isCustomDrawning || isWallDrawning)	f.resize(x, y,User.dragType == "wall");
+				else									f.move(x, y, true);
 
 				invalidate();
 			}
 		}
 	}
 
+	private void makeTouchMove(FurnitureView f, int x, int y){
+		int signX = x>f.getRect(false).left ? 1 : -1;	
+		while(x!=f.getRect(false).left){
+			if(isMoveValid(f, f.getRect(false).left+signX, f.getRect(false).top)){		
+				Log.d("move","x " +String.valueOf(f.getRect(false).left+signX));
+				f.move(f.getRect(false).left+signX,f.getRect(false).top,true);
+			}
+			else break;		
+		}
+		
+		int signY = y>f.getRect(false).top ? 1 : -1;	
+		while(y!=f.getRect(false).top){
+			if(isMoveValid(f, f.getRect(false).left, f.getRect(false).top+signY)){		
+				Log.d("move","y " +String.valueOf(f.getRect(false).top+signY));
+				f.move(f.getRect(false).left,f.getRect(false).top+signY,true);
+			}
+			else break;		
+		}
+		Log.d("move","END");		
+	}
+	
+	private void makeTouchResize(FurnitureView f, int x, int y,Boolean wall){
+		
+		int toMoveX = (x<f.mStartX) ?  f.getRectReference().left  :  f.getRectReference().right;
+		int toMoveY = (y<f.mStartY) ?  f.getRectReference().top  :   f.getRectReference().bottom;
+		int signX = x>toMoveX ? 1 : -1;			
+		while(x!=toMoveX){
+			if(isRectangleValid(f, f.getResizedRect(toMoveX+signX, toMoveY,wall))){	
+				toMoveX+=signX;
+				Log.d("resize","x " +String.valueOf(toMoveX));
+				f.resize(toMoveX, toMoveY,wall);
+			}
+			else break;		
+		}
+		
+		int signY= y>toMoveY ? 1 : -1;		
+		while(y!=toMoveY){
+			if(isRectangleValid(f, f.getResizedRect(toMoveX, toMoveY+signY,wall))){	
+				toMoveY+=signY;
+				//Log.d("resize","x " +String.valueOf(toMoveY));
+				f.resize(toMoveX, toMoveY,wall);
+			}
+			else break;		
+		}
+		Log.d("move","END");		
+	}
+	
 	private Boolean isMoveValid(FurnitureView f, float x, float y) {
 		Rect newPosition = new Rect(f.getRect(false));
 		newPosition.offsetTo((int) x, (int) y);

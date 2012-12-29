@@ -171,23 +171,14 @@ public class ActivityDesigner extends SherlockActivity {
 		}
 
 		protected void onPostExecute(Void unused) {
-			Dialog.dismiss();	
-			
-			if(mConnectionError)
-			{
-				Toast.makeText(ctx,"B³¹d Po³¹czenia, Projekt nie zosta³ zapisany", Toast.LENGTH_SHORT).show();	
-			}
-			else{
-				Toast.makeText(ctx,"Zapisano", Toast.LENGTH_SHORT).show();	
-			}
-
-			
+			Dialog.dismiss();			
+			if(mConnectionError)	Toast.makeText(ctx,"B³¹d Po³¹czenia, Projekt nie zosta³ zapisany", Toast.LENGTH_SHORT).show();	
+			else Toast.makeText(ctx,"Zapisano", Toast.LENGTH_SHORT).show();		
     	}
 	}
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-    	
     	getSupportMenuInflater().inflate(R.menu.l_view_list, menu);
     	TypedValue tv = new TypedValue();
 		ctx.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true);
@@ -251,18 +242,13 @@ public class ActivityDesigner extends SherlockActivity {
     		 User.get(ctx).mActiveProject.mFurnitures = mapManager.sFv;
     		 ThreadUpdateProject task= new ThreadUpdateProject();
 	 		  task.execute();	 
-    		 break;
-    		  
-    		  
+    		 break;	  
     	}
-   
     	return true;
     }
     
     OnItemLongClickListener listSourceItemLongClickListener = new OnItemLongClickListener(){
-
     	
-    
     public boolean onItemLongClick(AdapterView<?> l, View v,
       int position, long id) {
     	 Vibrator vibe = ( Vibrator ) getSystemService( VIBRATOR_SERVICE );
@@ -288,17 +274,14 @@ public class ActivityDesigner extends SherlockActivity {
 		try {
 			connection.Execute(RequestMethod.PUT);	 	
         	String response = connection.getResponse();
-        	
-     
+        
         	if(!response.contains("ProjectUpdated")){
         		mConnectionError=true;
         	}
-        	
-        	
-		} catch (Exception e) {
+      	
+		} catch (Exception e){
 			mConnectionError=true;
-			e.printStackTrace();
-			
+			e.printStackTrace();	
 		}
     }
     

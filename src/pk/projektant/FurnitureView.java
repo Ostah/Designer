@@ -157,6 +157,9 @@ public class FurnitureView {
 		}
 		return toReturn;
 	}
+	public Rect getRectReference(){
+		return rect;
+	}
 	public void setRect(Rect r){
 		rect = r;
 	}
@@ -183,18 +186,18 @@ public class FurnitureView {
 		if(isWall){
 			if(a.width()>a.height()){
 				if(y>=mStartY){
-					a.bottom=a.top+5;
+					a.bottom=a.top+4;
 				}
 				else{
-					a.top=a.bottom-5;
+					a.top=a.bottom-4;
 				}
 			}
 			else{
 				if(x>=mStartX){
-					a.right=a.left+5;
+					a.right=a.left+4;
 				}
 				else{
-					a.left=a.right-5;
+					a.left=a.right-4;
 				}
 			}
 		}
