@@ -58,7 +58,7 @@ public class ActivityRegister extends Activity {
 		client.AddParam("surname", surname.getText().toString());
 		client.AddParam("email", email.getText().toString());
 		try {
-			client.AddParam("password", AeSimpleSHA1.SHA1(password.getText().toString()));
+			client.AddParam("password", SHA1.compute(password.getText().toString()));
 		} catch (NoSuchAlgorithmException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

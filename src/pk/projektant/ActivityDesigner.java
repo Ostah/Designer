@@ -5,6 +5,7 @@ import java.util.List;
 
 import pk.projektant.RestClient.RequestMethod;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Context;
@@ -20,13 +21,17 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
+import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -51,6 +56,9 @@ public class ActivityDesigner extends SherlockActivity {
 	List<Furniture> furnitureList; 
 	ArrayList<FurnitureView> sFurnitures;
 	 FurnitureListAdapter aa ;
+	 Dialog mDialog;
+		EditText mDialogName, mDialogDescription;
+		Button mDialogOK, mDialogCancel;
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -107,8 +115,20 @@ public class ActivityDesigner extends SherlockActivity {
         listViewCity.setOnDragListener(new MyDragNewListener(mapManager, ctx,false));
        
         
-      
+        if(User.get(ctx).mActiveProject!=null)
+		  {
+			 setTitle("Projekt \""+User.get(ctx).mActiveProject.mName+"\"");
+		  }
     }
+    
+	protected void onResume() {
+		
+		if(User.get(ctx).mActiveProject!=null)
+		  {
+			 setTitle("Projekt \""+User.get(ctx).mActiveProject.mName+"\"");
+		  }
+		super.onResume();
+	}
     public void hideKeyboard(View view)
     {
         InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -128,6 +148,58 @@ public class ActivityDesigner extends SherlockActivity {
 		  mapManager.invalidate();
     }
    
+    public void dialogEdit() {
+		mDialog = new Dialog(ctx);
+		mDialog.setContentView(R.layout.l_view_dialog_project);
+		mDialog.setTitle("Edytuj W³aœciwoœci Projektu");
+		mDialog.setCanceledOnTouchOutside(false);
+		mDialog.setCancelable(false);
+		
+		LinearLayout l = (LinearLayout) mDialog.findViewById(R.id.new_project_layoutroot);
+		l.setOnTouchListener(new OnTouchListener()
+		{
+    	    public boolean onTouch(View view, MotionEvent ev)
+    	    {
+    	        hideKeyboard(view);
+    	        return false;
+    	    }
+    	});
+		mDialogName = (EditText) mDialog.findViewById(R.id.new_project_name);
+		mDialogDescription= (EditText) mDialog.findViewById(R.id.new_project_description);		 
+		mDialogOK = (Button) mDialog.findViewById(R.id.new_project_ok);
+		mDialogCancel = (Button) mDialog.findViewById(R.id.new_project_cancel);
+		
+		mDialogName.setText(User.get(ctx).mActiveProject.mName);
+		mDialogDescription.setText(User.get(ctx).mActiveProject.mDescription);
+		mDialogOK.setOnClickListener(new View.OnClickListener() {		
+	    	   public void onClick(View arg0) {
+	    		  String value = mDialogName.getText().toString();    		
+	     		  if(!value.isEmpty()){	    			  
+	     			 
+	     			 User.get(ctx).mActiveProject.mName = mDialogName.getText().toString();
+	     			 User.get(ctx).mActiveProject.mDescription = mDialogDescription.getText().toString();
+	     			if(User.get(ctx).mActiveProject!=null) setTitle("Projekt \""+User.get(ctx).mActiveProject.mName+"\"");
+	      		  	
+	     			ThreadUpdateProject task = new ThreadUpdateProject();
+	  	              task.execute();	 
+	  	              mDialog.dismiss();
+	     		  }
+	     		  else{
+	     			  Toast.makeText(ctx, "Nazwa projektu nie mo¿e byæ pusta", Toast.LENGTH_LONG).show();
+	     		  }
+	   
+	    	   }
+	    });
+		
+		mDialogCancel.setOnClickListener(new View.OnClickListener() {		
+	    	   public void onClick(View arg0) {
+	    		   mDialog.dismiss();
+	    	   }
+	    });
+		
+		mDialog.show();
+	}
+    
     private void clearArea(){
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -173,7 +245,7 @@ public class ActivityDesigner extends SherlockActivity {
 		protected void onPostExecute(Void unused) {
 			Dialog.dismiss();			
 			if(mConnectionError)	Toast.makeText(ctx,"B³¹d Po³¹czenia, Projekt nie zosta³ zapisany", Toast.LENGTH_SHORT).show();	
-			else Toast.makeText(ctx,"Zapisano", Toast.LENGTH_SHORT).show();		
+			else Toast.makeText(ctx,"Zapisano Projekt", Toast.LENGTH_SHORT).show();		
     	}
 	}
     
@@ -213,6 +285,10 @@ public class ActivityDesigner extends SherlockActivity {
     		
     	case R.id.menu_clear :
     		clearArea();
+    		break;
+    	case R.id.menu_edit_title :
+    		dialogEdit();
+    		
     		break;
     		
     	case R.id.menu_custom:

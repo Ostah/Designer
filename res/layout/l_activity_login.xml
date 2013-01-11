@@ -51,6 +51,5 @@
 	    android:text="Nie wylogowuj mnie" />
 
 	<Button android:id="@+id/login_button_go" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/login_checkbox" android:layout_centerHorizontal="true" android:text="@string/login_go"/>
-	<Button android:id="@+id/login_skip" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:text="Pomiń"/>
 
 </RelativeLayout>

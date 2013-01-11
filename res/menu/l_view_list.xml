@@ -29,6 +29,12 @@
         android:orderInCategory="80"
         android:showAsAction="always"/>
     
+       <item android:id="@+id/menu_edit_title"
+        android:title="Edit Title"
+        android:icon="@drawable/icon_edit"
+        android:orderInCategory="80"
+        android:showAsAction="always"/>
+       
      <item android:id="@+id/menu_center_view"
         android:title="Wyśrodkuj"
         android:icon="@drawable/icon_center"

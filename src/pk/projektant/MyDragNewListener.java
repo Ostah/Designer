@@ -16,16 +16,15 @@ class MyDragNewListener implements OnDragListener {
 	  {
 		  mapManager = m;
 		  ctx = c;
-	
 		  valid = v;
 	  }
 	  
 	  public boolean onDrag(View v, DragEvent event) {
 	    switch (event.getAction()) {
+	    
 	    case DragEvent.ACTION_DRAG_STARTED:
 	    	if(valid)
 	    	{
-	    		Log.d("drag", "started");
 		    	if(User.dragType == "new")
 		    	{
 		    		activeFurniture = new FurnitureView(-200,-200, (Furniture) event.getLocalState());
@@ -45,28 +44,15 @@ class MyDragNewListener implements OnDragListener {
 		    		activeFurniture =  (FurnitureView) event.getLocalState();
 		    	}	
 	    	}
-	    	
-	    	
-	      break;
-	    case DragEvent.ACTION_DRAG_ENTERED: 
-	    	Log.d("drag", "entered");
-	      break;
-	    case DragEvent.ACTION_DRAG_EXITED:  
-	    	Log.d("drag", "exited");
-	    	//mapManager.removeView(activeFurniture);
-	    	//activeFurniture=null;
-	      break;
+	      break;  
+	      
 	    case DragEvent.ACTION_DROP:
-	    	Log.d("drag", "drop");
 	    	mapManager.drop(activeFurniture);
 	      break;
+	      
 	    case DragEvent.ACTION_DRAG_LOCATION:	
-	    	Log.d("drag", "location");
-	    	if(valid) mapManager.moveFurniture(activeFurniture, event.getX(),event.getY());
-	    	//Log.d(String.valueOf(event.getX())+" "+String.valueOf(event.getY()),"ll");
-	    	
-	    case DragEvent.ACTION_DRAG_ENDED:
-	    Log.d("drag", "ended");
+	    	if(valid) mapManager.moveFurniture(activeFurniture, event.getX(),event.getY()); 	
+	    	break;
 	    	
 	      default:
 	      break;

@@ -40,7 +40,6 @@ import android.widget.RelativeLayout;
 public class ActivityLogin extends Activity {
 
 	Button btn = null;
-	Button skip = null;
 	Button register = null;
 	String userData ="";
 	Boolean connectionError = false;
@@ -64,7 +63,6 @@ public class ActivityLogin extends Activity {
        btn = (Button) findViewById(R.id.login_button_go);
        register = (Button) findViewById(R.id.login_button_register);
        remember = (CheckBox) findViewById(R.id.login_checkbox);
-       skip = (Button) findViewById(R.id.login_skip);
        txt_username = (TextView)  findViewById(R.id.login_username);
        txt_password = (TextView)  findViewById(R.id.login_password);
        User.get(ctx);
@@ -101,11 +99,6 @@ public class ActivityLogin extends Activity {
     	   }
     	});
        
-       skip.setOnClickListener(new View.OnClickListener() {		
-    	   public void onClick(View arg0) {
-    		   loginSucces();	
-    	   }
-    	});
        
        register.setOnClickListener(new View.OnClickListener() {		
     	   public void onClick(View arg0) {
@@ -174,7 +167,7 @@ public class ActivityLogin extends Activity {
             {
             	 //    nameValuePairs.add(new BasicNameValuePair("username","ja@piotrpaul.pl"));
                 nameValuePairs.add(new BasicNameValuePair("username", txt_username.getText().toString()));
-              nameValuePairs.add(new BasicNameValuePair("password", AeSimpleSHA1.SHA1( txt_password.getText().toString())));	
+              nameValuePairs.add(new BasicNameValuePair("password", SHA1.compute( txt_password.getText().toString())));	
               //  nameValuePairs.add(new BasicNameValuePair("password", "d033e22ae348aeb5660fc2140aec35850c4da997"));		
             }
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));

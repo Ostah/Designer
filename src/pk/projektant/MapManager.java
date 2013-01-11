@@ -325,10 +325,11 @@ public class MapManager {
 		mMapArea.invalidate();
 
 		Boolean valid = true;
-		if (isCustomDrawning|| isWallDrawning) {	
+		
+		if (isCustomDrawning|| isWallDrawning) { //czy rysujemy cos czy przesuwamy	
 			valid = isRectangleValid(f, f.getResizedRect(x, y,User.dragType == "wall"));
 		}
-		else {
+		else {//przesuwamy czyli palec na srodku mebla a nie w jego rogu
 			x-= 0.5*f.getWidth();
 			y-=0.5*f.getHeigth();
 			valid = isMoveValid(f, x, y);
@@ -336,29 +337,25 @@ public class MapManager {
 		if (mFurnitureShadow == null) {
 			if (valid) {
 				if (isCustomDrawning || isWallDrawning )	f.resize(x, y,User.dragType == "wall");
-				else										f.move(x, y, true);
+				else										f.move(x, y);
 				invalidate();
 			} else {
 				
 				if (isCustomDrawning || isWallDrawning ) makeTouchResize(f, (int)x,(int) y, User.dragType == "wall");
 				else	makeTouchMove(f,(int)x,(int)y);
-			
-				Log.d("INVALID!", "INVALID!");
 				mFurnitureShadow = f.getShadow();
 				sFv.add(mFurnitureShadow);
 			}
 		} else {
 			if (!valid) {
-
 				if (isCustomDrawning || isWallDrawning ){
 				 makeTouchResize(f, (int)x,(int) y, User.dragType == "wall");
 					mFurnitureShadow.resize(x, y,User.dragType == "wall");				
 				}
 				else {
 					makeTouchMove(f,(int)x,(int)y);
-					mFurnitureShadow.move(x, y, true);
-				}
-				
+					mFurnitureShadow.move(x, y);
+				}			
 				invalidate();
 			} 
 			else {
@@ -369,8 +366,7 @@ public class MapManager {
 				mFurnitureShadow = null;
 
 				if (isCustomDrawning || isWallDrawning)	f.resize(x, y,User.dragType == "wall");
-				else									f.move(x, y, true);
-
+				else									f.move(x, y);
 				invalidate();
 			}
 		}
@@ -381,7 +377,7 @@ public class MapManager {
 		while(x!=f.getRect(false).left){
 			if(isMoveValid(f, f.getRect(false).left+signX, f.getRect(false).top)){		
 				Log.d("move","x " +String.valueOf(f.getRect(false).left+signX));
-				f.move(f.getRect(false).left+signX,f.getRect(false).top,true);
+				f.move(f.getRect(false).left+signX,f.getRect(false).top);
 			}
 			else break;		
 		}
@@ -390,15 +386,14 @@ public class MapManager {
 		while(y!=f.getRect(false).top){
 			if(isMoveValid(f, f.getRect(false).left, f.getRect(false).top+signY)){		
 				Log.d("move","y " +String.valueOf(f.getRect(false).top+signY));
-				f.move(f.getRect(false).left,f.getRect(false).top+signY,true);
+				f.move(f.getRect(false).left,f.getRect(false).top+signY);
 			}
 			else break;		
 		}
 		Log.d("move","END");		
 	}
 	
-	private void makeTouchResize(FurnitureView f, int x, int y,Boolean wall){
-		
+	private void makeTouchResize(FurnitureView f, int x, int y,Boolean wall){	
 		int toMoveX = (x<f.mStartX) ?  f.getRectReference().left  :  f.getRectReference().right;
 		int toMoveY = (y<f.mStartY) ?  f.getRectReference().top  :   f.getRectReference().bottom;
 		int signX = x>toMoveX ? 1 : -1;			
@@ -415,12 +410,10 @@ public class MapManager {
 		while(y!=toMoveY){
 			if(isRectangleValid(f, f.getResizedRect(toMoveX, toMoveY+signY,wall))){	
 				toMoveY+=signY;
-				//Log.d("resize","x " +String.valueOf(toMoveY));
 				f.resize(toMoveX, toMoveY,wall);
 			}
 			else break;		
-		}
-		Log.d("move","END");		
+		}		
 	}
 	
 	private Boolean isMoveValid(FurnitureView f, float x, float y) {
@@ -437,7 +430,6 @@ public class MapManager {
 
 	private Boolean isRectangleValid(FurnitureView f, Rect newPosition) {
 		for (int i = 0; i < sFv.size(); i++) {
-
 			if (sFv.get(i).equals(f)
 					|| (mFurnitureShadow != null && sFv.get(i).equals(
 							mFurnitureShadow)))
@@ -491,7 +483,7 @@ public class MapManager {
 	    		  	}
 	    		  	mFurnitureActive.setRect(tmp);
 	    		  	mFurnitureActive.reference = new Furniture(mNewName.getText().toString(),Float.valueOf(cost),width,height);
-	    			Toast.makeText(ctx, "ok", Toast.LENGTH_LONG).show();
+	    			Toast.makeText(ctx, "Dodano niestandardowy mebel", Toast.LENGTH_LONG).show();
 	    			mFurnitureActive.isMoved = false;
 	    			mFurnitureActive = null;
 	    			mDialog.dismiss();
@@ -599,14 +591,13 @@ public class MapManager {
 				return false;
 
 			float scaleChange = drawManager.mScale;
-
+			
 			drawManager.mScale = mStartScale * factor;
 			scaleChange = drawManager.mScale - scaleChange;
-
 			drawManager.mOffsetX -= (int) ((int) (mMapArea.getWidth() * 0.5) * scaleChange);
 			drawManager.mOffsetY -= (int) ((int) (mMapArea.getHeight() * 0.5) * scaleChange);
+			
 			invalidate();
-
 			return false;
 		}
 

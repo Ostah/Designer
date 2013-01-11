@@ -31,7 +31,6 @@ public final class User {
     
     public static User get(Context cont) {
     	ctx = cont;
-    	Log.d("omg", "tralala");
         if (instance == null) {
             synchronized (User.class) {
                 if (instance == null) {

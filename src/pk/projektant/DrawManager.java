@@ -46,12 +46,12 @@ public class DrawManager extends View{
 		for(int i=0;i<8;i++) FurnituresPaints[i]= new Paint(Paint.ANTI_ALIAS_FLAG);
 		FurnituresPaints[0].setColor(0xFF606048);
 		FurnituresPaints[1].setColor(0xFF33B5E5);
-		FurnituresPaints[2].setColor(0xFFAA66CC);
-		FurnituresPaints[3].setColor(0xFF99CC00);
-		FurnituresPaints[4].setColor(0xFFFFBB33);
-		FurnituresPaints[5].setColor(0xFFFF4444);
-		FurnituresPaints[6].setColor(0xFFFF3D7F);
-		FurnituresPaints[7].setColor(0xFFFF5500);
+		FurnituresPaints[2].setColor(0xFF33B5E5);
+		FurnituresPaints[3].setColor(0xFF33B5E5);
+		FurnituresPaints[4].setColor(0xFF33B5E5);
+		FurnituresPaints[5].setColor(0xFF33B5E5);
+		FurnituresPaints[6].setColor(0xFF33B5E5);
+		FurnituresPaints[7].setColor(0xFF33B5E5);
 	
 	}
 	@Override
@@ -84,10 +84,7 @@ public class DrawManager extends View{
 		int myHeigth=((View)this.getParent()).getHeight();
 		
 		float scaleChange = mScale - newScale;
-
 		mScale = newScale;
-		
-
 		mOffsetX += (int) ((int) (myWidth * 0.5) * scaleChange);
 		mOffsetY += (int) ((int) (myHeigth * 0.5) * scaleChange);
 		invalidate();

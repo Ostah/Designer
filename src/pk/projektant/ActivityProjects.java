@@ -78,15 +78,19 @@ public class ActivityProjects extends SherlockActivity {
 		 mPreviewDraw = new DrawManager(ctx, new  ArrayList<FurnitureView>(),1.0f);
 		 mPreviewLayout.addView(mPreviewDraw);
 		  first_time=true;
+		 
 	}
 
 	@Override
 	protected void onResume() {
+		
 		if(mPreviewDraw!=null&&!first_time){
 			listClicked(mLastPos);
 		}
 		first_time=false;
+		myAdapter.notifyDataSetChanged();
 		// TODO Auto-generated method stub
+		
 		super.onResume();
 	}
 
@@ -114,7 +118,7 @@ public class ActivityProjects extends SherlockActivity {
 	    		break;
 	    	case R.id.menu_edit:
 	    		if(mActiveProject!=null) editProject();
-	    		else Toast.makeText(ctx, "Nie wyw kbrano projektu do edycji", Toast.LENGTH_SHORT).show();
+	    		else Toast.makeText(ctx, "Nie wyw wybrano projektu do edycji", Toast.LENGTH_SHORT).show();
 	    		break;
 	    		
 	    	case R.id.menu_refresh:

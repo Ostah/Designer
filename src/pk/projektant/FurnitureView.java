@@ -123,25 +123,20 @@ public class FurnitureView {
 	        canvas.drawRect(rectInScale(d), paint);
 	
 	        if(!isWall){
-	        	 canvas.drawCircle(rectInScale(d).left, rectInScale(d).top, 2*d.mScale, paint2);
-	  	        canvas.drawCircle(rectInScale(d).left, rectInScale(d).bottom,2*d.mScale, paint2);
-	  	        canvas.drawCircle(rectInScale(d).right, rectInScale(d).top, 2*d.mScale, paint2);
-	  	        canvas.drawCircle(rectInScale(d).right, rectInScale(d).bottom, 2*d.mScale, paint2);
+	        	canvas.drawLine(rectInScale(d).left, rectInScale(d).top, rectInScale(d).left, rectInScale(d).bottom, paint2);
+	        	canvas.drawLine(rectInScale(d).left, rectInScale(d).top, rectInScale(d).right, rectInScale(d).top, paint2);
+	        	
+	        	canvas.drawLine(rectInScale(d).right, rectInScale(d).bottom, rectInScale(d).right, rectInScale(d).top, paint2);
+	        	canvas.drawLine(rectInScale(d).right, rectInScale(d).bottom, rectInScale(d).left, rectInScale(d).bottom, paint2);
+	        	//canvas.drawCircle(rectInScale(d).left, rectInScale(d).top, 2*d.mScale, paint2);
+	  	        //canvas.drawCircle(rectInScale(d).left, rectInScale(d).bottom,2*d.mScale, paint2);
+	  	        //canvas.drawCircle(rectInScale(d).right, rectInScale(d).top, 2*d.mScale, paint2);
+	  	        //canvas.drawCircle(rectInScale(d).right, rectInScale(d).bottom, 2*d.mScale, paint2);
 	        }
 	      
 	}
 	
-	protected void move(float x, float y, Boolean rescale){
-		if(rescale)
-		{
-			//x=x-MapManager.mOffsetX;
-			//x=x/MapManager.mScale;
-			
-			//y=y-MapManager.mOffsetY;
-			//y=y/MapManager.mScale;	
-		}
-			
-			
+	protected void move(float x, float y){	
 	       rect.offsetTo((int)(x), (int)(y));
 	}
 	
