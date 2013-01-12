@@ -16,7 +16,7 @@ public class JSONProjectSimple {
 	String mTitle;
 	
 	@SerializedName("projectDescription")
-	String mDescription;
+	String mDescription=" ";
 	
 	@SerializedName("dateOfCreation")
 	String mDate1;
@@ -25,10 +25,10 @@ public class JSONProjectSimple {
 	String mDate2;
 	
 	@SerializedName("dataWalls")
-	String mWalls;
+	String mWalls="[]";
 	
 	@SerializedName("dataObjects")
-	String mFurnitures;
+	String mFurnitures="[]";
 	
 	ArrayList<FurnitureView> getFurnitures(){
 		

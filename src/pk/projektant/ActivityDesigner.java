@@ -174,7 +174,15 @@ public class ActivityDesigner extends SherlockActivity {
 		mDialogOK.setOnClickListener(new View.OnClickListener() {		
 	    	   public void onClick(View arg0) {
 	    		  String value = mDialogName.getText().toString();    		
-	     		  if(!value.isEmpty()){	    			  
+	     		  if(!value.isEmpty()){	    
+	     			  
+	     			 if( mDialogDescription.getText().length()==0){
+	     				User.get(ctx).mActiveProject.mDescription=" ";
+	     			 }
+	     			 else{
+	     				User.get(ctx).mActiveProject.mDescription=mDialogDescription.getText().toString();
+	     			 }
+	     			 
 	     			 
 	     			 User.get(ctx).mActiveProject.mName = mDialogName.getText().toString();
 	     			 User.get(ctx).mActiveProject.mDescription = mDialogDescription.getText().toString();
@@ -351,11 +359,13 @@ public class ActivityDesigner extends SherlockActivity {
 			connection.Execute(RequestMethod.PUT);	 	
         	String response = connection.getResponse();
         
+        	Log.d("response", response);
         	if(!response.contains("ProjectUpdated")){
         		mConnectionError=true;
         	}
       	
 		} catch (Exception e){
+			Log.d("response2", e.getLocalizedMessage());
 			mConnectionError=true;
 			e.printStackTrace();	
 		}

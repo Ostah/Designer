@@ -89,7 +89,7 @@ public class FurnitureView {
 			scaled.bottom*=d.mScale;
 			scaled.left*=d.mScale;
 			scaled.right*=d.mScale;
-			scaled.offset(d.mOffsetX, d.mOffsetY);
+			scaled.offset(d.getOffX(), d.getOffY());
 			return scaled;
 	}
 	public int getWidth(){
@@ -148,7 +148,7 @@ public class FurnitureView {
 			toReturn.bottom*=MapManager.drawManager.mScale;
 			toReturn.left*=MapManager.drawManager.mScale;
 			toReturn.right*=MapManager.drawManager.mScale;
-			toReturn.offset(MapManager.drawManager.mOffsetX, MapManager.drawManager.mOffsetY);	
+			toReturn.offset(MapManager.drawManager.getOffX(), MapManager.drawManager.getOffY());	
 		}
 		return toReturn;
 	}

@@ -19,12 +19,30 @@ public class DrawManager extends View{
 	private Paint[]	FurnituresPaints = new Paint[8];
 	
 	public  float mScale = 1.0f;
-	public  int mOffsetX = 0;
-	public  int mOffsetY = 0;
+	private  int mOffsetX = 0;
+	private  int mOffsetY = 0;
 	
+	final public int mMaxX = 1406;
+	final public int mMaxY = 1320;
 	private  ArrayList<FurnitureView> sFv;
 	SharedPreferences pref ;
+	int  mWidth = 1000;
+	int  mHeigth = 1000;
+	public void offsetTo(int x, int y){
+		
+
+		mOffsetX = x;
+		mOffsetY = y;
+		if(mOffsetY>0) mOffsetY = 0;
+		if(mOffsetX>0) mOffsetX = 0;
+		
+		//if(	mOffsetX < (int)(-1*(mMaxX*mScale-mWidth*mScale))) mOffsetX = (int)(-1*(mMaxX*mScale-mWidth*mScale));
+		//if( mOffsetY < (int)(-1*(mMaxY*mScale-mHeigth*mScale))) mOffsetY = (int)(-1*(mMaxY*mScale-mHeigth*mScale)) ;
+		//if(mOffsetX < -mMaxX-)
+	}
 	
+	public int getOffX() { return mOffsetX;}
+	public int getOffY() { return mOffsetY;}
 	public DrawManager(Context context, ArrayList<FurnitureView> furnitures, float scale) {	
 		super(context);
 		
@@ -52,8 +70,24 @@ public class DrawManager extends View{
 		FurnituresPaints[5].setColor(0xFF33B5E5);
 		FurnituresPaints[6].setColor(0xFF33B5E5);
 		FurnituresPaints[7].setColor(0xFF33B5E5);
-	
+		
+		
 	}
+	
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		mWidth=w;
+		mHeigth=h;
+		
+		center();
+		super.onSizeChanged(w, h, oldw, oldh);
+	}
+	
+	public void center(){
+		mOffsetX = (int)(-1*(mMaxX*mScale*0.5f-0.5f*mWidth));
+		mOffsetY = (int)(-1*(mMaxY*mScale*0.5f-0.5f*mHeigth));
+	}
+
 	@Override
 	protected void onDraw(Canvas canvas){
 
@@ -78,15 +112,21 @@ public class DrawManager extends View{
 			   }
 				 
 		   }
+		//   canvas.drawLine(mMaxX*mScale+mOffsetX, 0+mOffsetY, mMaxX*mScale+mOffsetX, mMaxY*mScale+mOffsetY,d_black);
+		//   canvas.drawLine(0+mOffsetX, mMaxY*mScale+mOffsetY, mMaxX*mScale+mOffsetX, mMaxY*mScale+mOffsetY,d_black);
 	}
-	public void scaleTo(float newScale){
-		int myWidth=((View)this.getParent()).getWidth();
-		int myHeigth=((View)this.getParent()).getHeight();
+	public void scaleTo(float newScale, Boolean move){
+	
 		
-		float scaleChange = mScale - newScale;
+		float scaleChange =  newScale-mScale;
 		mScale = newScale;
-		mOffsetX += (int) ((int) (myWidth * 0.5) * scaleChange);
-		mOffsetY += (int) ((int) (myHeigth * 0.5) * scaleChange);
+		
+		if(move)
+		{
+			mOffsetX += (int) ((int) (mWidth * 0.5) * scaleChange);
+			mOffsetY += (int) ((int) (mHeigth * 0.5) * scaleChange);	
+		}
+		
 		invalidate();
 
 	}
@@ -108,8 +148,8 @@ public class DrawManager extends View{
 		int gridSize=10;
 		
 		
-		int myWidth=((View)this.getParent()).getWidth();
-		int myHeigth=((View)this.getParent()).getHeight();
+		int myWidth=mWidth;
+		int myHeigth=mHeigth;
 		
 		if(mScale<=0.2) gridSize = 60;
 		else if(mScale<0.3) gridSize = 30;

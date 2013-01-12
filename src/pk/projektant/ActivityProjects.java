@@ -77,10 +77,15 @@ public class ActivityProjects extends SherlockActivity {
 		
 		 mPreviewDraw = new DrawManager(ctx, new  ArrayList<FurnitureView>(),1.0f);
 		 mPreviewLayout.addView(mPreviewDraw);
+		
 		  first_time=true;
 		 
 	}
-
+	
+	public void onWindowFocusChanged(boolean hasFocus) {
+		super.onWindowFocusChanged(hasFocus); 
+	} 
+	
 	@Override
 	protected void onResume() {
 		
@@ -102,7 +107,8 @@ public class ActivityProjects extends SherlockActivity {
 		mDate.setText(d.toLocaleString());
 		mCost.setText(String.valueOf(User.get(this).mProjects.get(pos).getCost())+" z³");
 		mPreviewDraw.changeFurnitures(User.get(this).mProjects.get(pos).mFurnitures);
-		mPreviewDraw.scaleTo(0.2f);
+		mPreviewDraw.scaleTo(0.4f,false);
+		mPreviewDraw.center();
 		mLastPos=pos;
 
 	}
@@ -218,24 +224,29 @@ public class ActivityProjects extends SherlockActivity {
 		mDialogDescription= (EditText) mDialog.findViewById(R.id.new_project_description);		 
 		mDialogOK = (Button) mDialog.findViewById(R.id.new_project_ok);
 		mDialogCancel = (Button) mDialog.findViewById(R.id.new_project_cancel);
-		
-		mDialogOK.setOnClickListener(new View.OnClickListener() {		
-	    	   public void onClick(View arg0) {
-	    		  String value = mDialogName.getText().toString();    		
-	     		  if(!value.isEmpty()){	    			  
-	     			  Project p = new Project(value,System.currentTimeMillis());
-	     			  p.mDescription= mDialogDescription.getText().toString();
-	     			  User.get(ctx).mProjects.add(p);
-	     			  User.get(ctx).mActiveProject=p;
-	     			  mCreatedProject=p;
-	  	              myAdapter.notifyDataSetChanged();
-	  	              ThreadNewProject task = new ThreadNewProject();
-	  	              task.execute();	 
-	  	              mDialog.dismiss();
-	     		  }
-	     		  else{
-	     			  Toast.makeText(ctx, "Nazwa projektu nie mo¿e byæ pusta", Toast.LENGTH_LONG).show();
-	     		  }
+
+		mDialogOK.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View arg0) {
+				String value = mDialogName.getText().toString();
+				if (!value.isEmpty()) {
+					Project p = new Project(value, System.currentTimeMillis());
+					if (mDialogDescription.getText().length() == 0) {
+						p.mDescription = " ";
+					} else {
+						p.mDescription = mDialogDescription.getText().toString();
+					}
+
+					User.get(ctx).mProjects.add(p);
+					User.get(ctx).mActiveProject = p;
+					mCreatedProject = p;
+					myAdapter.notifyDataSetChanged();
+					ThreadNewProject task = new ThreadNewProject();
+					task.execute();
+					mDialog.dismiss();
+				} else {
+					Toast.makeText(ctx, "Nazwa projektu nie mo¿e byæ pusta",
+							Toast.LENGTH_LONG).show();
+				}
 	   
 	    	   }
 	    });
@@ -254,7 +265,7 @@ public class ActivityProjects extends SherlockActivity {
 	private void uploadNewProject(){
 		JSONProjectSimple proj = new JSONProjectSimple(mCreatedProject);
 		mConnectionError=false;
-		RestClient connection = new RestClient("http://designercms.herokuapp.com/project/");
+		RestClient connection = new RestClient("http://designercms.herokuapp.com/project");
 		connection.AddParam("username", User.get(ctx).getEmail());
 		connection.AddParam("password", User.get(ctx).getPassword());
 		connection.AddParam("title", proj.mTitle);
@@ -265,6 +276,7 @@ public class ActivityProjects extends SherlockActivity {
 		try {
 			connection.Execute(RequestMethod.POST);	 	
         	String response = connection.getResponse();
+        	Log.d("responsea", response);
         	if(response == "WrongCredentionals"){
 	        	Toast.makeText(ctx, "Z³e dane u¿ytkownika", Toast.LENGTH_LONG).show();
 	   
@@ -277,6 +289,7 @@ public class ActivityProjects extends SherlockActivity {
         					mCreatedProject.mId=pid;
         			}
         			catch(Exception e){
+        				Log.d("responsee", e.getLocalizedMessage());
         				mCreatedProject.mId=0;
         			}	
         			Log.d("sr", nr);
@@ -284,6 +297,7 @@ public class ActivityProjects extends SherlockActivity {
         	}
     
 		} catch (Exception e) {
+			Log.d("responsee2", e.getLocalizedMessage());
 			mConnectionError=true;
 			e.printStackTrace();
 			
@@ -339,6 +353,7 @@ public class ActivityProjects extends SherlockActivity {
 	        	connection.Execute(RequestMethod.GET);	 	
 	        	String response = connection.getResponse();
 		       
+	        	Log.d("omg", response);
 	        	if(response == "WrongCredentionals"){
 		        	Toast.makeText(ctx, "Z³e dane u¿ytkownika", Toast.LENGTH_LONG).show();
 		        	return;

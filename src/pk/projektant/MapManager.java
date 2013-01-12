@@ -74,11 +74,11 @@ public class MapManager {
 	// ----------------------------
 
 	public static int tPX(int p) {
-		return Integer.valueOf((int) ((p - drawManager.mOffsetX) / drawManager.mScale));
+		return Integer.valueOf((int) ((p - drawManager.getOffX()) / drawManager.mScale));
 	}
 
 	public static int tPY(int p) {
-		return Integer.valueOf((int) ((p - drawManager.mOffsetY) / drawManager.mScale));
+		return Integer.valueOf((int) ((p - drawManager.getOffY()) / drawManager.mScale));
 	}
 
 	MapManager(FrameLayout mapArea, Context context, ActivityDesigner a,ArrayList<FurnitureView> l) {
@@ -120,8 +120,8 @@ public class MapManager {
 					tapStart = System.currentTimeMillis();
 					tapCount++;
 					invalidate();
-					mOffsetXBefore = drawManager.mOffsetX;
-					mOffsetYBefore = drawManager.mOffsetY;
+					mOffsetXBefore = drawManager.getOffX();
+					mOffsetYBefore = drawManager.getOffY();
 					xInit = event.getX();
 					yInit = event.getY();
 					xAct= event.getX();
@@ -179,8 +179,7 @@ public class MapManager {
 				// ---------------------------------------------------------------------------------------
 
 				if (event.getAction() == MotionEvent.ACTION_MOVE) {
-					drawManager.mOffsetX = mOffsetXBefore - (int) ((xInit - event.getX()));
-					drawManager.mOffsetY = mOffsetYBefore - (int) ((yInit - event.getY()));
+					drawManager.offsetTo(mOffsetXBefore - (int)(xInit - event.getX()), mOffsetYBefore - (int) (yInit - event.getY()));
 					xAct= event.getX();
 					yAct=event.getY();
 					invalidate();
@@ -235,14 +234,13 @@ public class MapManager {
 
 	public void invalidate() {
 		drawManager.invalidate();
-		mInfoText.setText("X: " + String.valueOf(drawManager.mOffsetX) + " Y: "
-				+ String.valueOf(drawManager.mOffsetY));
+		mInfoText.setText("X: " + String.valueOf(drawManager.getOffX()) + " Y: "
+				+ String.valueOf(drawManager.getOffY()));
 	}
 
 	public void centerView() {
 		drawManager.mScale = 1.0f;
-		drawManager.mOffsetX = 0;
-		drawManager.mOffsetY = 0;
+		drawManager.center();
 		invalidate();
 
 	}
@@ -429,6 +427,7 @@ public class MapManager {
 	}
 
 	private Boolean isRectangleValid(FurnitureView f, Rect newPosition) {
+		if(newPosition.top<0 || newPosition.left<0 /*|| newPosition.right>drawManager.mMaxX || newPosition.bottom>drawManager.mMaxY*/) return false;
 		for (int i = 0; i < sFv.size(); i++) {
 			if (sFv.get(i).equals(f)
 					|| (mFurnitureShadow != null && sFv.get(i).equals(
@@ -593,9 +592,13 @@ public class MapManager {
 			float scaleChange = drawManager.mScale;
 			
 			drawManager.mScale = mStartScale * factor;
+			//drawManager.scaleTo(mStartScale * factor, true);
 			scaleChange = drawManager.mScale - scaleChange;
-			drawManager.mOffsetX -= (int) ((int) (mMapArea.getWidth() * 0.5) * scaleChange);
-			drawManager.mOffsetY -= (int) ((int) (mMapArea.getHeight() * 0.5) * scaleChange);
+		
+			
+			int x = drawManager.getOffX() - (int) ((int) (mMapArea.getWidth() * 0.5) * scaleChange);
+			int y = drawManager.getOffY() - (int) ((int) (mMapArea.getHeight() * 0.5) * scaleChange);
+			drawManager.offsetTo(x, y);
 			
 			invalidate();
 			return false;

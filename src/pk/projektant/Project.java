@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Project {
 	String mName;
-	String mDescription="";
+	String mDescription=" ";
 	int mId=0;
 	long mDateCreation=0;
 	long mDateUpdate=0;
