@@ -75,7 +75,7 @@ public class ActivityProjects extends SherlockActivity {
 		
 		updateList();
 		
-		 mPreviewDraw = new DrawManager(ctx, new  ArrayList<FurnitureView>(),1.0f);
+		 mPreviewDraw = new DrawManager(ctx, new  ArrayList<FurnitureView>(),1.0f, false);
 		 mPreviewLayout.addView(mPreviewDraw);
 		
 		  first_time=true;
@@ -360,10 +360,10 @@ public class ActivityProjects extends SherlockActivity {
 		        }
 		 		 
 				Gson myGson = new Gson();
-				JSONProjectSimple[] furnitures = myGson.fromJson(response, JSONProjectSimple[].class);
+				JSONProjectSimple[] projects = myGson.fromJson(response, JSONProjectSimple[].class);
 				
-				for(int i=0;i<furnitures.length;i++){		
-					 User.get(this).mProjects.add(furnitures[i].toProject());
+				for(int i=0;i<projects.length;i++){		
+					 User.get(this).mProjects.add(projects[i].toProject());
 				}
 	      
 	        }catch (Exception e) {

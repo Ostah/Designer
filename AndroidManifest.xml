@@ -17,35 +17,40 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:windowSoftInputMode="stateHidden"
             android:name="pk.projektant.ActivityLogin"
             android:label="@string/app_name"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:windowSoftInputMode="stateHidden"
             android:name="pk.projektant.ActivityDesigner"
             android:label="@string/title_activity_view__list"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
-            android:windowSoftInputMode="stateHidden"
             android:name="pk.projektant.ActivityRegister"
             android:label="@string/title_activity_activity_register"
-            android:parentActivityName="ActivityLogin" >
+            android:parentActivityName="ActivityLogin"
+            android:windowSoftInputMode="stateHidden" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ActivityLogin" />
         </activity>
         <activity
-            android:windowSoftInputMode="stateHidden"
-            android:screenOrientation="landscape"
             android:name="pk.projektant.ActivityProjects"
-            android:label="@string/title_activity_activity_projects" >
+            android:label="@string/title_activity_activity_projects"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="pk.projektant.ActivityPreferences"
+            android:label="@string/title_activity_activity_preferences" >
         </activity>
     </application>
 

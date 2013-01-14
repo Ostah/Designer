@@ -165,10 +165,11 @@ public class ActivityLogin extends Activity {
             }
             else
             {
-            	 //    nameValuePairs.add(new BasicNameValuePair("username","ja@piotrpaul.pl"));
-                nameValuePairs.add(new BasicNameValuePair("username", txt_username.getText().toString()));
-              nameValuePairs.add(new BasicNameValuePair("password", SHA1.compute( txt_password.getText().toString())));	
-              //  nameValuePairs.add(new BasicNameValuePair("password", "d033e22ae348aeb5660fc2140aec35850c4da997"));		
+            	SHA1.compute( txt_password.getText().toString());
+            	     nameValuePairs.add(new BasicNameValuePair("username","aa2@wp.pl"));
+               // nameValuePairs.add(new BasicNameValuePair("username", txt_username.getText().toString()));
+              //nameValuePairs.add(new BasicNameValuePair("password", SHA1.compute( txt_password.getText().toString())));	
+                nameValuePairs.add(new BasicNameValuePair("password", "9adcb29710e807607b683f62e555c22dc5659713"));		
             }
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 

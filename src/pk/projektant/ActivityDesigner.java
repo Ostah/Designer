@@ -273,6 +273,8 @@ public class ActivityDesigner extends SherlockActivity {
     	switch(item.getItemId()){
     	
     	case R.id.menu_settings :
+    		
+            startActivity(new Intent(ActivityDesigner.this, ActivityPreferences.class));
     		Log.d("options", "settings");
     		return true;
     	
@@ -292,6 +294,7 @@ public class ActivityDesigner extends SherlockActivity {
     		break;
     		
     	case R.id.menu_clear :
+    		
     		clearArea();
     		break;
     	case R.id.menu_edit_title :
@@ -300,6 +303,8 @@ public class ActivityDesigner extends SherlockActivity {
     		break;
     		
     	case R.id.menu_custom:
+    		//mapManager.getDrawManager().scaleTo(mapManager.getDrawManager().mScale -0.1f, true);
+
     		mapManager.isCustomDrawning = ! mapManager.isCustomDrawning;
     		mapManager.isWallDrawning = false;
     		menu_custom=item;
@@ -309,13 +314,15 @@ public class ActivityDesigner extends SherlockActivity {
     		break;
     		
     	case R.id.menu_wall:
+    		//mapManager.getDrawManager().scaleTo(mapManager.getDrawManager().mScale +0.1f, true);
+   
     		mapManager.isWallDrawning = ! mapManager.isWallDrawning;
     		mapManager.isCustomDrawning = false;
     		menu_wall=item;
     		if(menu_custom!= null ) menu_custom.setIcon(R.drawable.icon_custom);
     		if(	mapManager.isWallDrawning) 	item.setIcon(R.drawable.icon_wall_active);
     		else							item.setIcon(R.drawable.icon_wall);		
-    		break;
+   		break;
             
     	 case R.id.menu_show_grid :
     		 changeGrid();

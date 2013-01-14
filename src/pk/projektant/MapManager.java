@@ -81,6 +81,9 @@ public class MapManager {
 		return Integer.valueOf((int) ((p - drawManager.getOffY()) / drawManager.mScale));
 	}
 
+	public DrawManager getDrawManager(){
+		return drawManager;
+	}
 	MapManager(FrameLayout mapArea, Context context, ActivityDesigner a,ArrayList<FurnitureView> l) {
 		sFv = new ArrayList<FurnitureView>(l.size());
 		for(int i=0;i<l.size();i++) sFv.add(l.get(i).clone());
@@ -89,7 +92,7 @@ public class MapManager {
 		this.mMapArea = mapArea;
 		scaleGestureDetector = new ScaleGestureDetector(context,
 				new simpleOnScaleGestureListener());
-		drawManager = new DrawManager(context, sFv,1.0f);
+		drawManager = new DrawManager(context, sFv,1.0f, true);
 		mapArea.addView(drawManager);
 		mInfoText = (TextView) act.findViewById(R.id.info_text);
 		invalidate();
@@ -112,7 +115,7 @@ public class MapManager {
 					
 					long time = System.currentTimeMillis() - tapStart;
 					Log.d("click", "Time: "+String.valueOf(time));
-					if(time>1500){
+					if(time>1200){
 					
 						tapCount=0;
 					}
@@ -155,7 +158,7 @@ public class MapManager {
 											public void onClick(
 													DialogInterface dialog,
 													int item) {
-												if (item == 3) {
+												if (item == 2) {
 													showProperties(tapFurniture.reference);
 												} else if (item == 0) {
 													rotate(tapFurniture);
@@ -234,8 +237,8 @@ public class MapManager {
 
 	public void invalidate() {
 		drawManager.invalidate();
-		mInfoText.setText("X: " + String.valueOf(drawManager.getOffX()) + " Y: "
-				+ String.valueOf(drawManager.getOffY()));
+		//mInfoText.setText("X: " + String.valueOf(drawManager.getOffX()) + " Y: "
+		//		+ String.valueOf(drawManager.getOffY()));
 	}
 
 	public void centerView() {
@@ -591,14 +594,14 @@ public class MapManager {
 
 			float scaleChange = drawManager.mScale;
 			
-			drawManager.mScale = mStartScale * factor;
-			//drawManager.scaleTo(mStartScale * factor, true);
-			scaleChange = drawManager.mScale - scaleChange;
-		
-			
-			int x = drawManager.getOffX() - (int) ((int) (mMapArea.getWidth() * 0.5) * scaleChange);
-			int y = drawManager.getOffY() - (int) ((int) (mMapArea.getHeight() * 0.5) * scaleChange);
-			drawManager.offsetTo(x, y);
+			//drawManager.mScale = mStartScale * factor;
+			drawManager.scaleTo(mStartScale * factor, true);
+//			scaleChange = drawManager.mScale - scaleChange;
+//		
+//			
+//			int x = drawManager.getOffX() - (int) ((int) (mMapArea.getWidth() * 0.5) * scaleChange);
+//			int y = drawManager.getOffY() - (int) ((int) (mMapArea.getHeight() * 0.5) * scaleChange);
+//			drawManager.offsetTo(x, y);
 			
 			invalidate();
 			return false;

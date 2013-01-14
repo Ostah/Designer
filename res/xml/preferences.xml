@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+       
+        <SwitchPreference 
+            android:key="show_furnitures"
+            android:summary="Wyłączenie miniatur zwiększa płynność przewijania listy"
+            android:title="Wyświetlaj miniatury mebli" 
+            android:defaultValue="true"
+        />
+        
+         <SwitchPreference 
+            android:key="show_debug"
+            android:summary="Informacje o widoku"
+            android:title="X/Y oraz skala w lewym górnym rogu" 
+            android:defaultValue="true"
+        />
+         
+         <SwitchPreference 
+            android:key="show_debug_active"
+            android:summary="Pozycja aktywnego mebla"
+            android:title="Informacje o przesuwanym meblu" 
+            android:defaultValue="true"
+        />
+         
+          <SwitchPreference 
+            android:key="show_debug_all"
+            android:summary="Pozycja i wielkość wszystkich mebli"
+            android:title="Informacje o wszystkich meblach" 
+            android:defaultValue="true"
+        />
+      
+</PreferenceScreen>

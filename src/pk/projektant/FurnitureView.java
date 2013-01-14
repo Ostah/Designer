@@ -128,12 +128,33 @@ public class FurnitureView {
 	        	
 	        	canvas.drawLine(rectInScale(d).right, rectInScale(d).bottom, rectInScale(d).right, rectInScale(d).top, paint2);
 	        	canvas.drawLine(rectInScale(d).right, rectInScale(d).bottom, rectInScale(d).left, rectInScale(d).bottom, paint2);
-	        	//canvas.drawCircle(rectInScale(d).left, rectInScale(d).top, 2*d.mScale, paint2);
-	  	        //canvas.drawCircle(rectInScale(d).left, rectInScale(d).bottom,2*d.mScale, paint2);
-	  	        //canvas.drawCircle(rectInScale(d).right, rectInScale(d).top, 2*d.mScale, paint2);
-	  	        //canvas.drawCircle(rectInScale(d).right, rectInScale(d).bottom, 2*d.mScale, paint2);
+	        	
+	        	        	
+	        	if(d.isEdit && d.defaultPref.getBoolean("show_debug_all", true)){
+	        		Rect bounds = new Rect();
+	        		int heigth;
+		        	String textPos = "X: "+rect.left+" Y: "+rect.top;
+		        	String textSize = "Wielkoœæ: "+rect.width()+"x"+rect.height();
+		        	paint.getTextBounds(textPos, 0, textPos.length(), bounds);
+		        	heigth = bounds.height();
+		        	paint.getTextBounds(textSize, 0, textPos.length(), bounds);
+		        	heigth += bounds.height()+6;
+		        	if(bounds.width()*1.3<rectInScale(d).width() && heigth <rectInScale(d).height()*1.4 )
+		        	{
+		        		canvas.drawText("X: "+rect.left+" Y: "+rect.top, (float) rectInScale(d).left+rectInScale(d).width()*0.5f, rectInScale(d).bottom-20, paint2);
+		        		canvas.drawText("Wielkoœæ: "+rect.width()+"x"+rect.height(), (float) rectInScale(d).left+rectInScale(d).width()*0.5f, rectInScale(d).bottom-6, paint2);
+
+		        	}
+	        	}
 	        }
 	      
+	}
+	
+	public void drawText(Canvas canvas, Paint paint, DrawManager d){
+		
+	//	canvas.drawText("X: "+rect.left+" Y: "+rect.top,20,20, paint);
+		canvas.drawText("X: "+rect.left+" Y: "+rect.top, (float) rectInScale(d).left+rectInScale(d).width()*0.5f, rectInScale(d).top-20, paint);
+		Log.d("draw", "X: "+rectInScale(d).left+" Y: "+rectInScale(d).top);
 	}
 	
 	protected void move(float x, float y){	

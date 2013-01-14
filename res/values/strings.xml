@@ -14,5 +14,6 @@
     <string name="title_activity_view__list">Projektant</string>
     <string name="title_activity_activity_register">Rejestracja</string>
     <string name="title_activity_activity_projects">Lista Projektów</string>
+    <string name="title_activity_activity_preferences">Ustawienia</string>
 
 </resources>

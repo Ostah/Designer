@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,7 @@ public class FurnitureListAdapter extends ArrayAdapter<Furniture>{
 	private List<Furniture> original;
 	private List<Furniture> filtered;
 	public Boolean notifyChanged=false;
+	SharedPreferences sharedPrefs=null;
 	public FurnitureListAdapter(Context ctx, int textViewResourceId, List<Furniture> objects) {
 		super(ctx, textViewResourceId,objects);
 		 
@@ -32,6 +35,8 @@ public class FurnitureListAdapter extends ArrayAdapter<Furniture>{
         data = objects;
         
         original = new ArrayList<Furniture>(objects);
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+
 	}
 	
 	public View getView ( int position, View convertView, ViewGroup parent ) {
@@ -55,15 +60,23 @@ public class FurnitureListAdapter extends ArrayAdapter<Furniture>{
 		txtName.setText(furniture.mName);	
 		TextView txtCost = viewCache.getTextCost(resource);
 		txtCost.setText(Float.toString(furniture.mPrice));		 
-		ImageView imageCity =  viewCache.getImageView(furniture.mId, context);
+	
 		
-		int imageResource = context.getResources().getIdentifier(furniture.mId, "drawable", context.getPackageName());
-		if(imageResource!=0)
+		if(sharedPrefs.getBoolean("show_furnitures", true))
 		{
-			Drawable image = context.getResources().getDrawable(imageResource);
-	        imageCity.setImageDrawable(image);	
-		}
+			ImageView imageCity =  viewCache.getImageView(furniture.mId, context);
+			int imageResource = context.getResources().getIdentifier(furniture.mId, "drawable", context.getPackageName());
+			if(imageResource!=0)
+			{
+				Drawable image = context.getResources().getDrawable(imageResource);
+		        imageCity.setImageDrawable(image);	
+			}
 
+		}
+		else{
+			Log.d("preferences", "false");
+		}
+		
 
 		
 		return convertView;
