@@ -1,3 +1,5 @@
+# Designer
+
 Projekt w ramach pracy inżynierskiej. 
 Aplikacja na system Android wspomagająca projektowanie wnętrz. Komunikacja z serwerem za pomocą REST i JSON
 
